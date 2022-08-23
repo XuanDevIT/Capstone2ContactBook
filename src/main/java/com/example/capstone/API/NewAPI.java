@@ -17,7 +17,7 @@ public class NewAPI {
 	@Autowired
 	private INewService newService;
 	
-	//PostMapping =  @RequestMapping(value = "/test",method = RequestMethod.POST)
+	//PostMapping =  @RequestMapping(value = "/test",method = RequestMethod.POST);
 	//@ResponseBody
 	@PostMapping(value = "/new")
 	public NewDTO createNew(@RequestBody NewDTO model) {
