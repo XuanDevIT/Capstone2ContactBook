@@ -10,7 +10,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NewDTO {
-
 	private String title;
 	private String content;
 	private String shortDescription;
