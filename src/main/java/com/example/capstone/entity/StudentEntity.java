@@ -1,7 +1,5 @@
 package com.example.capstone.entity;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,7 +28,7 @@ public class StudentEntity {
 	private String fullName;
 	private String classStudent;
 	private int age;
-	private Date birthDay;
+	private String birthDay;
 	private String address;
 	private String phone;
 

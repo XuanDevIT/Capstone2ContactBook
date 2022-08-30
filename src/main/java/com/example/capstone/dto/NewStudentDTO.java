@@ -1,26 +1,35 @@
 package com.example.capstone.dto;
 
-import java.util.Date;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
-@Builder
+@NoArgsConstructor
 public class NewStudentDTO {
+	
 	
 	private Long studentId;
 	
-	private String userName;
-	private String password;
+	@NotBlank(message = "Thiếu fullName")
 	private String fullName;
+	
+	@NotBlank(message = "Thiếu username")
+	private String userName;
+	@NotBlank(message = "Thiếu password")
+	private String password;
+	@NotBlank(message = "Thiếu classStudent")
 	private String classStudent;
+	@Min(10)
 	private int age;
-	private Date birthDay;
+	@NotBlank(message = "Thiếu birthDay")
+	private String birthDay;
+	@NotBlank(message = "Thiếu address")
 	private String address;
+	@NotBlank(message = "Thiếu phone")
 	private String phone;
 	
 }

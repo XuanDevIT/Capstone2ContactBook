@@ -18,8 +18,9 @@ public class StudentServiceImpl implements StudentService{
 	NewStudentConverter sNewStudentConverter;
 	
 	@Override
-	public NewStudentDTO save(NewStudentDTO NewStudentDTO) {
-		return sNewStudentConverter.toDTO(sNewStudentConverter.toEntity(NewStudentDTO));
+	public NewStudentDTO save(NewStudentDTO newStudentDTO) {
+		return sNewStudentConverter.toDTO(studentRepository.save( sNewStudentConverter.toEntity(newStudentDTO)));
+		
 	}
 	
 	
