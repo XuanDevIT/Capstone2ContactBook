@@ -2,9 +2,6 @@ package com.example.capstone.dto;
 
 
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 @Data
@@ -14,22 +11,22 @@ public class NewStudentDTO {
 	
 	private Long studentId;
 	
-	@NotBlank(message = "Thiếu fullName")
+	//@NotBlank(message = "Thiếu fullName")
 	private String fullName;
 	
-	@NotBlank(message = "Thiếu username")
+	//@NotBlank(message = "Thiếu username")
 	private String userName;
-	@NotBlank(message = "Thiếu password")
+	//@NotBlank(message = "Thiếu password")
 	private String password;
-	@NotBlank(message = "Thiếu classStudent")
+	//@NotBlank(message = "Thiếu classStudent")
 	private String classStudent;
-	@Min(10)
+	//@Min(10)
 	private int age;
-	@NotBlank(message = "Thiếu birthDay")
+	//@NotBlank(message = "Thiếu birthDay")
 	private String birthDay;
-	@NotBlank(message = "Thiếu address")
+	//@NotBlank(message = "Thiếu address")
 	private String address;
-	@NotBlank(message = "Thiếu phone")
+	//@NotBlank(message = "Thiếu phone")
 	private String phone;
 	
 }

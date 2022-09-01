@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,24 +18,37 @@ import com.example.capstone.service.StudentService;
 @Controller
 @RequestMapping(value = "/student")
 public class StudenController {
-	
+
 	@Autowired
 	private StudentService studentService;
-	
+
 	@GetMapping
 	public String addStudent(Model model) {
 		NewStudentDTO eDto = new NewStudentDTO();
-		model.addAttribute("student", eDto);  
+		model.addAttribute("student", eDto);
 		return "addStudent";
 	}
-	
+
 	@PostMapping
-	public String save( @Valid  @ModelAttribute("student") NewStudentDTO studentDTO,BindingResult result) {
-		if(result.hasErrors()) {
-			return "addStudent";
-		}
+	public String save(@Valid @ModelAttribute("student") NewStudentDTO studentDTO, BindingResult result) {
+//		if (result.hasErrors()) {
+//			return "addStudent";
+//		}
 		studentService.save(studentDTO);
-		return "index";
+		return "redirect:student/showInfoStudent";
+
+	}
+
+	@GetMapping("/showInfoStudent")
+	public String showInfoStudent(Model model) {
+		model.addAttribute("infoStudent",studentService.findAll());
+		return "showInfoStudent";
+	}
+	
+	@GetMapping("/{id}")
+	public String editStudent(@PathVariable(value = "id") Long id, Model model) {
+		model.addAttribute("student", studentService.findByID(id));
+		return "addStudent";
 		
 	}
 }
