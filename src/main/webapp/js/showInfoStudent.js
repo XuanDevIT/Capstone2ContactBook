@@ -1,23 +1,48 @@
-$(document).ready(function(){
-	// Activate tooltip
-	$('[data-toggle="tooltip"]').tooltip();
+const getDataFromInfo =()=>{
+	var data={};
+	var element= $('#inforStudent')
+
+	var inputs = element.children().children('input');
 	
-	// Select/Deselect checkboxes
-	var checkbox = $('table tbody input[type="checkbox"]');
-	$("#selectAll").click(function(){
-		if(this.checked){
-			checkbox.each(function(){
-				this.checked = true;                        
-			});
-		} else{
-			checkbox.each(function(){
-				this.checked = false;                        
-			});
-		} 
-	});
-	checkbox.click(function(){
-		if(!this.checked){
-			$("#selectAll").prop("checked", false);
-		}
-	});
-});
+	$.each(inputs,(index,val)=>{
+			data= {...data,[val.name] : val.value}
+	})
+	
+	return data;
+	
+}
+
+const setDataFromInfo =()=>{
+	var data={};
+	var element= $('#inforStudent')
+
+	var inputs = element.children().children('input');
+	$.each(inputs,(index,val)=>{
+			data= {...data,[val.name] : val.value}
+	})
+	
+	return data;
+	
+}
+
+const popup_edit_show = ()=>{
+
+}
+
+const popup_save = ()=>{
+	handler_insert_student(getDataFromInfo()).then(rs=>{
+		window.location.href="/student/showInfoStudent";
+	})
+}
+
+$(document).ready(function(){
+	$('#save_inforStuden').on('click', function(){
+		popup_save();
+	})
+
+	$('.edit').on('click',function(){
+		
+	})
+
+
+})
