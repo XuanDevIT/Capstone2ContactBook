@@ -15,25 +15,25 @@ public class StudentAPI {
 
 	@Autowired
 	private StudentService studentService;
-	
+
 	//PostMapping =  @RequestMapping(value = "/test",method = RequestMethod.POST);
 	//@ResponseBody
-	
+
 	@PostMapping(value = "/v1/student")
 	public NewStudentDTO createNew(@RequestBody NewStudentDTO model) {
 		return studentService.save(model);
 	}
-	
+
 //	@GetMapping(value= "/student")
 //	@CrossOrigin(origins = "http://127.0.0.1:5500")
 //	public ResponseEntity<String> findAll(){
 //		return ResponseEntity.ok("ok") ;
 //	}
-	
+
 	@GetMapping("/v1/student/{id}")
 	public ResponseEntity<NewStudentDTO> updateStudent(@PathVariable(value = "id")Long id) {
 		NewStudentDTO dto= studentService.findByID(id);
 		return ResponseEntity.ok(dto);
-		
+
 	}
 }
