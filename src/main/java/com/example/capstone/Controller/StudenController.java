@@ -44,18 +44,18 @@ public class StudenController {
 		model.addAttribute("infoStudent",studentService.findAll());
 		return "showInfoStudent";
 	}
-	
+
 	@GetMapping("/{id}")
 	public String editStudent(@PathVariable(value = "id") Long id, Model model) {
 		model.addAttribute("student", studentService.findByID(id));
 		return "addStudent";
-		
+
 	}
-	
+
 	@GetMapping("/delete/{id}")
 	public String deleteStudent(@PathVariable(value = "id") Long id, Model model) {
 		model.addAttribute("student", studentService.delete(id));
 		return "redirect:/student/showInfoStudent";
-		
+
 	}
 }

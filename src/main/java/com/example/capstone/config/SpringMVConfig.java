@@ -13,9 +13,9 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 @Configuration
 public class SpringMVConfig implements WebMvcConfigurer{
-	@Autowired 
+	@Autowired
 	ApplicationContext  applicationContext;
-	
+
 	@Bean
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
@@ -37,14 +37,14 @@ public class SpringMVConfig implements WebMvcConfigurer{
         templateEngine.setEnableSpringELCompiler(true);
         return templateEngine;
     }
-    
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/images/**").addResourceLocations("/images/");
         registry.addResourceHandler("/css/**").addResourceLocations("/css/");
         registry.addResourceHandler("/js/**").addResourceLocations("/js/");
     }
-    
+
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();

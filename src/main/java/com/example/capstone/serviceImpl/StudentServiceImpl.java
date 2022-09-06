@@ -29,7 +29,7 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public List<NewStudentDTO> findAll() {
-		List<NewStudentDTO> list = new ArrayList<NewStudentDTO>();
+		List<NewStudentDTO> list = new ArrayList<>();
 
 		studentRepository.findAll().stream().forEach(studen -> {
 			list.add(sNewStudentConverter.toDTO(studen));
