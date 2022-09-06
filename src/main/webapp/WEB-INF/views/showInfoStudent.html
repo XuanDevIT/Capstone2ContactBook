@@ -21,9 +21,9 @@
 	<link th:href="@{/css/owl.carousel.min.css}" rel="stylesheet" />
 	<link th:href="@{/css/slicknav.min.css}" rel="stylesheet" />
 	<link th:href="@{/css/style.css}" rel="stylesheet" />
-    <link th:href="@{/css/showInfoStudent.css}" rel="stylesheet" />
-    
-    <link href="/css/showInfoStudent.css" rel="stylesheet" />
+	<link th:href="@{/css/showInfoStudent.css}" rel="stylesheet" />
+
+	<link href="/css/showInfoStudent.css" rel="stylesheet" />
 	<link href="/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="/css/font-awesome.min.css" rel="stylesheet" />
 	<link href="/css/elegant-icons.css" rel="stylesheet" />
@@ -190,8 +190,10 @@
 							<h2>Manage <b>Student</b></h2>
 						</div>
 						<div class="col-xs-6">
-							<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Student</span></a>
-							<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+							<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i
+									class="material-icons">&#xE147;</i> <span>Add New Student</span></a>
+							<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i
+									class="material-icons">&#xE15C;</i> <span>Delete</span></a>
 						</div>
 					</div>
 				</div>
@@ -212,7 +214,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each ="student : ${infoStudent}"> 
+						<tr th:each="student : ${infoStudent}">
 							<td>
 								<span class="custom-checkbox">
 									<input type="checkbox" id="checkbox1" name="options[]" value="1">
@@ -223,13 +225,17 @@
 							<td>thomashardy@mail.com</td>
 							<td th:text="${student.address}"></td>
 							<td th:text="${student.phone}"></td>
-							
+
 							<td>
-								<a href="#addStudent" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								<!-- <a th:href="@{/student/{id}(id = ${student.studentId}) }" class="edit" ><i class="material-icons" >&#xE254;</i></a> -->
+								
+								<a href="#addEmployeeModal" th:attr= "data-student_id=${student.studentId}" class="edit" data-toggle="modal"><i
+									class="material-icons">&#xE254;</i></a>
+								<a th:href="@{/student/delete/{id}(id = ${student.studentId}) }" class="delete"><i
+										class="material-icons">&#xE872;</i></a>
 							</td>
 						</tr>
-						
+
 					</tbody>
 				</table>
 				<div class="clearfix">
@@ -245,88 +251,54 @@
 					</ul>
 				</div>
 			</div>
-		</div>        
-    </div>
+		</div>
+	</div>
 	<!-- Edit Modal HTML -->
 	<div id="addEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form>
-					<div class="modal-header">						
-						<h4 class="modal-title">Add Student</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">					
-						<div class="form-group">
-							<label>Name</label>
-							<input type="text" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Email</label>
-							<input type="email" class="form-control" required>
-						</div>
-						<div class="form-group">
-							<label>Address</label>
-							<textarea class="form-control" required></textarea>
-						</div>
-						<div class="form-group">
-							<label>Phone</label>
-							<input type="text" class="form-control" required>
-						</div>					
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-success" value="Add">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-	<!-- Edit Modal HTML -->
-	<div id="editEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">						
+					<div class="modal-header">
 						<h4 class="modal-title">Edit Student</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
-					<div class="modal-body">					
+					<div class="modal-body" id="inforStudent">
 						<div class="form-group">
 							<label>Name</label>
-							<input type="text" class="form-control" required>
+							<input type="text" name="fullName" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Email</label>
-							<input type="email" class="form-control" required>
+							<label>User Name</label>
+							<input type="text" name="userName" class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>Address</label>
-							<textarea class="form-control" required></textarea>
+							<label>Birth Day</label>
+							<input class="form-control" name="birthDay" type="date" required></input>
 						</div>
 						<div class="form-group">
 							<label>Phone</label>
-							<input type="text" class="form-control" required>
-						</div>					
+							<input type="text" class="form-control" name="phone" required>
+						</div>
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-info" value="Save">
+						<input type="button" class="btn btn-info" id="save_inforStuden" value="Save">
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
+
 	<!-- Delete Modal HTML -->
 	<div id="deleteEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form>
-					<div class="modal-header">						
+					<div class="modal-header">
 						<h4 class="modal-title">Delete Student</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
-					<div class="modal-body">					
+					<div class="modal-body">
 						<p>Are you sure you want to delete these Records?</p>
 						<p class="text-warning"><small>This action cannot be undone.</small></p>
 					</div>
@@ -394,7 +366,7 @@
 	<!-- Footer Section End -->
 
 	<!-- Js Plugins -->
-    <script th:src="@{/js/showInfoStudent.js}"></script>
+
 	<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
 	<script th:src="@{/js/jquery.nice-select.min.js}"></script>
@@ -403,11 +375,11 @@
 	<script th:src="@{/js/owl.carousel.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 
-	<script th:src="@{/CallAPI/main.js}"></script>
+	<script th:src="@{/js/handler.js}"></script>
 	<script th:src="@{/CallEvent/main.js}"></script>
 
 
-    <script src="/js/showInfoStudent.js"></script>
+	<script src="/js/showInfoStudent.js"></script>
 	<script src="/js/jquery-3.3.1.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/jquery.nice-select.min.js"></script>
@@ -419,7 +391,7 @@
 	<script src="/CallAPI/main.js"></script>
 	<script src="/CallEvent/main.js"></script>
 
-
+	<script th:src="@{/js/showInfoStudent.js}"></script>
 
 
 </body>

@@ -13,4 +13,5 @@ public interface StudentService {
 	public NewStudentDTO save(NewStudentDTO NewStudentDTO);
 	public List<NewStudentDTO> findAll();
 	public NewStudentDTO findByID(Long Id);
+	public boolean delete (Long ID);
 }

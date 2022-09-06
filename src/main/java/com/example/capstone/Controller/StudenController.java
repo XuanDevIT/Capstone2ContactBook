@@ -35,7 +35,7 @@ public class StudenController {
 //			return "addStudent";
 //		}
 		studentService.save(studentDTO);
-		return "redirect:student/showInfoStudent";
+		return "redirect:/student/showInfoStudent";
 
 	}
 
@@ -49,6 +49,13 @@ public class StudenController {
 	public String editStudent(@PathVariable(value = "id") Long id, Model model) {
 		model.addAttribute("student", studentService.findByID(id));
 		return "addStudent";
+		
+	}
+	
+	@GetMapping("/delete/{id}")
+	public String deleteStudent(@PathVariable(value = "id") Long id, Model model) {
+		model.addAttribute("student", studentService.delete(id));
+		return "redirect:/student/showInfoStudent";
 		
 	}
 }

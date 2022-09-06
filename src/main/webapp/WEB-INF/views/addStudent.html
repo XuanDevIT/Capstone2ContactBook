@@ -185,7 +185,7 @@
 
 			<div class="checkout__form">
 				<h4>Save Student</h4>
-				<form id="form_add" th:object=${student} th:action="@{student}" method="post">
+				<form id="form_add" th:object=${student} th:action="@{/student}" method="post">
 					<div class="row">
 						<div class="col-lg-8 col-md-6">
 							<div class="checkout__input">
@@ -259,7 +259,7 @@
 					<p>
 						City<span>*<input id="" type="text"></span>
 					</p>
-
+						<input th:field="*{studentId}" type="hidden"></span>
 				</div>
 			</div>
 		</div>
