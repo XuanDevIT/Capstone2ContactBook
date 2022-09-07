@@ -42,7 +42,7 @@ public class StudenController {
 	@GetMapping("/showInfoStudent")
 	public String showInfoStudent(Model model) {
 		model.addAttribute("infoStudent",studentService.findAll());
-		return "showInfoStudent";
+		return "student/showInfoStudent";
 	}
 
 	@GetMapping("/{id}")

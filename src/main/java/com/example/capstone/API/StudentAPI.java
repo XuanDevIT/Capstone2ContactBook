@@ -42,6 +42,5 @@ public class StudentAPI {
 	public ResponseEntity<Boolean> deleteStudent(@PathVariable(value = "id")Long id) {
 		boolean dto= studentService.delete(id);
 		return ResponseEntity.ok(dto);
-		
 	}
 }
