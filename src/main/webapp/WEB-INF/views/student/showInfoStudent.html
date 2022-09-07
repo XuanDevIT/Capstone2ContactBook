@@ -269,7 +269,10 @@
 						</div>
 						<div class="form-group">
 							<label>User Name</label>
-							<input type="text" name="userName" class="form-control" required>
+							<input type="text" name="userName" class="form-control " required>
+							<div class="invalid-feedback">
+								Please provide a valid city.
+							  </div>
 						</div>
 						<div class="form-group">
 							<label>Birth Day</label>
@@ -391,7 +394,7 @@
 	<script src="/js/owl.carousel.min.js"></script>
 	<script src="/js/main.js"></script>
 
-	<script src="/CallAPI/main.js"></script>
+	<script src="/js/validate.js"></script>
 	<script src="/CallEvent/main.js"></script>
 
 	<script th:src="@{/js/showInfoStudent.js}"></script>
