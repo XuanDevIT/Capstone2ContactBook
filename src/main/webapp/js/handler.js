@@ -24,3 +24,16 @@ const handler_findByID =(id)=>{
         })
     })
 }
+
+const handler_delete_student =(id)=>{
+    return new Promise((resolve, reject)=>{
+        $.ajax({
+            method: 'DELETE',
+            url: '/v1/student/'+id,
+            contentType: 'application/json',
+            dataType: 'json'
+        }).done(function(rs){
+            resolve(rs);
+        })
+    })
+}
