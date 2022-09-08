@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.capstone.dto.NewStudentDTO;
+import com.example.capstone.entity.StudentEntity;
 import com.example.capstone.service.StudentService;
 
 @Controller
@@ -24,17 +24,17 @@ public class StudenController {
 
 	@GetMapping
 	public String addStudent(Model model) {
-		NewStudentDTO eDto = new NewStudentDTO();
-		model.addAttribute("student", eDto);
+		StudentEntity studentEntity = new StudentEntity();
+		model.addAttribute("student", studentEntity);
 		return "addStudent";
 	}
 
 	@PostMapping
-	public String save(@Valid @ModelAttribute("student") NewStudentDTO studentDTO, BindingResult result) {
+	public String save(@Valid @ModelAttribute("student") StudentEntity studentEntity, BindingResult result) {
 //		if (result.hasErrors()) {
 //			return "addStudent";
 //		}
-		studentService.save(studentDTO);
+		studentService.save(studentEntity);
 		return "redirect:/student/showInfoStudent";
 
 	}

@@ -29,6 +29,9 @@ public class StudentEntity {
 	private String birthDay;
 	private String address;
 	private String phone;
+	private String nameParent;
+	private String mailParent;
+	private String birthDayParent;
 
 //	@ManyToMany
 //	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))

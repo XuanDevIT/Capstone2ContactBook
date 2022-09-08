@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.capstone.dto.NewStudentDTO;
+import com.example.capstone.entity.StudentEntity;
 import com.example.capstone.service.StudentService;
 @RestController
 public class StudentAPI {
@@ -21,7 +21,7 @@ public class StudentAPI {
 	//@ResponseBody
 
 	@PostMapping(value = "/v1/student")
-	public NewStudentDTO createNew(@RequestBody NewStudentDTO model) {
+	public StudentEntity createNew(@RequestBody StudentEntity model) {
 		return studentService.save(model);
 	}
 
@@ -32,8 +32,8 @@ public class StudentAPI {
 //	}
 
 	@GetMapping("/v1/student/{id}")
-	public ResponseEntity<NewStudentDTO> updateStudent(@PathVariable(value = "id")Long id) {
-		NewStudentDTO dto= studentService.findByID(id);
+	public ResponseEntity<StudentEntity> updateStudent(@PathVariable(value = "id")Long id) {
+		StudentEntity dto= studentService.findByID(id);
 		return ResponseEntity.ok(dto);
 
 	}
