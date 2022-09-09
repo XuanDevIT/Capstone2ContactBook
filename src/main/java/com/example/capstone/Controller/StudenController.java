@@ -2,7 +2,6 @@ package com.example.capstone.Controller;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,14 +12,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.capstone.entity.StudentEntity;
-import com.example.capstone.service.StudentService;
 
 @Controller
 @RequestMapping(value = "/student")
 public class StudenController {
 
-	@Autowired
-	private StudentService studentService;
+	//@Autowired
+	//private StudentService studentService;
 
 	@GetMapping
 	public String addStudent(Model model) {

@@ -89,7 +89,7 @@ const item_tr_data_student = (ob) => {
 								
 
 								<a href="#addEmployeeModal" data-student_id=${ob.studentId} class="edit"
-									data-toggle="modal"><i class="material-icons">&#xE254;</i></a>
+									data-toggle="modal"><i class="material-icons ">&#xE254;</i></a>
 								
 								<a href="#deleteEmployeeModal" data-student_id=${ob.studentId}  class="material-icons delete_student" data-toggle="modal"><i
 										class="material-icons">&#xE15C;</i> </a>
