@@ -37,3 +37,16 @@ const handler_delete_student =(id)=>{
         })
     })
 }
+
+const handler_show_data_student =() => {
+    return new Promise((resolve, reject)=>{
+        $.ajax({
+            method: 'GET',
+            url: '/v1/student',
+            contentType: 'application/json',
+            dataType: 'json'
+        }).done(function(rs){
+            resolve(rs);
+        })
+    })
+}

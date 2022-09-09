@@ -34,28 +34,28 @@ public class StudenController {
 //		if (result.hasErrors()) {
 //			return "addStudent";
 //		}
-		studentService.save(studentEntity);
-		return "redirect:/student/showInfoStudent";
+		//studentService.save(studentEntity);
+		return "redirect:/teacher/showInfoStudent";
 
 	}
 
 	@GetMapping("/showInfoStudent")
 	public String showInfoStudent(Model model) {
-		model.addAttribute("infoStudent",studentService.findAll());
-		return "student/showInfoStudent";
+		//model.addAttribute("infoStudent",studentService.findAll());
+		return "teacher/showInfoStudent";
 	}
 
 	@GetMapping("/{id}")
 	public String editStudent(@PathVariable(value = "id") Long id, Model model) {
-		model.addAttribute("student", studentService.findByID(id));
+		//model.addAttribute("student", studentService.findByID(id));
 		return "addStudent";
 
 	}
 
 	@GetMapping("/delete/{id}")
 	public String deleteStudent(@PathVariable(value = "id") Long id, Model model) {
-		model.addAttribute("student", studentService.delete(id));
-		return "redirect:/student/showInfoStudent";
+		//model.addAttribute("student", studentService.delete(id));
+		return "redirect:/teacher/showInfoStudent";
 
 	}
 }

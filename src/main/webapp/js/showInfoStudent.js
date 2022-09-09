@@ -48,20 +48,71 @@ const setDataFromInfo = (data_rs) => {
 //show dialog va set du lieu cho dialog
 const popup_edit_show = (id) => {
 	handler_findByID(id).then(rs => setDataFromInfo(rs))
+	popup_cancel();
 }
 
 //xu ly button save cua dialog
 const popup_save = () => {
 	handler_insert_student(getDataFromInfo()).then(rs => {
-		window.location.href = "/student/showInfoStudent";
+		show_data_student();
+		popup_cancel();
+	})
+}
+
+const popup_cancel = () => {
+	var element = $('#addEmployeeModal')
+	var element2 = $('#deleteEmployeeModal')
+	element.removeClass('show');
+	element.css("display", "none")
+	element2.removeClass('show');
+	element2.css("display", "none")
+	$('body').removeClass('modal-open')
+	$('.modal-backdrop').remove()
+	
+}
+
+const item_tr_data_student = (ob) => {
+	return `
+					<tr >
+							<!-- <td>
+								<span class="custom-checkbox">
+									<input type="checkbox" id="checkbox1" name="options[]" value="1">
+									<label for="checkbox1"></label>
+								</span>
+							</td> -->
+							<td >${ob.fullName}</td>
+							<td >${ob.birthDay}</td>
+							<td >${ob.phone}</td>
+							<td >${ob.classStudent}</td>
+
+							<td>
+								
+
+								<a href="#addEmployeeModal" data-student_id=${ob.studentId} class="edit"
+									data-toggle="modal"><i class="material-icons">&#xE254;</i></a>
+								
+								<a href="#deleteEmployeeModal" data-student_id=${ob.studentId}  class="material-icons delete_student" data-toggle="modal"><i
+										class="material-icons">&#xE15C;</i> </a>
+							</td>
+						</tr>`
+}
+
+const show_data_student = () => {
+	var appen_data = $('#data_student')
+	
+	var html ;
+	handler_show_data_student().then(rs => {
+		rs.forEach(row =>{
+			html = html + item_tr_data_student(row)
+		})
+		appen_data.html(html);
 	})
 }
 
 
-
 //su kienej
 $(document).ready(function () {
-
+	show_data_student()
 	//event save onclick
 	$('#save_inforStuden').on('click', function () {
 		var check = result_validate();
@@ -72,25 +123,32 @@ $(document).ready(function () {
 	})
 
 	//event edit onclick
-	$('.edit').on('click', function () {
+	$('#data_student').on('click', '.edit',function () {
 		debugger
 		var id = $(this).attr('data-student_id')
 
-		popup_edit_show(id);
+		popup_edit_show(Number(id));
 	})
+
+
 
 	//reset gia tri form(add)
 	$('#showPopup_save').on('click', () => {
 		reset_value_from();
 	})
 
-	$('.delete_student').on('click', function () {
+
+
+	
+
+	$('#data_student').on('click', '.delete_student',function () {
 		debugger
 		var id = $(this).attr('data-student_id')
 		$('#confirm_delete').on('click', () => {
 
 			handler_delete_student(id).then(rs => {
-				window.location.href = "/student/showInfoStudent";
+				show_data_student();
+				popup_cancel();
 			})
 
 		})
@@ -105,8 +163,8 @@ $(document).ready(function () {
 			return false;
 		}
 
-		if($(this).attr('name') =='phone'){
-			if(validatePhone(value)!= true ){
+		if ($(this).attr('name') == 'phone') {
+			if (validatePhone(value) != true) {
 				$(this).addClass('is-invalid')
 				return false;
 			}
@@ -122,12 +180,12 @@ $(document).ready(function () {
 			}
 		}
 
-		
+
 
 		$(this).removeClass('is-invalid');
 	}
-    
-	var  check_blur = true;
+
+	var check_blur = true;
 
 	function handleBlur() {
 		var check_blur = true;
@@ -147,23 +205,23 @@ $(document).ready(function () {
 			check_blur = false;
 		}
 		debugger
-		if($(this).attr('name') =='phone'){
-			if(validatePhone(value)!= true ){
+		if ($(this).attr('name') == 'phone') {
+			if (validatePhone(value) != true) {
 				$(this).addClass('is-invalid')
 				check_blur = false;
 			}
 		}
 
-		if(check_blur == true){
+		if (check_blur == true) {
 			$(this).removeClass('is-invalid')
 			check_blur = true;
 		}
-		
+
 		return check_blur;
 
 	}
 
-    inputs.blur(handleBlur)
+	inputs.blur(handleBlur)
 	inputs.keyup(handlekeyup)
 
 
