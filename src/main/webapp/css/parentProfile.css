@@ -34,13 +34,18 @@
 }
 
 .card_button {
-    height: 20rem;
+    height: 24rem;
     width: 9rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding-bottom: 8px;
     margin-left: 7em;
+    font-style: italic;
+}
+
+.card_button a{
+    color: #fff;
     font-style: italic;
 }
 .btn-outline-info   {
