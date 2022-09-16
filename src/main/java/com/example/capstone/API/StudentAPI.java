@@ -1,5 +1,7 @@
 package com.example.capstone.API;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,6 +36,13 @@ public class StudentAPI {
 	@GetMapping("/v1/student/{id}")
 	public ResponseEntity<StudentEntity> updateStudent(@PathVariable(value = "id")Long id) {
 		StudentEntity dto= studentService.findByID(id);
+		return ResponseEntity.ok(dto);
+
+	}
+	
+	@GetMapping("/v1/student")
+	public ResponseEntity<List<StudentEntity>> updateStudent() {
+		List<StudentEntity> dto= studentService.findAll();
 		return ResponseEntity.ok(dto);
 
 	}

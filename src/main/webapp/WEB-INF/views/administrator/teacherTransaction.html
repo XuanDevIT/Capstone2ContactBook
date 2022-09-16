@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="Ogani Template">
+	<meta name="keywords" content="Ogani, unica, creative, html">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+	<!-- Css Styles -->
+	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+	<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
+	<link th:href="@{/css/elegant-icons.css}" rel="stylesheet" />
+	<link th:href="@{/css/nice-select.css}" rel="stylesheet" />
+	<link th:href="@{/css/jquery-ui.min.css}" rel="stylesheet" />
+	<link th:href="@{/css/owl.carousel.min.css}" rel="stylesheet" />
+	<link th:href="@{/css/slicknav.min.css}" rel="stylesheet" />
+	<link th:href="@{/css/style.css}" rel="stylesheet" />
+	<link th:href="@{/css/teacher.css}" rel="stylesheet" />
+
+	<link href="/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="/css/elegant-icons.css" rel="stylesheet" />
+	<link href="/css/nice-select.css" rel="stylesheet" />
+	<link href="/css/jquery-ui.min.css" rel="stylesheet" />
+	<link href="/css/owl.carousel.min.css" rel="stylesheet" />
+	<link href="/css/slicknav.min.css" rel="stylesheet" />
+	<link href="/css/style.css" rel="stylesheet" />
+	<link rel="stylesheet" href="./css/student.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Humberger Begin -->
+	<div class="humberger__menu__overlay"></div>
+	<div class="humberger__menu__wrapper">
+		<div class="humberger__menu__logo">
+			<a href="#"><img src="img/logo1.png" alt=""></a>
+		</div>
+		<div class="humberger__menu__cart">
+			<ul>
+				<li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+				<li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+			</ul>
+			<div class="header__cart__price">
+				item: <span>$150.00</span>
+			</div>
+		</div>
+		<div class="humberger__menu__widget">
+			<div class="header__top__right__language">
+				<img src="img/language.png" alt="">
+				<div>English</div>
+				<span class="arrow_carrot-down"></span>
+				<ul>
+					<li><a href="#">Spanis</a></li>
+					<li><a href="#">English</a></li>
+				</ul>
+			</div>
+			<div class="header__top__right__auth">
+				<a href="#"><i class="fa fa-user"></i> Login</a>
+			</div>
+		</div>
+		<nav class="humberger__menu__nav mobile-menu">
+			<ul>
+				<li class="active"><a href="./index.html">Home</a></li>
+				<li><a href="./shop-grid.html">Shop</a></li>
+				<li><a href="#">Notify</a>
+					<ul class="header__menu__dropdown">
+						<li><a href="./shop-details.html">Shop Details</a></li>
+						<li><a href="./shoping-cart.html">Shoping Cart</a></li>
+						<li><a href="./checkout.html">Check Out</a></li>
+						<li><a href="./blog-details.html">Blog Details</a></li>
+					</ul>
+				</li>
+				<li><a href="./contact.html">Contact</a></li>
+			</ul>
+		</nav>
+		<div id="mobile-menu-wrap"></div>
+		<div class="header__top__right__social">
+			<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i
+					class="fa fa-linkedin"></i></a>
+			<a href="#"><i class="fa fa-pinterest-p"></i></a>
+		</div>
+		<div class="humberger__menu__contact">
+			<ul>
+				<li><i class="fa fa-envelope"></i>System@ContactBook.com</li>
+				<li>Welcome to ContactBook.com</li>
+			</ul>
+		</div>
+	</div>
+	<!-- Humberger End -->
+
+	<!-- Header Section Begin -->
+	<header class="header">
+		<div class="header__top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-md-6">
+						<div class="header__top__left">
+							<ul>
+								<li><i class="fa fa-envelope"></i>System@ContactBook.com</li>
+								<li>Welcome to ContactBook.com</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6">
+						<div class="header__top__right">
+							<div class="header__top__right__social">
+								<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
+										class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a
+									href="#"><i class="fa fa-pinterest-p"></i></a>
+							</div>
+							<div class="header__top__right__auth">
+								<a href="#"><i class="fa fa-user"></i> Login</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="header__logo">
+						<a href="./index.html"><img src="img/logo1.png" alt=""></a>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<nav class="header__menu">
+						<ul>
+							<li class="active"><a href="./index.html">Home</a></li>
+							<li><a href="./shop-grid.html">Profile</a></li>
+							<li><a href="#">Notify</a></li>
+							<li><a href="./contact.html">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
+
+			</div>
+			<div class="humberger__open">
+				<i class="fa fa-bars"></i>
+			</div>
+		</div>
+	</header>
+	<!-- Header Section End -->
+
+	<!-- Hero Section Begin -->
+	<section class="hero">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="hero__categories">
+						<div class="hero__categories__all">
+							<i class="fa fa-bars"></i> <span>Menu</span>
+						</div>
+						<ul>
+							<li><a href="#">See Grades</a></li>
+							<li><a href="#">Feedback Grades</a></li>
+							<li><a href="#">Chat With Teacher</a></li>
+							<li><a href="#">Comment On System</a></li>
+							<li><a href="#">See Feedback Admin</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-9">
+					<div class="hero__item set-bg" style="height: 266px" data-setbg="/img/hero/banner1.png"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Hero Section End -->
+
+	<div>
+        <div class="container border border-primary">
+                <div class="row bg-primary p-2" >
+                    <h2>Teacher Management</h2>
+                </div>
+                <div class="row">
+                    <div class="col my-2">
+                        <button type="button" class="btn btn-success" onclick="showTeacherModal()">Add Teacher</button>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                        <table class="table table-crud">
+                            <thead class="thead-dark">
+                              <tr>
+                                <th scope="col"></th>
+								<th scope="col">Fullname</th>
+								<th scope="col">Sex</th>
+								<th scope="col">Address</th>
+								<th scope="col">Email</th>
+								<th scope="col">Phone</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody style="line-height: 0.5">
+                              <tr th:each="teacher,index : ${teacherList}">
+                                <td th:text="${index.index} + 1" scope="row"></td>
+                                <td th:text="${teacher.fullName}"></td>
+                                <td th:text="${teacher.sex}"></td>
+                                <td th:text="${teacher.address}"></td>
+                                <td th:text="${teacher.email}"></td>
+                                <td th:text="${teacher.phone}"></td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm btn-crud"
+                                    th:attr="onclick=|showTeacherModal('${teacher.teacherId}', '${teacher.fullName}', '${teacher.sex}', '${teacher.birthday}','${teacher.address}', '${teacher.password}', '${teacher.classManage}', '${teacher.degree}', '${teacher.email}', '${teacher.phone}', '${teacher.photos}')| ">
+                                        <!-- <i class="fa-sharp fa-solid fa-pen-to-square"></i> -->
+                                        update
+                                    </button>
+                                    <a th:attr="onclick=|modalDeleteTeacher('${teacher.teacherId}', '${teacher.fullName}')|" 
+                                    	onclick="$('#confirmDelete').click();"
+                                    	class="btn btn-danger btn-sm btn-crud" 
+                                    	data-toggle="modal" data-target="#deleteTeacherModal">
+                                        <!-- <i class="fa-solid fa-trash"></i> -->
+                                        delete
+                                    </a>
+                                </td>
+                                <!-- Modal -->
+								<div class="modal fade" id="deleteTeacherModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								  <div class="modal-dialog" role="document">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body">
+								        Are you sure delete <span id="fullName"> </span>
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button"  class="btn btn-secondary" data-dismiss="modal">Close</button>
+								        <a type="button" id="confirmDelete" class="btn btn-primary">Save changes</a>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+                              </tr>
+                            </tbody>
+                          </table>
+                    </div>
+                </div>
+        </div>
+    </div>
+	<!-- Edit Modal HTML -->
+	<div id="teacherModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content" style="width:800px;">
+                <div class="modal-header">
+                    <h4 class="modal-title">Teacher</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <form th:action="@{/teacher/add}" th:object="${teacher}" method="POST">
+                    <div class="container"></div>
+					<div class="modal-body">
+						<div class="form-row">
+                            <div class="col">
+                                <input type="hidden" th:field="*{teacherId}" name="teacherId" id="teacherId">
+                                <div>
+                                    <label for="fullName" class="col-form-label">Full name</label>
+                                    <input type="text" th:field="*{fullName}" name="fullName" id="fullName" class="form-control" placeholder="Full name">
+                                </div>
+                                <label for="sex" class="col-form-label">sex</label> <br>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" th:field="*{sex}"  type="radio" name="sex" id="male" value="male" checked>
+                                    <label class="form-check-label" for="sex">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" th:field="*{sex}" type="radio" name="sex" id="female" value="female">
+                                    <label class="form-check-label" for="sex">Female</label>
+                                  </div>
+                                <div>
+                                    <label for="birthday" class="col-form-label">Birthday</label>
+                                    <input type="date" th:field="*{birthday}" name="birthday" id="birthday" class="form-control">
+                                </div>
+                                <div>
+                                    <label for="address" class="col-form-label">Address</label>
+                                    <input type="text" th:field="*{address}" name="address" id="address" class="form-control" placeholder="Address">
+                                </div>
+                                <div>
+                                    <label for="password" class="col-form-label">Password</label>
+                                    <input type="text" th:field="*{password}" name="password" id="password" class="form-control" placeholder="Enter password">
+                                </div>
+                                <div>
+                                    <label for="classManage" class="col-form-label">Class manage</label>
+                                    <input type="text" th:field="*{classManage}" name="classManage" id="classManage" class="form-control" placeholder="Class manage">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div>
+                                    <label for="degree" class="col-form-label">Degree</label>
+                                    <input type="text" th:field="*{degree}" name="degree" id="degree" class="form-control" placeholder="degree">
+                                </div>
+                                <div>
+                                    <label for="degree" class="col-form-label">Email</label>
+                                    <input type="text" th:field="*{email}" name="email" id="email" class="form-control" placeholder="Email">
+                                </div>
+                                <div>
+                                    <label for="degree" class="col-form-label">Phone</label>
+                                    <input type="text" th:field="*{phone}" name="phone" id="phone" class="form-control" placeholder="Phone number">
+                                </div>
+                                <div>
+                                    <label for="degree" class="col-form-label">Photo</label>
+                                    <input type="text" th:field="*{degree}" name="degree" id="degree" class="form-control" placeholder="degree">
+                                </div>
+                                <button id="teacherSubmit" type="submit" class="d-none"></button>
+                            </div>
+                        </div>
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<input type="button" class="btn btn-info" onclick="$('#teacherSubmit').click();" id="save_inforStuden" value="Save">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer Section Begin -->
+	<footer class="footer spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 col-sm-6">
+					<div class="footer__about">
+						<div class="footer__about__logo">
+							<a href="./index.html"><img src="img/logo1.png" alt=""></a>
+						</div>
+						<ul>
+							<li>254 Nguyễn Văn Linh, Thạc Gián, Thanh Khê, Đà Nẵng
+								550000</li>
+							<li>Phone: 0236 3653 561</li>
+							<li>Email:System@ContactBook.com</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+					<div class="footer__widget">
+						<h6>Useful Links</h6>
+						<ul>
+							<li><a href="#">About Us</a></li>
+
+						</ul>
+						<ul>
+							<li><a href="#">Who We Are</a></li>
+							<li><a href="#">Our Services</a></li>
+
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-12">
+					<div class="footer__widget">
+						<h6>Join Our Newsletter Now</h6>
+						<p>Get E-mail updates about our latest system and notify
+							offers.</p>
+						<form action="#">
+							<input type="text" placeholder="Enter your mail">
+							<button type="submit" class="site-btn">Subscribe</button>
+						</form>
+						<div class="footer__widget__social">
+							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
+									class="fa fa-instagram"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a
+								href="#"><i class="fa fa-pinterest"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</footer>
+	<!-- Footer Section End -->
+	
+	<!-- Js Plugins -->
+	<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/jquery.nice-select.min.js}"></script>
+	<script th:src="@{/js/jquery-ui.min.js}"></script>
+	<script th:src="@{/js/mixitup.min.js}"></script>
+	<script th:src="@{/js/owl.carousel.min.js}"></script>
+	<script th:src="@{/js/main.js}"></script>
+	<script th:src="@{/js/showInfoStudent.js}"></script>
+	<script th:src="@{/js/handler.js}"></script>
+	<script th:src="@{/CallEvent/main.js}"></script>
+
+
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/jquery.nice-select.min.js"></script>
+	<script src="/js/jquery-ui.min.js"></script>
+	<script src="/js/mixitup.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
+	<script src="/js/main.js"></script>
+
+	<script src="/CallAPI/main.js"></script>
+	<script src="/CallEvent/main.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	
+	<script th:src="@{/js/teacher.js}"></script>
+</body>
+
+</html>
