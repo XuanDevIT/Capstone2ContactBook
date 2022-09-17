@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Điểm danh học sinh - Đức</title>
+    <title>Điểm Danh - Đức</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="../../css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="../../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../../css/style.css" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 </head>
 <body>
      <!-- Page Preloder -->
@@ -165,225 +166,120 @@
                             <div class="col h2">Attendance</div>
                             <div class="col empty"></div>
                             <div class="col">
-                                <input class="date border border-light p-1 shadow bg-white rounded w-75" type="date"></input>
+                                <input class="date border p-1 bg-white rounded w-75" type="date"></input>
                             </div>
                         </div>
                         <div class="row">
                             <!--Class selector-->
                             <div class="col-3">
-                                <button class="btn dropdown-toggle shadow bg-white rounded w-100" type="button" id="select_class" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Select Class
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="select_class">
-                                  <a class="dropdown-item" href="#">A101</a>
-                                  <a class="dropdown-item" href="#">A102</a>
-                                  <a class="dropdown-item" href="#">A103</a>
-                                </div>
+                                <select class="custom-select custom-select-sm w-100" id="gender2">
+                                    <option selected>Select Class</option>
+                                    <option value="1">D</option>
+                                    <option value="2">A</option>
+                                  </select>
                             </div>
                             <!--Subject Selector-->
                             <div class="col-3">
-                                <button class="btn dropdown-toggle shadow bg-white rounded w-100" type="button" id="select_subject" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Select Subject
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="select_subject">
-                                  <a class="dropdown-item" href="#">Math</a>
-                                  <a class="dropdown-item" href="#">Geography</a>
-                                  <a class="dropdown-item" href="#">History</a>
-                                </div>
+                                <select class="custom-select w-100" id="gender2">
+                                    <option selected>Select Subject</option>
+                                    <option value="1">A</option>
+                                    <option value="2">A</option>
+                                  </select>
                             </div>
                             <div class="col-3">
-                                <button class="btn btn-success shadow rounded w-100">Take Attendance</button>
+                                <button class="btn btn-success w-75">Take Attendance</button>
                             </div>
-                            <div class="col-1 empty"></div>
-                            <div class="col-1">
-                                <div class="btn-group shadow rounded" role="group">
-                                    <button type="button" class="btn">
-                                        <i class="fa fa-list" aria-hidden="true"></i>
-                                    </button>
-                                    <button type="button rounded" class="btn btn-success rounded">
-                                        <i class="fa fa-th" aria-hidden="true"></i>
-                                    </button>
-                                </div>
+                            
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-white">
+                                            <i class="fa fa-search" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search">
+                                  </div>
                             </div>
                         </div>
                     </div>
-                    <div class="attendace-body p-3">
-                        <div class="row d-flex justify-content-between mb-3">
-                            <div class="card shadow p-3 bg-white rounded" style="width: 12rem;">
-                                <div class="student-image d-flex justify-content-center align-items-center mt-3 mb-3">
-                                    <img src="../../img/categories/cat-1.jpg" class="card-img-top rounded-circle w-50" alt="...">
-                                </div>
-                                <div class="card-body p-0 text-center">
-                                  <h5 class="card-title name">Nguyen Van A</h5>
-                                  <p class="card-text id">ID: 0422529</p>
-                                  <div class="btn-group">
-                                    <button class="btn btn-outline-success border-0 active rounded-circle">P</button>
-                                    <button class="btn btn-outline-info border-0 rounded-circle">A</button>
-                                    <button class="btn btn-outline-warning border-0 rounded-circle">L</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow p-3 bg-white rounded" style="width: 12rem;">
-                                <div class="student-image d-flex justify-content-center align-items-center mt-3 mb-3">
-                                    <img src="../../img/categories/cat-1.jpg" class="card-img-top rounded-circle w-50" alt="...">
-                                </div>
-                                <div class="card-body p-0 text-center">
-                                  <h5 class="card-title name">Nguyen Van A</h5>
-                                  <p class="card-text id">ID: 0422529</p>
-                                  <div class="btn-group">
-                                    <button class="btn btn-outline-success border-0 rounded-circle">P</button>
-                                    <button class="btn btn-outline-info border-0 rounded-circle">A</button>
-                                    <button class="btn btn-outline-warning border-0 rounded-circle active">L</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow p-3 bg-white rounded" style="width: 12rem;">
-                                <div class="student-image d-flex justify-content-center align-items-center mt-3 mb-3">
-                                    <img src="../../img/categories/cat-1.jpg" class="card-img-top rounded-circle w-50" alt="...">
-                                </div>
-                                <div class="card-body p-0 text-center">
-                                  <h5 class="card-title name">Nguyen Van A</h5>
-                                  <p class="card-text id">ID: 0422529</p>
-                                  <div class="btn-group">
-                                    <button class="btn btn-outline-success border-0 rounded-circle">P</button>
-                                    <button class="btn btn-outline-info border-0 rounded-circle">A</button>
-                                    <button class="btn btn-outline-warning border-0 rounded-circle active">L</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow p-3 bg-white rounded" style="width: 12rem;">
-                                <div class="student-image d-flex justify-content-center align-items-center mt-3 mb-3">
-                                    <img src="../../img/categories/cat-1.jpg" class="card-img-top rounded-circle w-50" alt="...">
-                                </div>
-                                <div class="card-body p-0 text-center">
-                                  <h5 class="card-title name">Nguyen Van A</h5>
-                                  <p class="card-text id">ID: 0422529</p>
-                                  <div class="btn-group">
-                                    <button class="btn btn-outline-success border-0 rounded-circle">P</button>
-                                    <button class="btn btn-outline-info border-0 rounded-circle active">A</button>
-                                    <button class="btn btn-outline-warning border-0 rounded-circle">L</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row d-flex justify-content-between mb-3">
-                            <div class="card shadow p-3 bg-white rounded" style="width: 12rem;">
-                                <div class="student-image d-flex justify-content-center align-items-center mt-3 mb-3">
-                                    <img src="../../img/categories/cat-1.jpg" class="card-img-top rounded-circle w-50" alt="...">
-                                </div>
-                                <div class="card-body p-0 text-center">
-                                  <h5 class="card-title name">Nguyen Van A</h5>
-                                  <p class="card-text id">ID: 0422529</p>
-                                  <div class="btn-group">
-                                    <button class="btn btn-outline-success border-0 active rounded-circle">P</button>
-                                    <button class="btn btn-outline-info border-0 rounded-circle">A</button>
-                                    <button class="btn btn-outline-warning border-0 rounded-circle">L</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow p-3 bg-white rounded" style="width: 12rem;">
-                                <div class="student-image d-flex justify-content-center align-items-center mt-3 mb-3">
-                                    <img src="../../img/categories/cat-1.jpg" class="card-img-top rounded-circle w-50" alt="...">
-                                </div>
-                                <div class="card-body p-0 text-center">
-                                  <h5 class="card-title name">Nguyen Van A</h5>
-                                  <p class="card-text id">ID: 0422529</p>
-                                  <div class="btn-group">
-                                    <button class="btn btn-outline-success border-0 rounded-circle">P</button>
-                                    <button class="btn btn-outline-info border-0 rounded-circle">A</button>
-                                    <button class="btn btn-outline-warning border-0 rounded-circle active">L</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow p-3 bg-white rounded" style="width: 12rem;">
-                                <div class="student-image d-flex justify-content-center align-items-center mt-3 mb-3">
-                                    <img src="../../img/categories/cat-1.jpg" class="card-img-top rounded-circle w-50" alt="...">
-                                </div>
-                                <div class="card-body p-0 text-center">
-                                  <h5 class="card-title name">Nguyen Van A</h5>
-                                  <p class="card-text id">ID: 0422529</p>
-                                  <div class="btn-group">
-                                    <button class="btn btn-outline-success border-0 rounded-circle">P</button>
-                                    <button class="btn btn-outline-info border-0 rounded-circle">A</button>
-                                    <button class="btn btn-outline-warning border-0 rounded-circle active">L</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow p-3 bg-white rounded" style="width: 12rem;">
-                                <div class="student-image d-flex justify-content-center align-items-center mt-3 mb-3">
-                                    <img src="../../img/categories/cat-1.jpg" class="card-img-top rounded-circle w-50" alt="...">
-                                </div>
-                                <div class="card-body p-0 text-center">
-                                  <h5 class="card-title name">Nguyen Van A</h5>
-                                  <p class="card-text id">ID: 0422529</p>
-                                  <div class="btn-group">
-                                    <button class="btn btn-outline-success border-0 rounded-circle">P</button>
-                                    <button class="btn btn-outline-info border-0 rounded-circle active">A</button>
-                                    <button class="btn btn-outline-warning border-0 rounded-circle">L</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row d-flex justify-content-between mb-3">
-                            <div class="card shadow p-3 bg-white rounded" style="width: 12rem;">
-                                <div class="student-image d-flex justify-content-center align-items-center mt-3 mb-3">
-                                    <img src="../../img/categories/cat-1.jpg" class="card-img-top rounded-circle w-50" alt="...">
-                                </div>
-                                <div class="card-body p-0 text-center">
-                                  <h5 class="card-title name">Nguyen Van A</h5>
-                                  <p class="card-text id">ID: 0422529</p>
-                                  <div class="btn-group">
-                                    <button class="btn btn-outline-success border-0 active rounded-circle">P</button>
-                                    <button class="btn btn-outline-info border-0 rounded-circle">A</button>
-                                    <button class="btn btn-outline-warning border-0 rounded-circle">L</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow p-3 bg-white rounded" style="width: 12rem;">
-                                <div class="student-image d-flex justify-content-center align-items-center mt-3 mb-3">
-                                    <img src="../../img/categories/cat-1.jpg" class="card-img-top rounded-circle w-50" alt="...">
-                                </div>
-                                <div class="card-body p-0 text-center">
-                                  <h5 class="card-title name">Nguyen Van A</h5>
-                                  <p class="card-text id">ID: 0422529</p>
-                                  <div class="btn-group">
-                                    <button class="btn btn-outline-success border-0 rounded-circle">P</button>
-                                    <button class="btn btn-outline-info border-0 rounded-circle">A</button>
-                                    <button class="btn btn-outline-warning border-0 rounded-circle active">L</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow p-3 bg-white rounded" style="width: 12rem;">
-                                <div class="student-image d-flex justify-content-center align-items-center mt-3 mb-3">
-                                    <img src="../../img/categories/cat-1.jpg" class="card-img-top rounded-circle w-50" alt="...">
-                                </div>
-                                <div class="card-body p-0 text-center">
-                                  <h5 class="card-title name">Nguyen Van A</h5>
-                                  <p class="card-text id">ID: 0422529</p>
-                                  <div class="btn-group">
-                                    <button class="btn btn-outline-success border-0 rounded-circle">P</button>
-                                    <button class="btn btn-outline-info border-0 rounded-circle">A</button>
-                                    <button class="btn btn-outline-warning border-0 rounded-circle active">L</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card shadow p-3 bg-white rounded" style="width: 12rem;">
-                                <div class="student-image d-flex justify-content-center align-items-center mt-3 mb-3">
-                                    <img src="../../img/categories/cat-1.jpg" class="card-img-top rounded-circle w-50" alt="...">
-                                </div>
-                                <div class="card-body p-0 text-center">
-                                  <h5 class="card-title name">Nguyen Van A</h5>
-                                  <p class="card-text id">ID: 0422529</p>
-                                  <div class="btn-group">
-                                    <button class="btn btn-outline-success border-0 rounded-circle">P</button>
-                                    <button class="btn btn-outline-info border-0 rounded-circle active">A</button>
-                                    <button class="btn btn-outline-warning border-0 rounded-circle">L</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                          
+                    <div class="attendace-body">
+                        <table class="table table-bordered">
+                            <thead class="thead text-white bg-success">
+                              <tr>
+                                <th scope="col"></th>
+                                <th scope="col"><i class="fa fa-font" aria-hidden="true"></i> Student Name</th>
+                                <th scope="col"><i class="fa fa-tag" aria-hidden="true"></i> Status</th>
+                                <th scope="col"><i class="fa fa-star" aria-hidden="true"></i> Participation</th>
+                                <th scope="col"><i class="fa fa-commenting-o" aria-hidden="true"></i> Teacher's Note</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td class="student-name">Mark Robert</td>
+                                <td class="status p-1">
+                                  <select class="custom-select border-0 bg-transparent w-100">
+                                    <option selected>Select Status</option>
+                                    <option value="1">Attended</option>
+                                    <option value="2">Permission</option>
+                                    <option value="3">Skipped</option>
+                                  </select>
+                                </td>
+                                <td class="participation text-center">5</td>
+                                <td class="note">
+                                    <textarea type="text" rows="1" placeholder="Note" class="border-0 w-100 bg-transparent"></textarea>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2</th>
+                                <td class="student-name">Mark Robert</td>
+                                <td class="status p-1">
+                                  <select class="custom-select border-0 bg-transparent w-100">
+                                    <option>Select Status</option>
+                                    <option selected value="1">Attended</option>
+                                    <option value="2">Permission</option>
+                                    <option value="3">Skipped</option>
+                                  </select>
+                                </td>
+                                <td class="participation text-center">5</td>
+                                <td class="note">
+                                    <textarea type="text" rows="1" placeholder="Note" class="border-0 w-100 bg-transparent"></textarea>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">3</th>
+                                <td class="student-name">Mark Robert</td>
+                                <td class="status p-1">
+                                  <select class="custom-select border-0 bg-transparent w-100">
+                                    <option>Select Status</option>
+                                    <option value="1">Attended</option>
+                                    <option selected value="2">Permission</option>
+                                    <option value="3">Skipped</option>
+                                  </select>
+                                </td>
+                                <td class="participation text-center">5</td>
+                                <td class="note">
+                                    <textarea type="text" rows="1" placeholder="Note" class="border-0 w-100 bg-transparent"></textarea>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">4</th>
+                                <td class="student-name">Mark Robert</td>
+                                <td class="status p-1">
+                                  <select class="custom-select border-0 bg-transparent w-100">
+                                    <option>Select Status</option>
+                                    <option value="1">Attended</option>
+                                    <option value="2">Permission</option>
+                                    <option selected value="3">Skipped</option>
+                                  </select>
+                                </td>
+                                <td class="participation text-center">5</td>
+                                <td class="note">
+                                    <textarea type="text" rows="1" placeholder="Note" class="border-0 w-100 bg-transparent"></textarea>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
                     </div>
 
                 </div>
@@ -490,5 +386,6 @@
     <script src="../../js/mixitup.min.js"></script>
     <script src="../../js/owl.carousel.min.js"></script>
     <script src="../../js/main.js"></script>
+    
 </body>
 </html>
