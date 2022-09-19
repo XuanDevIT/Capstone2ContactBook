@@ -27,12 +27,6 @@ public class StudentAPI {
 		return studentService.save(model);
 	}
 
-//	@GetMapping(value= "/student")
-//	@CrossOrigin(origins = "http://127.0.0.1:5500")
-//	public ResponseEntity<String> findAll(){
-//		return ResponseEntity.ok("ok") ;
-//	}
-
 	@GetMapping("/v1/student/{id}")
 	public ResponseEntity<StudentEntity> updateStudent(@PathVariable(value = "id")Long id) {
 		StudentEntity dto= studentService.findByID(id);

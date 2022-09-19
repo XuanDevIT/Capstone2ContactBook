@@ -182,37 +182,68 @@
 						<div class="table-title">
 							<div class="row">
 								<div class="col-xs-6" style="margin-top: 20px;">
-									<h2>Manage <b>Student</b></h2>
+									<h2>Manage <b>Schedule</b></h2>
 								</div>
-								<div class="col-xs-6">
-									<a href="#addEmployeeModal" style="margin-top: 20px;" class="btn btn-success" id="showPopup_save"
-										data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New
-											Student</span></a>
+								<div class="col-xs-3">
+									<a href="" style="margin-top: 20px;" class="btn btn-success"
+										id="add_shedule" data-toggle="modal"><i class="material-icons">&#xE147;</i>
+										<span>Add Lessons</span></a>
+
+								</div>
+								<div class="col-xs-3">
+									<a href="" style="margin-top: 20px;" class="btn btn-success"
+										id="add_shedule" data-toggle="modal"><i class="material-icons">&#xE147;</i>
+										<span>Save</span></a>
 
 								</div>
 							</div>
 						</div>
-						<table class="table table-striped table-hover">
-							<thead>
-								<tr>
-									<!-- <th>
-											<span class="custom-checkbox">
-												<input type="checkbox" id="selectAll">
-												<label for="selectAll"></label>
-											</span>
-										</th> -->
-									<th style="width: 200px;">Name</th>
-									<th>Birth Day</th>
-									<th>Phone</th>
-									<th>Class</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody id="data_student">
-
-
-							</tbody>
-						</table>
+						<div class="table table-striped table-hover">
+							<table class="table">
+								<caption>List of users</caption>
+								<thead>
+									<tr>
+										<th scope="col">#</th>
+										<th scope="col">Monday</th>
+										<th scope="col">Tuesday</th>
+										<th scope="col">Wednesday</th>
+										<th scope="col">Thursday</th>
+										<th scope="col">Friday</th>
+										<th scope="col">Saturday</th>
+										<th scope="col">Sunday</th>
+										<th scope="col">Action</th>
+									</tr>
+								</thead>
+								<tbody id="list_schedule">
+									<tr>
+										
+										<th scope="row"><input type="time"></input></th>
+										<td contenteditable="true">zxzx</td>
+										<td contenteditable="true">zxzx</td>
+										<td contenteditable="true">zxzx</td>
+										<td contenteditable="true">zxzx</td>
+										<td contenteditable="true">zxzx</td>
+										<td contenteditable="true">zxzx</td>
+										<td contenteditable="true">zxzx</td>
+										
+									</tr>
+									<tr>
+										
+										<th scope="row"><input type="time"></input></th>
+										<td contenteditable="true">zxzx</td>
+										<td contenteditable="true">zxzx</td>
+										<td contenteditable="true">zxzx</td>
+										<td contenteditable="true">zxzx</td>
+										<td contenteditable="true">zxzx</td>
+										<td contenteditable="true">zxzx</td>
+										<td contenteditable="true">zxzx</td>
+										
+									</tr>
+									
+									
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -221,89 +252,8 @@
 	<!-- Hero Section End -->
 
 
-	<!-- Edit Modal HTML -->
-	<div id="addEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form class="overflow-auto">
-					<div class="modal-header">
-						<h4 class="modal-title">Student</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body" id="inforStudent" data-spy="scroll" style="height:400px;">
-						<div class="form-group">
-							<label>Name</label>
-							<input type="text" name="fullName" class="form-control" required>
-							<div class="invalid-feedback">
-								Please provide a valid Name.
-							</div>
-						</div>
-						<div class="form-group">
-							<label>User Name</label>
-							<input type="text" name="userName" class="form-control " required>
-							<div class="invalid-feedback">
-								Please provide a valid User Name.
-							</div>
-						</div>
-						<div class="form-group">
-							<label>Birth Day</label>
-							<input class="form-control" name="birthDay" type="date" required></input>
-						</div>
-						<div class="form-group">
-							<label>Sex Student</label>
-							<input class="form-control" name="sexStudent" type="text" required></input>
-						</div>
-						<div class="form-group">
-							<label>Phone</label>
-							<input type="text" class="form-control" name="phone" required>
-							<input type="hidden" name="studentId">
-						</div>
-
-						<div class="form-group">
-							<label>Class</label>
-							<input type="text" class="form-control" name="classStudent" required>
-							<input type="hidden" name="studentId">
-						</div>
-
-						<div class="form-group">
-							<label>Age</label>
-							<input type="text" class="form-control" name="age" required>
-							<input type="hidden" name="studentId">
-						</div>
-						<div class="form-group">
-							<label>Address</label>
-							<input type="text" class="form-control" name="address" required>
-							<input type="hidden" name="studentId">
-						</div>
-						<div class="form-group">
-							<label>Name Parent</label>
-							<input type="text" class="form-control" name="nameParent" required>
-							<input type="hidden" name="studentId">
-						</div>
-						<div class="form-group">
-							<label>Mail Parent</label>
-							<input type="text" class="form-control" name="mailParent" required>
-							<input type="hidden" name="mail">
-						</div>
-						<div class="form-group">
-							<label>Birth Day Parent</label>
-							<input class="form-control" name="birthDayParent" type="date" required></input>
-						</div>
-						
-						<div class="form-group">
-							<label>Sex Parent</label>
-							<input class="form-control" name="sexParent" type="text" required></input>
-						</div>
-					</div>
-					<div class="modal-footer" style="position:fixed; width:398px;">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="button" class="btn btn-info" id="save_inforStuden" value="Save">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-
+	
+	
 	<!-- Delete Modal HTML -->
 	<div id="deleteEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
@@ -314,7 +264,7 @@
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">
-						<p>Are you sure you want to delete these Student/Parent?</p>
+						<p>Are you sure you want to delete these Records?</p>
 						<p class="text-warning"><small>This action cannot be undone.</small></p>
 					</div>
 					<div class="modal-footer">
@@ -392,10 +342,6 @@
 	<script th:src="@{/js/owl.carousel.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
 
-	<script th:src="@{/js/handler.js}"></script>
-	<script th:src="@{/CallEvent/main.js}"></script>
-
-
 	<script src="/js/showInfoStudent.js"></script>
 	<script src="/js/jquery-3.3.1.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
@@ -404,12 +350,10 @@
 	<script src="/js/mixitup.min.js"></script>
 	<script src="/js/owl.carousel.min.js"></script>
 	<script src="/js/main.js"></script>
+	<script src="/js/teacher/schedule.js"></script>
 
-	<script src="/js/validate.js"></script>
-	<script src="/CallEvent/main.js"></script>
 
 	<script th:src="@{/js/showInfoStudent.js}"></script>
-
 
 </body>
 
