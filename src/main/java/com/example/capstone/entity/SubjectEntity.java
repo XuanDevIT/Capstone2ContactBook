@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -24,10 +26,11 @@ public class SubjectEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long subjectID;
 	private String subjectName;
-
-//	@OneToMany(mappedBy="subjectEntity")
-//    private Set<ClassStudyEntity> classStudyEntity;
-	@OneToMany(mappedBy = "Subject")
-	private List<TimeStudyEntity> timesStudyEntity;
-
+	
+	@ManyToOne
+	@JoinColumn(name = "teacherID")
+	private Teacher teacherID;
+	
+	@OneToMany(mappedBy = "subjectID")
+	private List<TimeStudyEntity> studyEntities;
 }

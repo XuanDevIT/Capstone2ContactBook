@@ -1,6 +1,6 @@
 package com.example.capstone.entity;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,6 +41,10 @@ public class StudentEntity {
 //	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 //	private List<RoleEntity> roles = new ArrayList<>();
 
-	@OneToMany(mappedBy="studentEntity")
-    private Set<ClassStudyEntity> classStudyEntity;
+	@OneToMany(mappedBy = "studentID")
+	private List<AttendenceEntity> attendenceEntities;
+	
+	@OneToMany(mappedBy = "studentID")
+	private List<ClassStudyEntity> attendenceEntities1;
+	
 }

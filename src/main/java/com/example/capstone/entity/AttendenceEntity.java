@@ -1,13 +1,11 @@
 package com.example.capstone.entity;
 
-import java.util.Date;
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -24,11 +22,18 @@ public class AttendenceEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long attendenceId;
-	private Date date;
 	private String status;
 	private String note;
+	@ManyToOne
+	@JoinColumn(name = "tiemstudy")
+	private TimeStudyEntity timeStudyID;
 	
-	@OneToMany(mappedBy="attendenceEntity")
-    private Set<ClassStudyEntity> classStudyEntity;
+	@ManyToOne
+	@JoinColumn(name = "studentID")
+	private StudentEntity studentID;
+	
+	@ManyToOne
+	@JoinColumn(name = "classID")
+	private ClassStudyEntity classStudyID;
 	
 }

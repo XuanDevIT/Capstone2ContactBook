@@ -1,40 +1,42 @@
 package com.example.capstone.entity;
 
-import javax.persistence.EmbeddedId;
+import java.util.List;
+
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.Data;
 
 @Entity
-@Table(name = "ClassStudent")
+@Table(name = "ClassStudy")
 @Data
 public class ClassStudyEntity {
 
-	@EmbeddedId
-	private ClassKey classKey;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long classStudyID;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("attendenceId")
-    @JoinColumn(name = "attendenceId")
-    AttendenceEntity attendenceEntity;
-    
-    @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("studentId")
-    @JoinColumn(name = "studentId")
-    StudentEntity studentEntity;
-    
-    @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("subjectId")
-    @JoinColumn(name = "subjectId")
-    SubjectEntity subjectEntity;
-    
-    @ManyToOne(fetch = FetchType.EAGER)
-    @MapsId("teacherId")
-    @JoinColumn(name = "teacherId")
-    Teacher teacherEntity;
+	private String className;
+	
+	@ManyToOne
+	@JoinColumn(name = "teacherID")
+	private Teacher teacherID;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "studentID")
+	private StudentEntity studentID;
+	
+	@ManyToOne
+	@JoinColumn(name = "tiemstudy")
+	private TimeStudyEntity timeStudyID;
+	
+	@OneToMany(mappedBy = "classStudyID")
+	private List<AttendenceEntity> attendenceEntities;
 }

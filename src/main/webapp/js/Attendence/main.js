@@ -176,13 +176,15 @@ $(document).ready(function () {
             <td class="text-center status_action">
             
 	        </td>
-            <td contenteditable="true" name="title" class="change_text">${ob == undefined ? '....' : ob.title}</tssd>
-            <td contenteditable="true" name="title" class="change_text">${ob == undefined ? '....' : ob.title}</tssd>
-            <td contenteditable="true" name="title" class="change_text">${ob == undefined ? '....' : ob.title}</tssd>
-            <td contenteditable="true" name="title" class="change_text">${ob == undefined ? '....' : ob.title}</tssd>
-            <td contenteditable="true" name="title" class="change_text">${ob == undefined ? '....' : ob.title}</tssd>
-            <td contenteditable="true" name="title" class="change_text">${ob == undefined ? '....' : ob.title}</tssd>
-            <td contenteditable="true" name="title" class="change_text">${ob == undefined ? '....' : ob.title}</tssd>
+            <td contenteditable="true" name="title" class="change_text">  <input type="time" class="form-control" value =${date_item == undefined ? null : date_item}  id="create_date" name="birthdaytime"></td>
+            <td contenteditable="true" name="title" class="change_text">  <input type="time" class="form-control" value =${date_item == undefined ? null : date_item}  id="create_date" name="birthdaytime"></td>
+            <td contenteditable="true" name="title" class="change_text">${ob == undefined ? '....' : ob.title}</td>
+            <td contenteditable="true" name="title" class="change_text">${ob == undefined ? '....' : ob.title}</td>
+            <td contenteditable="true" name="title" class="change_text">${ob == undefined ? '....' : ob.title}</td>
+            <td contenteditable="true" name="title" class="change_text">${ob == undefined ? '....' : ob.title}</td>
+            <td contenteditable="true" name="title" class="change_text">${ob == undefined ? '....' : ob.title}</td>
+            <td contenteditable="true" name="title" class="change_text">${ob == undefined ? '....' : ob.title}</td>
+            <td contenteditable="true" name="title" class="change_text">${ob == undefined ? '....' : ob.title}</td>
 	        <td class="text-center " ${data_id}  >
 	           
 	            <i class="fa fa-trash-o btn btn-danger btn_delete" aria-hidden="true"></i>

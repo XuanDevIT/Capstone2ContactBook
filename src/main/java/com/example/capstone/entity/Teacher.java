@@ -1,7 +1,7 @@
 package com.example.capstone.entity;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,36 +29,22 @@ public class Teacher {
 	private Long teacherId;
 	
 	private String fullName;
-	private String sex;
+	private String userName;
+	private String password;
+	private int age;
 	private Date birthday;
 	private String address;
-	private String password;
-	private String classManage;
-	private String degree;
-	private String email;
 	private String phone;
+	private String email;
+	private String sex;
+	private String classManage;
 	@Column(columnDefinition = "LONGBLOB")
 	private String photos;
 	
-    @OneToMany(mappedBy="teacherEntity")
-    private Set<ClassStudyEntity> classStudyEntity;
+	@OneToMany(mappedBy = "teacherID")
+	List<ClassStudyEntity> classStudyEntities;
+	
+	@OneToMany(mappedBy = "teacherID")
+	List<SubjectEntity> classStudyEntities1;
+   
 }
-//id
-//Họ và tên
-//sinh nhật
-//Nơi sinh
-//bằng cấp
-//email
-//sdt
-//gioi tinh
-//img
-//classManage
-//
-//private String userName;
-//private String password;
-//private String fullName;
-//private String classStudent;
-//private int age;
-//private Date birthDay;
-//private String address;
-//private String phone;
