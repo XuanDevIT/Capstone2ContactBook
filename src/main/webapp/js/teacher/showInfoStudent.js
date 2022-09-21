@@ -1,5 +1,6 @@
 //lay gia tri tu form
 const getDataFromInfo = () => {
+	debugger
 	var data = {};
 	var element = $('#inforStudent')
 
@@ -54,6 +55,7 @@ const popup_edit_show = (id) => {
 //xu ly button save cua dialog
 const popup_save = () => {
 	handler_insert_student(getDataFromInfo()).then(rs => {
+		debugger
 		show_data_student();
 		popup_cancel();
 	})
@@ -114,7 +116,8 @@ const show_data_student = () => {
 $(document).ready(function () {
 	show_data_student()
 	//event save onclick
-	$('#save_inforStuden').on('click', function () {
+	$('#save_inforStudent').on('click', function () {
+		debugger
 		var check = result_validate();
 		if (check == true) {
 			popup_save();

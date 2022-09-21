@@ -24,6 +24,7 @@ public class AttendenceEntity {
 	private Long attendenceId;
 	private String status;
 	private String note;
+	
 	@ManyToOne
 	@JoinColumn(name = "tiemstudy")
 	private TimeStudyEntity timeStudyID;
