@@ -29,7 +29,7 @@ public class SubjectEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "teacherID")
-	private Teacher teacherID;
+	private TeacherEntity teacherID;
 	
 	@OneToMany(mappedBy = "subjectID")
 	private List<TimeStudyEntity> studyEntities;

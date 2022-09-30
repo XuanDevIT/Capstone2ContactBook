@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.capstone.entity.Teacher;
+import com.example.capstone.entity.TeacherEntity;
 import com.example.capstone.repository.TeacherRepository;
 import com.example.capstone.service.TeacherService;
 
@@ -16,29 +16,37 @@ public class TeacherServiceImpl implements TeacherService{
 	private TeacherRepository teacherRepository;
 
 	@Override
-	public Teacher save(Teacher teacher) {
+	public TeacherEntity save(TeacherEntity teacher) {
 		return teacherRepository.save(teacher);
 	}
 
 	@Override
-	public List<Teacher> findAll() {
-		List<Teacher> listTeacher = teacherRepository.findAll();
+	public List<TeacherEntity> findAll() {
+		List<TeacherEntity> listTeacher = teacherRepository.findAll();
 		return listTeacher;
 	}
 
 	@Override
-	public Teacher findById(Long id) {
+	public TeacherEntity findById(Long id) {
 		return teacherRepository.getById(id);
 	}
 
 	@Override
-	public Teacher update(Teacher teacher) {
+	public TeacherEntity update(TeacherEntity teacher) {
 		return teacherRepository.save(teacher);
 	}
 
 	@Override
-	public void delete(Long id) {
-		teacherRepository.deleteById(id);
+	public boolean delete(Long id) {
+		TeacherEntity teacherEntity= new TeacherEntity();
+		teacherEntity.setTeacherId(id);;
+		try {
+			teacherRepository.delete(teacherEntity);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+
 	}
 
 }

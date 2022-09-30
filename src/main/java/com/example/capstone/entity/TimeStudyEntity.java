@@ -37,7 +37,11 @@ public class TimeStudyEntity {
 	@OneToMany(mappedBy = "timeStudyID")
 	List<AttendenceEntity> attendenceEntities;
 	
-	@OneToMany(mappedBy = "timeStudyID")
-	List<ClassStudyEntity> attendenceEntities1;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "classStudyId")
+	private ClassStudyEntity classStudyID;
+	
 	
 }

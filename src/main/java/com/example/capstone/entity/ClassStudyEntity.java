@@ -26,16 +26,15 @@ public class ClassStudyEntity {
 	
 	@ManyToOne
 	@JoinColumn(name = "teacherID")
-	private Teacher teacherID;
+	private TeacherEntity teacherID;
 	
 	
 	@ManyToOne
 	@JoinColumn(name = "studentID")
 	private StudentEntity studentID;
 	
-	@ManyToOne
-	@JoinColumn(name = "tiemstudy")
-	private TimeStudyEntity timeStudyID;
+	@OneToMany(mappedBy = "classStudyID")
+	private List<TimeStudyEntity> timeStudyEntities;
 	
 	@OneToMany(mappedBy = "classStudyID")
 	private List<AttendenceEntity> attendenceEntities;

@@ -35,7 +35,7 @@ public class StudentAPI {
 	}
 	
 	@GetMapping("/v1/student")
-	public ResponseEntity<List<StudentEntity>> updateStudent() {
+	public ResponseEntity<List<StudentEntity>> getAll() {
 		List<StudentEntity> dto= studentService.findAll();
 		return ResponseEntity.ok(dto);
 

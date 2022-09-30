@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.example.capstone.entity.Teacher;
+import com.example.capstone.entity.TeacherEntity;
 
 @Service
 public interface TeacherService {
-	public Teacher save(Teacher teacher);
-	public List<Teacher> findAll();
-	public Teacher findById(Long id);
-	public Teacher update(Teacher teacher);
-	public void delete(Long id); 
+	public TeacherEntity save(TeacherEntity teacher);
+	public List<TeacherEntity> findAll();
+	public TeacherEntity findById(Long id);
+	public TeacherEntity update(TeacherEntity teacher);
+	public boolean delete(Long id); 
 }
