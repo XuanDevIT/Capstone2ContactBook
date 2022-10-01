@@ -19,7 +19,7 @@ public class TeacherApi {
 	@Autowired
 	public TeacherService teacherService;
 
-	@PostMapping("teacher")
+	@PostMapping("/v1/teacher")
 	public TeacherEntity add(@RequestBody TeacherEntity teacher) {
 		return teacherService.save(teacher);
 	}
@@ -30,22 +30,41 @@ public class TeacherApi {
 //		return new ResponseEntity<TeacherEntity>(teacher2, HttpStatus.OK);
 //	}
 
-	@GetMapping("teacher")
+	@GetMapping("/v1/teacher")
 	public List<TeacherEntity> getAll() {
 		List<TeacherEntity> teacherList = teacherService.findAll();
 		return teacherList;
 	}
 
-	@GetMapping("teacher/{id}")
+	@GetMapping("/v1/teacher/{id}")
 	public TeacherEntity updateStudent(@PathVariable(value = "id") Long id) {
 		TeacherEntity dto = teacherService.findById(id);
 		return dto;
 	}
 	
 
-	@DeleteMapping("teacher")
-	public boolean deleteTeacher(@RequestBody Long id) {
-		boolean teacherDelete = teacherService.delete(id);
-		return teacherDelete;
+//	@DeleteMapping("/v1/teacher")
+//	public boolean deleteTeacher(@RequestBody Long id) {
+//		boolean teacherDelete = teacherService.delete(id);
+//		return teacherDelete;
+//	}
+	@DeleteMapping("/v1/teacher/{id}")
+	public Boolean deleteStudent(@PathVariable(value = "id")Integer id) {
+		boolean dto= teacherService.delete(Long.valueOf(id));
+		return dto;
 	}
+	
+//	//@DeleteMapping("v1/teacher")
+//	public boolean deleteTeacher(@RequestBody Integer[] id) {
+//        try {
+//            for (int i = 0; i < id.length; i++) {
+//                teacherService.delete(Long.valueOf(id[i]));
+//            }
+//            return true;
+//        } catch (Exception e) {
+//            return false;
+//        }
+//
+//    }
+	
 }
