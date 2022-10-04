@@ -7,6 +7,7 @@ const validateFromInfo = () => {
     for (var val of inputs) {
         if (val.value == '' && val.name !="studentId") {
             $(val).addClass('is-invalid')
+            debugger
             check = false;
             continue
         } 
@@ -15,14 +16,17 @@ const validateFromInfo = () => {
             var bd = parseDate(val.value);
             if(date_cr < bd){
                 $(val).addClass('is-invalid')
+                debugger
                 check= false;
                 continue
             }
         }
-        debugger
+        
         if($(val).attr('name') =='phone'){
 			if(validatePhone(val.value)!= true ){
 				$(this).addClass('is-invalid')
+                debugger
+
 				check = false;
                 continue
 			}

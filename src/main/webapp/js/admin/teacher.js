@@ -15,7 +15,23 @@ const getDataFromInfo = () => {
 	return data;
 
 }
+//lay gia tri tu form
+const getDataFromInfo1 = (ob) => {
+	debugger
+	var data = {};
+	var element = document.querySelector('#'+ob)
 
+	var inputs = element.querySelectorAll('input')
+
+	$.each(inputs, (index, val) => {
+		data = { ...data, [val.name]: val.value }
+	})
+	if (data.studentId == '') {
+		delete data.studentId;
+	}
+	return data;
+
+}
 //reset gia tri trong form
 const reset_value_from = () => {
 	var element = $('#inforStudent')
@@ -90,7 +106,7 @@ const item_tr_data_student = (ob) => {
 							<td>
 								
 
-								<a href="#addEmployeeModal" data-student_id=${ob.studentId} class="edit"
+								<a href="#addEmployeeModal" data-student_id=${ob.studentId} class="edit" onclick="showTeacherModal()
 									data-toggle="modal"><i class="material-icons ">&#xE254;</i></a>
 								
 								<a href="#deleteEmployeeModal" data-student_id=${ob.studentId}  class="material-icons delete_student" data-toggle="modal"><i
@@ -115,7 +131,6 @@ const show_data_student = () => {
 //su kienej
 $(document).ready(function () {
 	show_data_student()
-	
 	//event save onclick
 	$('#save_inforStudent').on('click', function () {
 		debugger
