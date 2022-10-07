@@ -22,6 +22,7 @@
 	<link th:href="@{/css/slicknav.min.css}" rel="stylesheet" />
 	<link th:href="@{/css/style.css}" rel="stylesheet" />
 
+
 	<link href="/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="/css/font-awesome.min.css" rel="stylesheet" />
 	<link href="/css/elegant-icons.css" rel="stylesheet" />
@@ -36,7 +37,8 @@
 		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link href='/js/teacher/lib/main.css' rel='stylesheet' />
 	<script src='/js/teacher/lib/main.js'></script>
-
+	<script src='/js/teacher/schedule.js' type="module"></script>
+	<script th:src="@{/js/teacher/schedule.js}" type="module"></script>
 </head>
 
 <body>
@@ -179,9 +181,9 @@
 				<div class="col-lg-9" style="height:600px">
 
 					<div id='calendar'></div>
-					<div class="modal fade  bd-example-modal-lg" id="Modal" tabindex="-1" role="dialog"
+                    <div class="modal fade  bd-example-modal-xl " id="Modal" tabindex="-1" role="dialog"
         aria-labelledby="myLargeModalLabel" aria-hidden="true">
-        <div class="modal-dialog  modal-lg" role="document">
+        <div class="modal-dialog  modal-xl mw-100 w-75" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
@@ -190,41 +192,12 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-2">
-                            <input type="time" name="fromTime" class="form-control" >
-                        </div>
-                        <div class="col-2">
-                            <input type="time" name="toTime" class="form-control" >
-                        </div>
-                        <div class="col-3">
-                            <input disabled type="date"  name="date" class="form-control" >
-                        </div>
-                        <div class="col-2">
-                            <select id="inputState" name="teacher" class="form-control">
-                                <option selected>Choose...</option>
-								<option>Ly</option>
-								<option>Hoa</option>
-								<option>Van</option>
-								<option>...</option>
-                            </select>
-                        </div>
-                        <div class="col-2">
-                            <select id="inputState" name="subject" data-live-search="true" class="form-control selectpicker">
-                                <option selected>Choose...</option>
-                                <option>Ly</option>
-								<option>Hoa</option>
-								<option>Van</option>
-								<option>...</option>
-                            </select>
-                        </div>
-                        <div class="col-1 d-flex align-items-center">
-                            <Button class="btn-danger btn">X</Button>
-                        </div>
-                    </div>
+
+
                 </div>
+
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-dismiss="">ADD</button>
+                    <button type="button" class="btn btn-success" id="add_row" data-dismiss="">ADD</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id="save">Save changes</button>
                 </div>
@@ -320,90 +293,8 @@
 	<script src="/CallAPI/main.js"></script>
 	<script src="/CallEvent/main.js"></script>
 
-	<script>
 
 
-
-		document.addEventListener('DOMContentLoaded', function () {
-			var calendarEl = document.getElementById('calendar');
-
-			var calendar = new FullCalendar.Calendar(calendarEl, {
-				initialView: 'dayGridMonth',
-				headerToolbar: {
-					center: 'addEventButton'
-				},
-				height: '100%',
-				expandRows: true,
-				slotMinTime: '07:00',
-				slotMaxTime: '21:00',
-				headerToolbar: {
-					left: 'prev,next today',
-					center: 'title',
-					right: 'dayGridMonth,timeGridWeek,timeGridDay'
-				},
-				initialView: 'dayGridMonth',
-				initialDate: '2022-09-01',
-
-				events: [
-					{
-						title: 'Toan',
-						start: '2022-09-29T10:30:00',
-						end: '2022-09-29T11:30:00',
-						extendedProps: {
-							department: 'BioChemistry'
-						},
-						description: 'Lecture'
-					}
-				],
-				dateClick: function (info) {
-
-
-					// alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-					// alert('Current view: ' + info.view.type);
-					// change the day's background color just for fun
-					info.dayEl.style.backgroundColor = 'red';
-					$('#Modal').modal('show');
-					$('input[type="date"]').val(info.dateStr)
-				},
-				
-				// customButtons: {
-				//     addEventButton: {
-				//         text: 'add event...',
-
-				//         click: function () {
-				//             var dateStr = prompt('Enter a date in YYYY-MM-DD format');
-				//             var date = new Date(dateStr + 'T00:00:00'); // will be in local time
-
-				//             if (!isNaN(date.valueOf())) { // valid?
-				//                 calendar.addEvent({
-				//                     title: 'dynamic event',
-				//                     start: date,
-				//                     allDay: true
-				//                 });
-				//                 alert('Great. Now, update your database...');
-				//             } else {
-				//                 alert('Invalid date.');
-				//             }
-				//         }
-				//     }
-				// },
-			});
-			$('#save').on("click", function (){
-				debugger
-					var fromdate= $('input[name="fromTime"]').val()
-					var toTime= $('input[name="toTime"]').val()
-					var date= $('input[name="date"]').val()
-					var teacher= $('select[name="teacher"]').val()
-					var subject= $('select[name="subject"]').val()
-					calendar.addEvent({
-						title: subject,
-						start: date +"T"+fromdate,
-						end:date +"T"+toTime
-					})
-			})
-			calendar.render();
-		});
-	</script>
 
 
 </body>

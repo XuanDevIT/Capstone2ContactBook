@@ -5,14 +5,15 @@ var app = $('#app')
 app.on('click','#save_inforTeacher',function(){
     debugger
     var data = g_common.getDataFromInfo1('inforStudent');
+    console.log(data)
     var option = {
         data: JSON.stringify(data),
         url : "/v1/teacher"
     }
     API.POST(option).then(rs=>{
         if(rs.teacherId > 0){
-            alert('OK')
             render();
+            $('#teacherModal').modal('hide')
         }
     })
 })
@@ -57,19 +58,8 @@ app.on('click','#btn_update',function(){
         id: data_id
     }
     API.GET(option).then(rs=>{
-        
-        if(rs.teacherId > 0){
-                var data = g_common.getDataFromInfo1('inforStudent');
-                var op = {
-                    data: JSON.stringify(data),
-                    url : "/v1/teacher"
-                }
-                API.POST(op).then(r=>{
-                    if(rs.teacherId > 0){
-                        alert('OK')
-                        render();
-                    }
-                })
-        }
+        showTeacherModal('teacherModal');
+        g_common.setValueFromInfo(rs,'inforStudent')
     })
+
 })

@@ -37,8 +37,8 @@ public class TeacherApi {
 	}
 
 	@GetMapping("/v1/teacher/{id}")
-	public TeacherEntity updateStudent(@PathVariable(value = "id") Long id) {
-		TeacherEntity dto = teacherService.findById(id);
+	public TeacherEntity updateStudent(@PathVariable(value = "id") Integer id) {
+		TeacherEntity dto = teacherService.findById(Long.valueOf(id));
 		return dto;
 	}
 	

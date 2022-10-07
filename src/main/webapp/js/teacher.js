@@ -1,17 +1,12 @@
-function showTeacherModal(teacherId, fullName, sex, birthday,
-     address, password, classManage, degree, email, phone, photos) {
-    $('#teacherId').val(teacherId ? teacherId : '');
-    $('#fullName').val(fullName ? fullName : '');
-    $('#sex').val(sex ? sex : '');
-    $('#birthday').val(birthday ? birthday : '');
-    $('#address').val(address ? address : '');
-    $('#password').val(password ? password : '');
-    $('#classManage').val(classManage ? classManage : '');
-    $('#degree').val(degree ? degree : '');
-    $('#email').val(email ? email : '');
-    $('#phone').val(phone ? phone : '');
-    $('#photos').val(photos ? photos : '');
-    $('#teacherModal').modal('show');
+function showTeacherModal(modal) {
+    var elementModal = document.querySelector('#'  +modal);
+    var inputs = document.querySelectorAll("input");
+    inputs.forEach(value => {
+        if ($(value).attr('type') != 'button'){
+            $(value).val('')
+        }
+    })
+    $('#'+modal).modal('show');
 }
 
 function modalDeleteTeacher(id, name) {

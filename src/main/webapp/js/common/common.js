@@ -1,40 +1,46 @@
 //lay gia tri tu form
-const g_common={}
+const g_common = {}
 
-g_common.getDataFromInfo1 = function(ob) {
-	debugger
-	var data = {};
-	var element = document.querySelector('#'+ob)
-
-	var inputs = element.querySelectorAll('input')
-
-	$.each(inputs, (index, val) => {
-		data = { ...data, [val.name]: val.value }
-	})
-	if (data.studentId == '') {
-		delete data.studentId;
-	}
-	return data;
-
-}
-
-g_common.setValueFromInfo =function(){
+g_common.getDataFromInfo1 = function (ob) {
     var data = {};
-	var element = document.querySelector('#'+ob)
+    var element = document.querySelector('#' + ob)
 
-	var inputs = element.querySelectorAll('input')
-    
+    var inputs = element.querySelectorAll('input')
+
     $.each(inputs, (index, val) => {
-		keys.forEach(key => {
-			if (val.name == key) {
-				val.value = data_rs[key];
-				return false;
-			}
-		})
-	})
+        data = {...data, [val.name]: val.value}
+    })
+    if (data.studentId == '') {
+        delete data.studentId;
+    }
+    return data;
 }
 
-g_common.getValue=function(ob){
+g_common.setValueFromInfo = function (data_rs, ob) {
+    debugger;
+    var keys = Object.keys(data_rs);
+
+    var sv = document.querySelector('#' + ob)
+    var inputs = sv.querySelectorAll('input')
+
+    inputs.forEach(value => {
+        if ($(value).attr('type') == 'date') {
+            var fmdate = data_rs[$(value).attr('name')].split('T')
+            $(value).val(fmdate[0])
+        } else if ($(value).attr('type') == 'radio') {
+			if ($(value).attr('id') == data_rs[$(value).attr('name')]){
+                $(value).prop("checked",true);
+            }else {
+                $(value).prop("checked",false);
+            }
+        } else {
+            $(value).val(data_rs[$(value).attr('name')])
+        }
+
+    })
+}
+
+g_common.getValue = function (ob) {
     return `
                  <tr >
                     <td >${ob.fullName}</td>

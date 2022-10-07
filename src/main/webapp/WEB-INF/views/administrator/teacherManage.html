@@ -180,7 +180,7 @@
 							</div>
 							<div class="row">
 								<div class="col my-2">
-									<button type="button" class="btn btn-success" onclick="showTeacherModal()">Add
+									<button type="button" class="btn btn-success" onclick="showTeacherModal('teacherModal')">Add
 										Teacher</button>
 								</div>
 								<div class="w-100"></div>
@@ -220,69 +220,69 @@
 					<h4 class="modal-title">Teacher</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-				<form >
+
 					<div class="container"></div>
 					<div class="modal-body" id="inforStudent"> 
 						<div class="form-row">
 							<div class="col" >
 								<!--  <input type="hidden" th:field="*{teacherId}" name="teacherId" id="teacherId"> -->
 								<div>
-									<label for="fullName" class="col-form-label">Full name</label>
+									<label  class="col-form-label">Full name</label>
 									<input type="text"  name="fullName" 
 										class="form-control" placeholder="Full name">
 								</div>
-								<label for="sex" class="col-form-label">sex</label> <br>
+								<label  class="col-form-label">sex</label> <br>
 								<div class="form-check form-check-inline">
 									<input class="form-check-input"  type="radio" name="sex" 
-										value="male" checked>
-									<label class="form-check-label" for="sex">Male</label>
+										value="male" id="male" checked>
+									<label class="form-check-label" >Male</label>
 								</div>
 								<input type="hidden" name="teacherId">
 								<div class="form-check form-check-inline">
 									<input class="form-check-input"  type="radio" name="sex"
 										id="female" value="female">
-									<label class="form-check-label" for="sex">Female</label>
+									<label class="form-check-label" >Female</label>
 								</div>
 								<div>
-									<label for="birthday" class="col-form-label">Birthday</label>
+									<label  class="col-form-label">Birthday</label>
 									<input type="date"  name="birthday" 
 										class="form-control">
 								</div>
 								<div>
-									<label for="address" class="col-form-label">Address</label>
+									<label  class="col-form-label">Address</label>
 									<input type="text"  name="address" 
 										class="form-control" placeholder="Address">
 								</div>
 								<div>
-									<label for="password" class="col-form-label">Password</label>
-									<input type="text"  name="password" 
+									<label  class="col-form-label">Password</label>
+									<input type="password"  name="password"
 										class="form-control" placeholder="Enter password">
 								</div>
 								<div>
-									<label for="classManage" class="col-form-label">Class manage</label>
+									<label  class="col-form-label">Class manage</label>
 									<input type="text"  name="classManage" 
 										class="form-control" placeholder="Class manage">
 								</div>
 							</div>
 							<div class="col">
 								<div>
-									<label for="degree" class="col-form-label">Degree</label>
-									<input type="text"  name="degree" id="degree"
+									<label  class="col-form-label">Degree</label>
+									<input type="text"  name="degree"
 										class="form-control" placeholder="degree">
 								</div>
 								<div>
-									<label for="degree" class="col-form-label">Email</label>
-									<input type="text"  name="email" id="email" class="form-control"
+									<label class="col-form-label">Email</label>
+									<input type="text"  name="email"  class="form-control"
 										placeholder="Email">
 								</div>
 								<div>
-									<label for="degree" class="col-form-label">Phone</label>
-									<input type="text"  name="phone" id="phone" class="form-control"
+									<label  class="col-form-label">Phone</label>
+									<input type="text"  name="phone"  class="form-control"
 										placeholder="Phone number">
 								</div>
 								<div>
-									<label for="degree" class="col-form-label">Photo</label>
-									<input type="text"  name="degree" id="degree"
+									<label  class="col-form-label">Photo</label>
+									<input type="text"  name="photo"
 										class="form-control" placeholder="degree">
 								</div>
 								<button id="teacherSubmit" type="submit" class="d-none"></button>
@@ -291,10 +291,9 @@
 					</div>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="button" class="btn btn-info" 
+						<input type="button" class="btn btn-info"
 							id="save_inforTeacher" value="Save">
 					</div>
-				</form>
 			</div>
 		</div>
 	</div>
@@ -387,6 +386,8 @@
 
 	<script th:src="@{/js/teacher.js}"></script>
 	<script src="/js/teacher.js"></script>
+	<script src="/js/main.js"></script>
+	<script src="/js/common/main.js" type="module"></script>
 </body>
 
 </html>
