@@ -203,6 +203,44 @@
 									</table>
 								</div>
 							</div>
+                            <div class="col-lg-9 bg-light p-3">
+                                <div class="attendance-header pb-3 border-bottom">
+                                    <div class="row">
+                                        <div class="col h2">Subject</div>
+                                        <div class="col empty"></div>
+                                        <div class="col">
+                                            <button type="button" class="btn btn-success" onclick="showTeacherModal()">
+                                                Add New Subject</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="attendace-body">
+                                    <table class="table table-bordered">
+                                        <thead class="thead text-white bg-success">
+                                            <tr>
+            
+                                                <th scope="col"><i class="fa fa-font" aria-hidden="true"></i> Subject Name</th>
+                                                <th scope="col"><i class="fa fa-font" aria-hidden="true"></i> Teacher Name</th>
+                                                <th scope="col"> </th>
+            
+                                            </tr>
+                                        </thead>
+                                        <tbody id="show_data">
+                                            <tr>
+                                                <td class="teacher-name">Mark</td>
+                                                <td class="form-group">Mark2</td>
+                                                <td>
+                                                    <a href="#addEmployeeModal" class="edit" data-toggle="modal"><i
+                                                            class="material-icons ">&#xE254;</i></a>
+            
+                                                    <a href="#deleteEmployeeModal" class="material-icons delete_student"
+                                                        data-toggle="modal"><i class="material-icons">&#xE15C;</i> </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
 						</div>
 					</div>
 				</div>
@@ -375,6 +413,8 @@
 	<script src="/js/main.js"></script>
 	<!-- <script src="/js/common/api.js"></script> -->
 	<!-- <script src="/js/admin/showInfoStudent.js"></script> -->
+
+	
 
 	<script src="/CallAPI/main.js"></script>
 	<script src="/CallEvent/main.js"></script>

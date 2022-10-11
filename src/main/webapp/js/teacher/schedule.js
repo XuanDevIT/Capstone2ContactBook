@@ -1,5 +1,6 @@
 import { API } from "../common/api.js"
 var command = {}
+var app = document.querySelector('body')
 document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar');
 
@@ -36,7 +37,9 @@ document.addEventListener('DOMContentLoaded', function () {
             info.dayEl.style.backgroundColor = 'red';
             $('.modal-body').empty()
             $('#Modal').modal('show');
+            CallAPISuject()
             $('#exampleModalLongTitle').text(info.dateStr)
+            command.getDate = info.dateStr
         },
 
         // customButtons: {
@@ -66,11 +69,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     $('#save').on("click", function () {
         debugger
-        var fromdate = $('input[name="fromTime"]').val()
-        var toTime = $('input[name="toTime"]').val()
-        var date = $('input[name="date"]').val()
-        var teacher = $('select[name="teacher"]').val()
-        var subject = $('select[name="subject"]').val()
+        var option = {
+            url : "/v1/timestudy",
+            data : JSON.stringify(getValue())
+        }
+
+        API.POST(option).then(rs=>{
+            console.log(rs)
+        })
+
         calendar.addEvent({
             title: subject,
             start: date + "T" + fromdate,
@@ -79,9 +86,8 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     calendar.render();
     $('.modal-content').on('click', '#add_row', function () {
-
-        CallAPISuject();
         $('.modal-body').append(row())
+        getValue()
     })
 
 });
@@ -95,23 +101,22 @@ const CallAPISuject = () => {
         url: '/v1/subject'
     }
     API.GET(option).then(rs => {
-        getSuject(rs);
+        command.subject = [...rs]
+        return rs;
+    }).then(rs=>{
+        CallAPITeacher();
     })
 }
 
 //call api teacher
 
-const CallAPITeacher = (id,el) => {
+const CallAPITeacher = () => {
     var option = {
-        url: '/v1/teacher',
-        id: id
+        url: '/v1/teacher'
     }
 
     API.GET(option).then(rs => {
-        getTeacher(rs);
-        var selected_teacher = $(el).parent().parent().parent();
-        selected_teacher = selected_teacher.children();
-        selected_teacher.children('.input_teacher').html(command.teacher);
+       command.dataTeach=[...rs];
     })
 }
 
@@ -123,7 +128,7 @@ const getSuject = (rs) => {
     for (const key in rs) {
         subject = subject + `<option value = "${rs[key].subjectID} ">${rs[key].subjectName}</option>`
     }
-    command.subject = subject;
+   return subject;
 
 }
 
@@ -131,42 +136,72 @@ const getSuject = (rs) => {
 const getTeacher = (rs) => {
     var teacher = `
             <option selected>Choose...</option>`;
+    for (const key in rs) {
+        teacher = teacher + `<option value = "${rs[key].teacherId} ">${rs[key].fullName}</option>`
+    }
 
-    teacher = teacher + `<option value = "${rs.teacherId} ">${rs.fullName}</option>`
 
-    command.teacher = teacher;
+    return  teacher;
 }
 
 
 
 $('.modal-body').on('change', '.input_subject', function () {
-    var id = Number($(this).val())
-    CallAPITeacher(id, this);
+    var id_subect = Number($(this).val())
+
+    var id_teach = command.subject.find(rs=>rs.subjectID== id_subect)
+    //tim vi tri cua row
+    var element_parent = $(this).parent().parent();
+    var div_teach = element_parent.children(".teach")
+    // Tim theo id cua teach chua  class
+    var  teach = command.dataTeach.filter(rs=>rs.teacherId == id_teach.teacherID.teacherId)
+
+    div_teach.children().html(getTeacher(teach))
 
 })
 
-console.log(CallAPISuject(getSuject));
+const  getValue = ()=>{
+    var data ={}
+    var el =app.querySelector('.modal-body')
+    var elinput = el.querySelectorAll("input")
+    var elselecte = el.querySelectorAll('select');
 
+    elinput.forEach(vl=>{
+        data = {...data,[vl.name]:vl.value}
+    })
+
+    elselecte.forEach(vl=>{
+
+        debugger
+        if (vl.value != "Choose..."){
+
+           data = {...data,[vl.name]:{[vl.name]:vl.value}}
+        }
+    })
+ return {["param"]:data};
+}
+
+getValue()
 const row = (ob) => {
     return `<div class="row mt-1">
                         <div class="col-3">
-                            <input type="time" name="fromTime" class="form-control" >
+                            <input type="time" name="timeStudyHourStart" class="form-control" >
                         </div>
                         <div class="col-3">
-                            <input type="time" name="toTime" class="form-control" >
+                            <input type="time" name="timeStudyHourEnd" class="form-control" >
                         </div>
 
-                            <input disabled type="hidden"  name="date" class="form-control" >
+                            <input disabled type="hidden" value="${command.getDate}"  name="timeStudyDay" class="form-control" >
 
                         <div class="col-2">
-                            <select id="input_subject" name="subject" class="form-control input_subject">
-                            ${command.subject}
+                            <select id="input_subject" name="subjectID" class="form-control input_subject">
+                               ${getSuject(command.subject)}
                             </select>
                         </div>
-                        <div class="col-2">
-                            <select  name="teacher" data-live-search="true" class="form-control input_teacher selectpicker">
+                        <div class="col-2 teach" >
+                            <select  name="classStudyID" data-live-search="true"  class="form-control input_teacher selectpicker">
                                  <option selected>Choose...</option>
-                                   
+                                   ${ob!=undefined?ob:''}
                             </select>
                         </div>
                         <div class="col-2 d-flex align-items-center">

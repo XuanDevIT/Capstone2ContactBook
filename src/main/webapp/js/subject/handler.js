@@ -31,7 +31,7 @@ const findAll_subject = () => {
             method: 'GET',
             url: '/v1/subject',
             contentType: 'application/json',
-            data: JSON.stringify(ob),
+            // data: JSON.stringify(),
             dataType: 'json'
         }).done(function (rs) {
             resolve(rs);

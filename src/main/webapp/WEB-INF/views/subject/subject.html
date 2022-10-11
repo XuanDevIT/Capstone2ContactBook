@@ -86,11 +86,7 @@
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
-        <div class="header__top__right__social">
-            <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i
-                    class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-        </div>
+
         <div class="humberger__menu__contact">
             <ul>
                 <li><i class="fa fa-envelope"></i>System@ContactBook.com</li>
@@ -115,11 +111,7 @@
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
-                            <div class="header__top__right__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-                                        class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a
-                                    href="#"><i class="fa fa-pinterest-p"></i></a>
-                            </div>
+
                             <div class="header__top__right__auth">
                                 <a href="#"><i class="fa fa-user"></i> Login</a>
                             </div>
@@ -180,7 +172,7 @@
                             <div class="col h2">Subject</div>
                             <div class="col empty"></div>
                             <div class="col">
-                                <button type="button" class="btn btn-success" onclick="showTeacherModal()">
+                                <button type="button" class="btn btn-success" onclick="showTeacherModal('subjecModel')">
                                     Add New Subject</button>
                             </div>
                         </div>
@@ -197,17 +189,17 @@
                                 </tr>
                             </thead>
                             <tbody id="show_data">
-                                <tr>
-                                    <td class="teacher-name">Mark</td>
-                                    <td class="form-group">Mark2</td>
+                                <!-- <tr>
+                                    <td class="teacher-name">${ob.subjectName}</td>
+                                    
                                     <td>
                                         <a href="#addEmployeeModal" class="edit" data-toggle="modal"><i
                                                 class="material-icons ">&#xE254;</i></a>
-
+                            
                                         <a href="#deleteEmployeeModal" class="material-icons delete_student"
                                             data-toggle="modal"><i class="material-icons">&#xE15C;</i> </a>
                                     </td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -219,30 +211,34 @@
     <!-- Hero Section End -->
 
     <!-- Edit Modal HTML -->
-    <div id="teacherModal" class="modal fade" role="dialog">
+    <div id="subjecModel" class="modal fade" role="dialog">
         <div class="modal-dialog" style="max-width: 800px;">
             <div class="modal-content">
                 <div class="modal-header bg-success text-white">
-                    <h4 class="modal-title">Create New Teacher</h4>
+                    <h4 class="modal-title">Create New Subject</h4>
                     <button type="button" class="close text-white" data-dismiss="modal"
                         aria-hidden="true">&times;</button>
                 </div>
                 <form>
-                    <div class="modal-body" >
+                    <div class="modal-body">
                         <div class="row">
                             <div class="col" id="inforSubject">
                                 <div class="form-group">
-                                    <label for="fullName" class="col-form-label"> Subject name</label>
+                                    <label class="col-form-label"> Subject name</label>
                                     <input type="text" name="subjectName" class="form-control" placeholder="Full name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="fullName" class="col-form-label"> Teacher name</label>
-                                    <select class="form-control" name="subjectName">
-                                        <option>Default select</option>
-                                        <option>Default select1</option>
-                                        <option>Default select2</option>
+                                    <label class="col-form-label"> Teacher name</label>
+                                    <select class="form-control" id="teacherId" name="teacherid">
+                                        <option></option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
                                     </select>
                                 </div>
+
                             </div>
 
                         </div>
@@ -250,7 +246,8 @@
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <input type="button" class="btn btn-success" id="save_inforTeacher" value="Create">
+                        <input type="button" class="btn btn-save-subject btn-success" id="save_inforTeacher"
+                            value="Create">
                     </div>
                 </form>
             </div>
@@ -297,11 +294,7 @@
                             <input type="text" placeholder="Enter your mail">
                             <button type="submit" class="site-btn">Subscribe</button>
                         </form>
-                        <div class="footer__widget__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-                                    class="fa fa-instagram"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a
-                                href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -317,15 +310,16 @@
     <script th:src="@{/js/jquery-ui.min.js}"></script>
     <script th:src="@{/js/mixitup.min.js}"></script>
     <script th:src="@{/js/owl.carousel.min.js}"></script>
-    <script th:src="@{/js/main.js}"></script>
-    <script th:src="@{/js/admin/showInfoStudent.js}"></script>
-    <script th:src="@{/js/handler.js}"></script>
-    <script th:src="@{/CallEvent/main.js}"></script>
-    <script th:src="@{/js/common/api.js}"></script>
-    <!-- <script th:src="@{/js/subject/handler.js}"></script> -->
+    <!-- <script th:src="@{/js/main.js}"></script> -->
+    <!-- <script th:src="@{/js/admin/showInfoStudent.js}"></script> -->
+    <!-- <script th:src="@{/js/handler.js}"></script> -->
+    <!-- <script th:src="@{/CallEvent/main.js}"></script> -->
+    <!-- <script th:src="@{/js/common/api.js}"></script> -->
+    <script th:src="@{/js/subject/handler.js}"></script>
     <script th:src="@{/js/subject/subject.js}"></script>
+    <!-- <script src="/js/common/main.js" type="module"></script> -->
 
-    <script src="/js/common/main.js" type="module"></script>
+    <script th:src="@{/js/admin/handler.js}"></script>
 
     <script src="/js/jquery-3.3.1.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
@@ -334,12 +328,12 @@
     <script src="/js/mixitup.min.js"></script>
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
-    <!-- <script src="/js/subject/handler.js"></script> -->
+    <script src="/js/subject/handler.js"></script>
     <script src="/js/subject/subject.js"></script>
 
 
-    <script src="/CallAPI/main.js"></script>
-    <script src="/CallEvent/main.js"></script>
+    <!-- <script src="/CallAPI/main.js"></script> -->
+    <!-- <script src="/CallEvent/main.js"></script> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
