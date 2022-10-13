@@ -1,95 +1,142 @@
-import { API } from "../common/api.js"
+import {API} from "../common/api.js"
+import {g_common} from "../common/common.js";
+
 var command = {}
 var app = document.querySelector('body')
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar');
-
+    CallAPISuject()
     var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
+        "initialView": 'dayGridMonth',
         headerToolbar: {
             center: 'addEventButton'
         },
         height: '100%',
         expandRows: true,
-        slotMinTime: '07:00',
-        slotMaxTime: '21:00',
+        slotMinTime: '06:00',
+        slotMaxTime: '23:00',
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
         initialView: 'dayGridMonth',
-        initialDate: '2022-09-01',
+        initialDate: new Date().toJSON().slice(0,10),
+        eventSources: [
 
-        events: [
+            // your event source
             {
-                title: 'Toan',
-                start: '2022-09-29T10:30:00',
-                end: '2022-09-29T11:30:00',
-                extendedProps: {
-                    department: 'BioChemistry'
+                url: '/v1/calendar',
+                type: 'get',
+
+                error: function() {
+                    alert('there was an error while fetching events!');
                 },
-                description: 'Lecture'
+                color: 'yellow',   // a non-ajax option
+                textColor: 'black' // a non-ajax option
+
             }
+
+            // any other sources...
+
         ],
+
         dateClick: function (info) {
+
+            //get all event
+            command.getAllEvent= calendar.getEvents();
+
+
+            if (command.id != null){
+                delete command.id
+            }
 
             info.dayEl.style.backgroundColor = 'red';
             $('.modal-body').empty()
             $('#Modal').modal('show');
             CallAPISuject()
             $('#exampleModalLongTitle').text(info.dateStr)
+
             command.getDate = info.dateStr
         },
 
-        // customButtons: {
-        //     addEventButton: {
-        //         text: 'add event...',
+        eventClick: function(info) {
+        	debugger
+            // alert('Event: ' + info.event.title);
+            // alert('Event: ' + info.event.id);
+            // alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+            // alert('View: ' + info.view.type);
+            $('.modal-body').empty()
+            command.id = info.event.id
+            var option = {
+                url:'/v1/TimeStudy',
+                id: info.event.id
+            }
+            API.GET(option).then(rs=>{
 
-        //         click: function () {
-        //             var dateStr = prompt('Enter a date in YYYY-MM-DD format');
-        //             var date = new Date(dateStr + 'T00:00:00'); // will be in local time
-
-        //             if (!isNaN(date.valueOf())) { // valid?
-        //                 calendar.addEvent({
-        //                     title: 'dynamic event',
-        //                     start: date,
-        //                     allDay: true
-        //                 });
-        //                 alert('Great. Now, update your database...');
-        //             } else {
-        //                 alert('Invalid date.');
-        //             }
-        //         }
-        //     }
-        // },
-    });
-
-
-
-    $('#save').on("click", function () {
-        debugger
-        var option = {
-            url : "/v1/timestudy",
-            data : JSON.stringify(getValue())
+                setValue(rs)
+                $('#Modal').modal('show');
+            })
+            // change the border color just for fun
+            info.el.style.borderColor = 'red';
         }
 
-        API.POST(option).then(rs=>{
-            console.log(rs)
+    });
+
+    $('#save').on("click", function () {
+        var data = getValue();
+
+        if (command.id != null){
+            data.timeStudyID = command.id;
+        }
+
+        var option = {
+            url: "/v1/TimeStudy",
+            data: JSON.stringify(data)
+        }
+
+        API.POST(option).then(rs => {
+            calendar.refetchEvents()
+            $("#Modal").modal('hide')
         })
 
-        calendar.addEvent({
-            title: subject,
-            start: date + "T" + fromdate,
-            end: date + "T" + toTime
-        })
+
     })
-    calendar.render();
+
     $('.modal-content').on('click', '#add_row', function () {
         $('.modal-body').append(row())
-        getValue()
+
     })
 
+    $('.modal-body').on('click','#remove',function (){
+        if (command.id == null){
+            $('.modal-body').html('')
+            return;
+        }
+
+        var option = {
+            url:'/v1/TimeStudy',
+            id : command.id
+        }
+
+        var check = confirm("DELETE !!!")
+
+        if (check == false){
+            return;
+        }
+
+        API.DELETE(option).then(rs=>{
+            if (rs== true){
+                calendar.refetchEvents()
+                $("#Modal").modal('hide')
+            }
+        })
+    })
+
+    calendar.render();
 });
 
 //call API suject
@@ -102,23 +149,9 @@ const CallAPISuject = () => {
     }
     API.GET(option).then(rs => {
         command.subject = [...rs]
-        return rs;
-    }).then(rs=>{
-        CallAPITeacher();
     })
 }
 
-//call api teacher
-
-const CallAPITeacher = () => {
-    var option = {
-        url: '/v1/teacher'
-    }
-
-    API.GET(option).then(rs => {
-       command.dataTeach=[...rs];
-    })
-}
 
 
 
@@ -126,22 +159,23 @@ const getSuject = (rs) => {
     var subject = `
             <option selected>Choose...</option>`;
     for (const key in rs) {
-        subject = subject + `<option value = "${rs[key].subjectID} ">${rs[key].subjectName}</option>`
+        subject = subject + `<option value = "${rs[key].subjectID}">${rs[key].subjectName}</option>`
     }
-   return subject;
+    return subject;
 
 }
 
 
 const getTeacher = (rs) => {
+	debugger
     var teacher = `
             <option selected>Choose...</option>`;
     for (const key in rs) {
-        teacher = teacher + `<option value = "${rs[key].teacherId} ">${rs[key].fullName}</option>`
+        teacher = teacher + `<option value = "${rs[key].teacherId}">${rs[key].fullName}</option>`
     }
 
 
-    return  teacher;
+    return teacher;
 }
 
 
@@ -149,39 +183,75 @@ const getTeacher = (rs) => {
 $('.modal-body').on('change', '.input_subject', function () {
     var id_subect = Number($(this).val())
 
-    var id_teach = command.subject.find(rs=>rs.subjectID== id_subect)
+    var id_teach = command.subject.find(rs => rs.subjectID == id_subect)
     //tim vi tri cua row
     var element_parent = $(this).parent().parent();
     var div_teach = element_parent.children(".teach")
     // Tim theo id cua teach chua  class
-    var  teach = command.dataTeach.filter(rs=>rs.teacherId == id_teach.teacherID.teacherId)
+   
 
-    div_teach.children().html(getTeacher(teach))
+    div_teach.children().html(getTeacher(id_teach.teacherEntities))
 
 })
 
-const  getValue = ()=>{
-    var data ={}
-    var el =app.querySelector('.modal-body')
+const getValue = () => {
+    var data = {}
+    var el = app.querySelector('.modal-body')
     var elinput = el.querySelectorAll("input")
     var elselecte = el.querySelectorAll('select');
 
-    elinput.forEach(vl=>{
-        data = {...data,[vl.name]:vl.value}
+    elinput.forEach(vl => {
+        data = {...data, [vl.name]: vl.value}
     })
 
-    elselecte.forEach(vl=>{
-
-        debugger
-        if (vl.value != "Choose..."){
-
-           data = {...data,[vl.name]:{[vl.name]:vl.value}}
+    elselecte.forEach(vl => {
+        if (vl.value != "Choose...") {
+            data = {...data, [vl.name]: {[vl.name]: vl.value}}
         }
     })
- return {["param"]:data};
+    return data;
 }
 
-getValue()
+const setValue =(ob)=>{
+	debugger
+    $('.modal-body').append(row())
+    var el = app.querySelector('.modal-body')
+    var elinput = el.querySelectorAll("input")
+    var elselecte = el.querySelectorAll('select');
+
+    elinput.forEach(vl => {
+           vl.value = ob[vl.name];
+    })
+
+    elselecte.forEach(vl => {
+        if (vl.name == 'subjectID'){
+            $(vl).val(ob[vl.name][vl.name])
+            var element_parent = $(vl).parent().parent();
+            var div_teach = element_parent.children(".teach")
+          
+
+            var select_teach =  div_teach.children()
+            
+            var teacher = [];
+            
+            teacher = [...teacher,ob.teacherId]
+            
+            select_teach.html(getTeacher(teacher))
+            $(select_teach).val(teacher[0].teacherId)
+
+        }
+
+    })
+}
+
+const  validate = (value)=>{
+    if (value == '' || value == null){
+        return false;
+    }
+    return  true;
+}
+
+
 const row = (ob) => {
     return `<div class="row mt-1">
                         <div class="col-3">
@@ -199,13 +269,13 @@ const row = (ob) => {
                             </select>
                         </div>
                         <div class="col-2 teach" >
-                            <select  name="classStudyID" data-live-search="true"  class="form-control input_teacher selectpicker">
+                            <select  name="teacherId"   class="form-control input_teacher ">
                                  <option selected>Choose...</option>
-                                   ${ob!=undefined?ob:''}
+                                   ${ob != undefined ? ob : ''}
                             </select>
                         </div>
                         <div class="col-2 d-flex align-items-center">
-                            <Button class="btn-danger btn">X</Button>
+                            <Button class="btn-danger btn" id="remove">X</Button>
                         </div>
                     </div>`
 }

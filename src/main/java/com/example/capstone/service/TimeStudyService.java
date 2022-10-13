@@ -13,5 +13,6 @@ public interface TimeStudyService {
 	public List<TimeStudyEntity> findAll();
 	public TimeStudyEntity findById(Long id);
 	public TimeStudyEntity update(TimeStudyEntity timeStudyEntity);
-	public boolean delete(Long id); 
+	public boolean delete(Long id);
+	public List<Object> findAllCalendar();
 }

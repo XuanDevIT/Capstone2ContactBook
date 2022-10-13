@@ -32,9 +32,9 @@ public class TimeStudyAPI {
 	}
 
 	@GetMapping("/v1/TimeStudy/{id}")
-	public TimeStudyEntity findById(Long id) {
+	public TimeStudyEntity findById(@PathVariable(value = "id")Integer id) {
 		// TODO Auto-generated method stub
-		return timeStudyService.findById(id);
+		return timeStudyService.findById(Long.valueOf(id));
 	}
 
 	@PutMapping("/v1/TimeStudy/{id}")
@@ -53,5 +53,11 @@ public class TimeStudyAPI {
 			return false;
 		}
 	}
-	
+
+
+	@GetMapping(("/v1/calendar"))
+	public List<Object> findAllCalendar() {
+		// TODO Auto-generated method stub
+		return timeStudyService.findAllCalendar();
+	}
 }

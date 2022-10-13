@@ -26,7 +26,7 @@ public class AttendenceEntity {
 	private String note;
 	
 	@ManyToOne
-	@JoinColumn(name = "tiemstudy")
+	@JoinColumn(name = "timestudyid")
 	private TimeStudyEntity timeStudyID;
 	
 	@ManyToOne

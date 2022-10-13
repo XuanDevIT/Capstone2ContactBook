@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 @Entity
@@ -24,18 +25,16 @@ public class ClassStudyEntity {
 	
 	private String className;
 	
-	@ManyToOne
-	@JoinColumn(name = "teacherID")
-	private TeacherEntity teacherID;
+	
 	
 	
 	@ManyToOne
 	@JoinColumn(name = "studentID")
 	private StudentEntity studentID;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "classStudyID")
 	private List<TimeStudyEntity> timeStudyEntities;
-	
+	@JsonIgnore
 	@OneToMany(mappedBy = "classStudyID")
 	private List<AttendenceEntity> attendenceEntities;
 }

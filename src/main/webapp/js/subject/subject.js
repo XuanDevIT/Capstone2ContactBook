@@ -76,7 +76,7 @@ const show_data_subject = () => {
 const item_tr_data_subject = (ob) => {
 	return `<tr>
 		<td class="teacher-name">${ob.subjectName}</td>
-		
+		<td class="subject-id">${ob.teacherId}</td>
 		<td>
 			<a href="#addEmployeeModal" class="edit" data-toggle="modal"><i
 					class="material-icons ">&#xE254;</i></a>
@@ -89,12 +89,15 @@ const item_tr_data_subject = (ob) => {
 
 
 $(document).ready(function () {
+	show_data_subject();
+
 	//button save subject
 	$('#save_inforTeacher').on('click', function () {
 		debugger
 		save_subject();
 		$('#subjecModel').modal('hide');
 		reset_value_from();
+		show_data_subject();
 	})
 
 

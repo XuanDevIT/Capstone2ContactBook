@@ -1,6 +1,9 @@
 package com.example.capstone.serviceImpl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +51,37 @@ public class TimeStudyServiceImlp implements TimeStudyService{
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	@Override
+	public List<Object> findAllCalendar() {
+		List<Object> objects = new ArrayList<>();
+		List<TimeStudyEntity> timeStudyEntities = timeStudyRepository.findAll();
+		for (TimeStudyEntity timeStudyEntity:timeStudyEntities) {
+			Map<String,String>  calendar = new HashMap<>();
+
+			//start: '2022-09-29',
+			String dateTime= timeStudyEntity.getTimeStudyDay().toString().substring(0,10);
+
+			//start: '2022-09-29T10:30:00',
+			StringBuilder start = new StringBuilder(dateTime);
+			start.append("T").append(timeStudyEntity.getTimeStudyHourStart());
+
+			//end: '2022-09-29T11:30:00',
+			StringBuilder end = new StringBuilder(dateTime);
+			end.append("T").append(timeStudyEntity.getTimeStudyHourEnd());
+
+			// title: 'Toan',
+			calendar.put("title",timeStudyEntity.getSubjectID().getSubjectName());
+			calendar.put("start",start.toString());
+			calendar.put("end",end.toString());
+
+			//id: 1
+			calendar.put("id",timeStudyEntity.getTimeStudyID().toString());
+
+			objects.add(calendar);
+ 		}
+		return objects;
 	}
 
 }
