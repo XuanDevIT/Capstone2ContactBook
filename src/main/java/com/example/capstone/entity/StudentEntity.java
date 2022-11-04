@@ -2,9 +2,16 @@ package com.example.capstone.entity;
 
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,7 +43,7 @@ public class StudentEntity {
 //	@ManyToMany
 //	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 //	private List<RoleEntity> roles = new ArrayList<>();
-@JsonIgnore
+	@JsonIgnore
 	@OneToMany(mappedBy = "studentID",fetch = FetchType.LAZY)
 	private List<AttendenceEntity> attendenceEntities;
 	@JsonIgnore

@@ -120,7 +120,10 @@ $(document).ready(function () {
 	$('#save_inforStudent').on('click', function () {
 		debugger
 		var check = result_validate();
+		console.log(check);
+		debugger;
 		if (check == true) {
+			debugger;
 			popup_save();
 		}
 
@@ -230,10 +233,13 @@ $(document).ready(function () {
 
 
 	const result_validate = () => {
+		debugger;
 		var check = validateFromInfo();
 		if (check_blur == false || check == false) {
+			debugger
 			return false;
 		}
+		debugger
 		return true;
 	}
 

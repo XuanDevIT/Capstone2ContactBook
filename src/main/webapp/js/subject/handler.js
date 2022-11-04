@@ -52,3 +52,16 @@ const delete_subject = (id) => {
         })
     })
 }
+
+const subSave_teach_subject = (ob) =>{
+    return new Promise((resolve, reject) =>{
+        $.ajax({
+            method: 'POST',
+            url:'/v1/subject1/'+ob.teacherId+'/'+ob.subjectId,
+            contentType: 'application/json',
+            dataType: 'json'
+        }).done(function (rs) {
+            resolve(rs);
+        })
+    })
+}

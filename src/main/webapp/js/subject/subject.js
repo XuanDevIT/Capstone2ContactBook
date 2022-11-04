@@ -1,3 +1,6 @@
+import {API} from "../common/api.js";
+import {g_common} from "../common/common.js";
+var command = {}
 //lay gia tri tu form
 const getDataFromInfo = () => {
 	debugger
@@ -52,13 +55,17 @@ const reset_value_from = () => {
 //xử ly su kien sava
 const save_subject = () => {
 	debugger
-	insert_subject(getDataFromInfo()).then(rs => {
+	var data ={};
+	data.subjectId = $('#subjectid').val();
+	data.teacherId = $('#teacherId').val();
+	
+	subSave_teach_subject(data).then(rs => {
 		console.log('1223');
 		//show_data_subject();
 	})
 
 
-	console.log('1223');
+	console.log('tesssssssst');
 }
 
 const show_data_subject = () => {
@@ -77,6 +84,7 @@ const item_tr_data_subject = (ob) => {
 	return `<tr>
 		<td class="teacher-name">${ob.subjectName}</td>
 		<td class="subject-id">${ob.teacherId}</td>
+		
 		<td>
 			<a href="#addEmployeeModal" class="edit" data-toggle="modal"><i
 					class="material-icons ">&#xE254;</i></a>
@@ -87,10 +95,66 @@ const item_tr_data_subject = (ob) => {
 	</tr>`
 }
 
+const CallAPISuject = () => {
+
+	
+	var option_subject = ""
+	var option = {
+		url: '/v1/subject'
+	}
+	API.GET(option).then(rs => {
+		debugger;
+		getSuject(rs)
+	})
+}
+
+const CallAPIteacher = () => {
+	debugger;
+	var option_subject = ""
+	var option = {
+		url: '/v1/teacher'
+	}
+	API.GET(option).then(rs => {
+		// command.subject = [...rs]
+		debugger;
+		getTeacher(rs)
+	})
+}
+
+const getSuject = (rs) => {
+	debugger;
+	var subject = `
+			<option selected>Choose...</option>`;
+	for (const key in rs) {
+		subject = subject + `<option value = "${rs[key].subjectID}">${rs[key].subjectName}</option>`
+	}
+
+	var subject_child= $('#subjectid')
+	subject_child.html(subject)
+}
+
+
+const getTeacher = (rs) => {
+	debugger
+	var teacher = `
+			<option selected>Choose...</option>`;
+	for (const key in rs) {
+		teacher = teacher + `<option value = "${rs[key].teacherId}">${rs[key].fullName}</option>`
+	}
+	
+
+	var teacher_child= $('#teacherId');
+	teacher_child.html(teacher);
+	
+}
+
+
 
 $(document).ready(function () {
-	show_data_subject();
 
+	show_data_subject();
+	CallAPISuject();
+	CallAPIteacher();
 	//button save subject
 	$('#save_inforTeacher').on('click', function () {
 		debugger
@@ -99,7 +163,5 @@ $(document).ready(function () {
 		reset_value_from();
 		show_data_subject();
 	})
-
-
 	
 })

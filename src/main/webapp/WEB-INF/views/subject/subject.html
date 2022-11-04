@@ -225,17 +225,12 @@
                             <div class="col" id="inforSubject">
                                 <div class="form-group">
                                     <label class="col-form-label"> Subject name</label>
-                                    <input type="text" name="subjectName" class="form-control" placeholder="Full name">
+                                    <select type="text" id="subjectid" name="subjectid" class="form-control"
+                                        placeholder="Full name"></select>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-form-label"> Teacher name</label>
                                     <select class="form-control" id="teacherId" name="teacherid">
-                                        <option></option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
                                     </select>
                                 </div>
 
@@ -316,7 +311,7 @@
     <!-- <script th:src="@{/CallEvent/main.js}"></script> -->
     <!-- <script th:src="@{/js/common/api.js}"></script> -->
     <script th:src="@{/js/subject/handler.js}"></script>
-    <script th:src="@{/js/subject/subject.js}"></script>
+    <script th:src="@{/js/subject/subject.js}" type="module"></script>
     <!-- <script src="/js/common/main.js" type="module"></script> -->
 
     <script th:src="@{/js/admin/handler.js}"></script>
@@ -329,7 +324,7 @@
     <script src="/js/owl.carousel.min.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/subject/handler.js"></script>
-    <script src="/js/subject/subject.js"></script>
+    <script src="/js/subject/subject.js" type="module"></script>
 
 
     <!-- <script src="/CallAPI/main.js"></script> -->
