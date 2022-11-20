@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.capstone.dto.TimeStudyDTO;
 import com.example.capstone.entity.TimeStudyEntity;
 
 @Service
@@ -15,4 +16,6 @@ public interface TimeStudyService {
 	public TimeStudyEntity update(TimeStudyEntity timeStudyEntity);
 	public boolean delete(Long id);
 	public List<Object> findAllCalendar();
+
+	public List<Object> getAll();
 }

@@ -21,17 +21,18 @@
 	<link th:href="@{/css/owl.carousel.min.css}" rel="stylesheet" />
 	<link th:href="@{/css/slicknav.min.css}" rel="stylesheet" />
 	<link th:href="@{/css/style.css}" rel="stylesheet" />
-	<link th:href="@{/css/teacher.css}" rel="stylesheet" />
+	<link th:href="@{/css/administrator.css}" rel="stylesheet" />
 
 	<link href="/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="/css/font-awesome.min.css" rel="stylesheet" />
 	<link href="/css/elegant-icons.css" rel="stylesheet" />
 	<link href="/css/nice-select.css" rel="stylesheet" />
+	<link href="/css/administrator.css" rel="stylesheet" />
 	<link href="/css/jquery-ui.min.css" rel="stylesheet" />
 	<link href="/css/owl.carousel.min.css" rel="stylesheet" />
 	<link href="/css/slicknav.min.css" rel="stylesheet" />
 	<link href="/css/style.css" rel="stylesheet" />
-	<link rel="stylesheet" href="./css/student.css">
+	<link href="/css/style.css" rel="stylesheet" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
@@ -174,31 +175,91 @@
 				</div>
 				<div class="col-lg-9">
 					<div>
-						<div class="container border border-primary">
-							<div class="row bg-primary p-2">
-								<h2>Teacher Management</h2>
-							</div>
-							<div class="row">
-								<div class="col my-2">
-									<button type="button" class="btn btn-success" onclick="showTeacherModal('teacherModal')">Add
-										Teacher</button>
+						<div class="container border-primary">
+							<div id="main-administrator">
+								<div class="row bg-primary p-2">
+									<h2>Admin Management</h2>
 								</div>
-								<div class="w-100"></div>
-								<div class="col">
-									<table class="table table-crud">
-										<thead class="thead-dark">
+								<div class="row">
+									<div class="col my-2">
+										<button type="button" class="btn btn-success" data-toggle="modal"
+											data-target="#teacherModal">Add
+											Teacher</button>
+										<button type="button" class="btn btn-success"
+											onclick="showTeacherModal('subjectModal')">Add
+											Subject</button>
+										<button type="button" class="btn btn-success" data-toggle="modal"
+											data-target="#classModal">Add
+											Class</button>
+									</div>
+									<div class="w-100"></div>
+									<div class="col">
+										<div class="nav-teacher-subject pagination">
+											<div class="page-item btn btn-secondary" id="show-subject-list">
+												<h4>List subject</h4>
+											</div>
+											<div class="page-item btn btn-primary" id="show-teacher-list">
+												<h4>List teacher</h4>
+											</div>
+											<div class="page-item btn btn-primary" id="show-classStudy-list">
+												<h4>Class study</h4>
+											</div>
+										</div>
+										<table class="table table-crud" id="table-teacher">
+											<thead class="thead-dark">
+												<tr>
+													<th scope="col"></th>
+													<th scope="col">Fullname</th>
+													<th scope="col">Gender</th>
+													<th scope="col">Address</th>
+													<th scope="col">Email</th>
+													<th scope="col">Phone</th>
+													<th></th>
+												</tr>
+											</thead>
+											<tbody style="line-height: 0.5" id="show_data">
+											</tbody>
+										</table>
+										<table class="table subject-crud d-none" id="table-subject">
+											<thead class="thead-dark">
+												<tr>
+													<th scope="col"></th>
+													<th scope="col">Subject name</th>
+													<th></th>
+												</tr>
+											</thead>
+											<tbody style="line-height: 0.5" id="show_data_subject">
+											</tbody>
+										</table>
+										<table class="table class-study-crud d-none" id="table-classStudy">
+											<thead class="thead-dark">
+												<tr>
+													<th scope="col"></th>
+													<th scope="col">Class</th>
+													<th scope="col">Subject</th>
+													<th scope="col">Teacher</th>
+													<th></th>
+												</tr>
+											</thead>
+											<tbody style="line-height: 0.5" id="show_data_class">
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div id="class-manage-mng">
+								<div id="header-class-mng"></div>
+								<div class="content-class">
+									<table class="table">
+										<thead>
 											<tr>
-												<th scope="col"></th>
+												<th scope="col">StudentID</th>
 												<th scope="col">Fullname</th>
-												<th scope="col">Sex</th>
-												<th scope="col">Address</th>
-												<th scope="col">Email</th>
-												<th scope="col">Phone</th>
 												<th></th>
 											</tr>
 										</thead>
-										<tbody style="line-height: 0.5" id = "show_data">
-											
+										<tbody id="content-list-student">
+
 										</tbody>
 									</table>
 								</div>
@@ -211,8 +272,78 @@
 	</section>
 	<!-- Hero Section End -->
 
-
+	<!-- ClassDetail Modal -->
+	<div id="AddStudentToClassModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content" style="width:800px;">
+				<div class="modal-header">
+					<h4 class="modal-title">Student</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="container"></div>
+				<div class="modal-body" id="inforStudentAdd">
+					<div class="form-row">
+						<div class="col">
+							<div class="group-add-student">
+								<form id="add-student-to-class-form">
+									<div class="input-group mb-3">
+										<input type="hidden" id="classStudyId-val" name="classStudyId">
+											<div class="form-inline">
+												<input type="text" class="form-control mr-sm-2" name="studentId"
+													id="studentIdSaveToClass"
+													placeholder="Enter student id" aria-label="Recipient's username"
+													aria-describedby="basic-addon2">
+												<button class="btn btn-outline-success my-2 my-sm-0" id="search-student-class"
+													type="button">
+													<i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+												</button>
+											</div>
+										<h4 class="p-4" id="student-name"></h4>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="button" class="btn btn-info" id="save-student-to-class" value="Save">
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- Edit Modal HTML -->
+	<!-- subjectModal -->
+	<div id="subjectModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content" style="width:800px;">
+				<div class="modal-header">
+					<h4 class="modal-title">Subject</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="container"></div>
+				<div class="modal-body" id="inforSubject">
+					<div class="form-row">
+						<div class="col">
+							<form id="subject_form">
+								<div>
+									<label class="col-form-label">Subject name</label>
+									<input type="text" name="subjectName" class="form-control"
+										placeholder="subject name">
+								</div>
+								<button id="subjectSubmit" type="submit" class="d-none"></button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="button" class="btn btn-info" id="save_subject" value="Save">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- teacherModal -->
 	<div id="teacherModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content" style="width:800px;">
@@ -220,80 +351,116 @@
 					<h4 class="modal-title">Teacher</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
-
-					<div class="container"></div>
-					<div class="modal-body" id="inforStudent"> 
+				<div class="container"></div>
+				<form id="teacher_form">
+					<div class="modal-body" id="inforStudent">
 						<div class="form-row">
-							<div class="col" >
+							<div class="col">
 								<!--  <input type="hidden" th:field="*{teacherId}" name="teacherId" id="teacherId"> -->
 								<div>
-									<label  class="col-form-label">Full name</label>
-									<input type="text"  name="fullName" 
-										class="form-control" placeholder="Full name">
+									<label class="col-form-label">Full name</label>
+									<input type="text" name="fullname" class="form-control" placeholder="Full name">
 								</div>
-								<label  class="col-form-label">sex</label> <br>
-								<div class="form-check form-check-inline">
-									<input class="form-check-input"  type="radio" name="sex" 
-										value="male" id="male" checked>
-									<label class="form-check-label" >Male</label>
+								<label class="col-form-label">Gender</label> <br>
+								<div>
+									<input class="form-control" type="text" name="sex" id="sex"
+										placeholder="Enter Male or Female">
 								</div>
 								<input type="hidden" name="teacherId">
-								<div class="form-check form-check-inline">
-									<input class="form-check-input"  type="radio" name="sex"
-										id="female" value="female">
-									<label class="form-check-label" >Female</label>
+
+								<div>
+									<label class="col-form-label">Birthday</label>
+									<input type="date" name="birthday" class="form-control">
 								</div>
 								<div>
-									<label  class="col-form-label">Birthday</label>
-									<input type="date"  name="birthday" 
-										class="form-control">
+									<label class="col-form-label">Address</label>
+									<input type="text" name="address" class="form-control" placeholder="Address">
 								</div>
 								<div>
-									<label  class="col-form-label">Address</label>
-									<input type="text"  name="address" 
-										class="form-control" placeholder="Address">
+									<label class="col-form-label">Password</label>
+									<input type="password" name="password" class="form-control"
+										placeholder="Enter password">
 								</div>
 								<div>
-									<label  class="col-form-label">Password</label>
-									<input type="password"  name="password"
-										class="form-control" placeholder="Enter password">
-								</div>
-								<div>
-									<label  class="col-form-label">Class manage</label>
-									<input type="text"  name="classManage" 
-										class="form-control" placeholder="Class manage">
+									<label class="col-form-label">Class manage</label>
+									<input type="text" name="classManage" class="form-control"
+										placeholder="Class manage">
 								</div>
 							</div>
 							<div class="col">
 								<div>
-									<label  class="col-form-label">Degree</label>
-									<input type="text"  name="degree"
-										class="form-control" placeholder="degree">
+									<label class="col-form-label">Degree</label>
+									<input type="text" name="degree" class="form-control" placeholder="degree">
 								</div>
 								<div>
 									<label class="col-form-label">Email</label>
-									<input type="text"  name="email"  class="form-control"
-										placeholder="Email">
+									<input type="text" name="email" class="form-control" placeholder="Email">
 								</div>
 								<div>
-									<label  class="col-form-label">Phone</label>
-									<input type="text"  name="phone"  class="form-control"
-										placeholder="Phone number">
+									<label class="col-form-label">Phone</label>
+									<input type="text" name="phone" class="form-control" placeholder="Phone number">
 								</div>
 								<div>
-									<label  class="col-form-label">Photo</label>
-									<input type="text"  name="photo"
-										class="form-control" placeholder="degree">
+									<label class="col-form-label">Photo</label>
+									<input type="text" name="photo" class="form-control" placeholder="degree">
 								</div>
 								<button id="teacherSubmit" type="submit" class="d-none"></button>
 							</div>
 						</div>
 					</div>
+				</form>
+				<div class="modal-footer">
+					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+					<input type="button" class="btn btn-info" id="save_inforTeacher" value="Save">
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- class Modal -->
+	<div id="classModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content" style="width:800px;">
+				<div class="modal-body">
+					<div class="modal-header">
+						<h4 class="modal-title">Class manage</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="container"></div>
+					<form id="class_study_form">
+						<div class="form-group">
+							<label>Class name</label>
+							<input type="text" name="className" id="className" class="form-control"
+								placeholder="Enter class name">
+							<div class="form-group">
+								<label>Teacher</label>
+								<div class="form-inline">
+									<input type="text" name="teacherId" id="teacherId-in-class" class="form-control"
+										placeholder="Enter teacher Id">
+									<button class="btn btn-outline-success my-2 my-sm-0" id="search-teacher"
+										type="button">
+										<i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+									</button>
+									<h4 class="p-4" id="teacher-name"></h4>
+								</div>
+								<label>Subject</label>
+								<div class="form-inline">
+									<input type="text" name="subjectId" id="subjectId-in-class" class="form-control"
+										placeholder="Enter subject Id">
+									<button class="btn btn-outline-success my-2 my-sm-0" id="search-subject"
+										type="button">
+										<i class="fa-sharp fa-solid fa-magnifying-glass"></i>
+									</button>
+									<h4 class="p-4" id="subject-name"></h4>
+								</div>
+							</div>
+						</div>
+					</form>
 					<div class="modal-footer">
 						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="button" class="btn btn-info"
-							id="save_inforTeacher" value="Save">
+						<input type="button" class="btn btn-info" id="save-class-study" value="Save">
 					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -382,8 +549,14 @@
 		integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-	<script th:src="@{/js/teacher.js}"></script>
-	<script src="/js/teacher.js"></script>
+	<!-- <script th:src="@{/js/teacher.js}"></script> -->
+	<!-- <script src="/js/teacher.js"></script> -->
+	<script th:src="@{/js/administrator/administrator.js}"></script>
+	<script src="../../../js/administrator/administrator.js"></script>
+	<script th:src="@{/js/commonApi/app.js}"></script>
+
+	<script src="../../../js/commonApi/app.js"></script>
+
 	<script src="/js/main.js"></script>
 	<script src="/js/common/main.js" type="module"></script>
 </body>

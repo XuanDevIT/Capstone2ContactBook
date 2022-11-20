@@ -1,7 +1,8 @@
 package com.example.capstone.entity;
 
-import java.util.List;
+import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,29 +13,41 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "ClassStudy")
+@Table(name = "class_study")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ClassStudyEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long classStudyID;
+	@Column(name = "class_study_id")
+	private Long classStudyId;
 	
 	private String className;
 	
-	
-	
-	
+	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "studentID")
-	private StudentEntity studentID;
+	@JoinColumn(name = "teacher_id")
+	private TeacherEntity teacher;
+	
 	@JsonIgnore
-	@OneToMany(mappedBy = "classStudyID")
-	private List<TimeStudyEntity> timeStudyEntities;
+	@ManyToOne
+	@JoinColumn(name = "subject_id")
+	private SubjectEntity subject;
+
 	@JsonIgnore
-	@OneToMany(mappedBy = "classStudyID")
-	private List<AttendenceEntity> attendenceEntities;
+	@OneToMany(mappedBy = "classStudy")
+	Set<StudentClassStudy> classStudy;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "classStudyId")
+	private Set<TimeStudyEntity> timeStudy;
+	
 }

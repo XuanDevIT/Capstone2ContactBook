@@ -98,7 +98,7 @@ const item_tr_data_student = (ob) => {
 									<label for="checkbox1"></label>
 								</span>
 							</td> -->
-							<td >${ob.fullName}</td>
+							<td >${ob.fullname}</td>
 							<td >${ob.birthDay}</td>
 							<td >${ob.phone}</td>
 							<td >${ob.classStudent}</td>

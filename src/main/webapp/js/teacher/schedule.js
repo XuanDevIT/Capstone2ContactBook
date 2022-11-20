@@ -8,7 +8,8 @@ var app = document.querySelector('body')
 
 document.addEventListener('DOMContentLoaded', function () {
     var calendarEl = document.getElementById('calendar');
-    CallAPISuject()
+    //CallAPISuject()
+    CallAPIClassStudy();
     var calendar = new FullCalendar.Calendar(calendarEl, {
         "initialView": 'dayGridMonth',
         headerToolbar: {
@@ -57,7 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
             info.dayEl.style.backgroundColor = 'red';
             $('.modal-body').empty()
             $('#Modal').modal('show');
-            CallAPISuject()
+            //CallAPISuject()
+            CallAPIClassStudy()
             $('#exampleModalLongTitle').text(info.dateStr)
 
             command.getDate = info.dateStr
@@ -90,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var data = getValue();
 
         if (command.id != null){
-            data.timeStudyID = command.id;
+            data.timeStudyId = command.id;
         }
 
         var option = {
@@ -154,12 +156,11 @@ const CallAPISuject = () => {
 
 
 
-
 const getSuject = (rs) => {
     var subject = `
             <option selected>Choose...</option>`;
     for (const key in rs) {
-        subject = subject + `<option value = "${rs[key].subjectID}">${rs[key].subjectName}</option>`
+        subject = subject + `<option value = "${rs[key].subjectId}">${rs[key].subjectName}</option>`
     }
     return subject;
 
@@ -171,11 +172,31 @@ const getTeacher = (rs) => {
     var teacher = `
             <option selected>Choose...</option>`;
     for (const key in rs) {
-        teacher = teacher + `<option value = "${rs[key].teacherId}">${rs[key].fullName}</option>`
+        teacher = teacher + `<option value = "${rs[key].teacherId}">${rs[key].fullname}</option>`
     }
 
 
     return teacher;
+}
+
+const CallAPIClassStudy = () => {
+
+    var option = {
+        url: '/v1/classstudy/getall'
+    }
+    API.GET(option).then(rs => {
+        command.classStudy = [...rs]
+    })
+}
+
+const getClassStudy = (rs) => {
+    var classStudy = `
+            <option selected>Choose...</option>`;
+    for (const key in rs) {
+        classStudy = classStudy + `<option value = "${rs[key].classStudyId}">${rs[key].className}</option>`
+    }
+    return classStudy;
+
 }
 
 
@@ -183,12 +204,12 @@ const getTeacher = (rs) => {
 $('.modal-body').on('change', '.input_subject', function () {
     var id_subect = Number($(this).val())
 
-    var id_teach = command.subject.find(rs => rs.subjectID == id_subect)
+    var id_teach = command.subject.find(rs => rs.subjectId == id_subect)
     //tim vi tri cua row
     var element_parent = $(this).parent().parent();
     var div_teach = element_parent.children(".teach")
     // Tim theo id cua teach chua  class
-   
+
 
     div_teach.children().html(getTeacher(id_teach.teacherEntities))
 
@@ -224,20 +245,23 @@ const setValue =(ob)=>{
     })
 
     elselecte.forEach(vl => {
-        if (vl.name == 'subjectID'){
+        if (vl.name == 'classStudyId'){
             $(vl).val(ob[vl.name][vl.name])
-            var element_parent = $(vl).parent().parent();
-            var div_teach = element_parent.children(".teach")
-          
+            // var element_parent = $(vl).parent().parent();
+            // var div_teach = element_parent.children(".teach")
 
-            var select_teach =  div_teach.children()
+
+            // var select_teach =  div_teach.children()
+
+            // var teacher = [];
+
+            // teacher = ob.subjectId.teacherEntities;
+
+
+            // select_teach.html(getTeacher(teacher))
+            // $(select_teach).val(teacher[0].teacherId)
+
             
-            var teacher = [];
-            
-            teacher = [...teacher,ob.teacherId]
-            
-            select_teach.html(getTeacher(teacher))
-            $(select_teach).val(teacher[0].teacherId)
 
         }
 
@@ -264,14 +288,8 @@ const row = (ob) => {
                             <input disabled type="hidden" value="${command.getDate}"  name="timeStudyDay" class="form-control" >
 
                         <div class="col-2">
-                            <select id="input_subject" name="subjectID" class="form-control input_subject">
-                               ${getSuject(command.subject)}
-                            </select>
-                        </div>
-                        <div class="col-2 teach" >
-                            <select  name="teacherId"   class="form-control input_teacher ">
-                                 <option selected>Choose...</option>
-                                   ${ob != undefined ? ob : ''}
+                            <select id="input_subject" name="classStudyId" class="form-control input_subject">
+                               ${getClassStudy(command.classStudy)}
                             </select>
                         </div>
                         <div class="col-2 d-flex align-items-center">
@@ -279,6 +297,5 @@ const row = (ob) => {
                         </div>
                     </div>`
 }
-
 
 

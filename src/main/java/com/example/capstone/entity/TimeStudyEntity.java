@@ -3,9 +3,16 @@ package com.example.capstone.entity;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,30 +24,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "timeStudy")
+@Table(name = "time_study")
 public class TimeStudyEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long timeStudyID;
+	@Column(name = "time_study_id")
+	private Long timeStudyId;
 
 	private Date timeStudyDay;
 	private String timeStudyHourStart;
 	private String timeStudyHourEnd;
+	
+	//@JsonIgnore
+	@OneToMany(mappedBy = "timeStudy", fetch = FetchType.LAZY)
+	private List<AttendanceEntity> attendance;
 
-	@ManyToOne
-	@JoinColumn(name = "subjectID")
-	private SubjectEntity subjectID;
-
-	@OneToMany(mappedBy = "timeStudyID", fetch = FetchType.LAZY)
-	List<AttendenceEntity> attendenceEntities;
-
-	@ManyToOne
-	@JoinColumn(name = "teacherID")
-	private TeacherEntity teacherId;
-
+	//@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "classStudyId")
-	private ClassStudyEntity classStudyID;
-
+	private ClassStudyEntity classStudyId;
 }

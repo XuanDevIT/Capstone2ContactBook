@@ -23,7 +23,7 @@
 	<link th:href="@{/css/style.css}" rel="stylesheet" />
 	<link th:href="@{/css/showInfoStudent.css}" rel="stylesheet" />
 
-	<link href="/css/showInfoStudent.css" rel="stylesheet" />
+	
 	<link href="/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="/css/font-awesome.min.css" rel="stylesheet" />
 	<link href="/css/elegant-icons.css" rel="stylesheet" />
@@ -176,24 +176,18 @@
 				<!-- <div class="col-lg-9">
 					<div class="hero__item set-bg" style="height: 266px" data-setbg="/img/hero/banner1.png"></div>
 				</div> -->
-				<div class="col-lg-9" style="margin-top: -30px">
+				<div class="col-lg-9 bg-light">
 					<div class="table-responsive">
-
 						<div class="table-title">
-							<div class="row">
-								<div class="col-xs-6" style="margin-top: 20px;">
+							<div class="row m-3 d-flex justify-content-between">
 									<h2>Manage <b>Student</b></h2>
-								</div>
-								<div class="col-xs-6">
-									<a href="#addEmployeeModal" style="margin-top: 20px;" class="btn btn-success" id="showPopup_save"
-										data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New
-											Student</span></a>
-
-								</div>
+									<a href="#addEmployeeModal" class="btn btn-success" id="showPopup_save"
+										data-toggle="modal"> 
+										<span>Add New Student</span></a>
 							</div>
 						</div>
 						<table class="table table-striped table-hover">
-							<thead>
+							<thead class="text-white bg-success">
 								<tr>
 									<!-- <th>
 											<span class="custom-checkbox">
@@ -233,14 +227,14 @@
 					<div class="modal-body" id="inforStudent" data-spy="scroll" style="height:400px;">
 						<div class="form-group">
 							<label>Name</label>
-							<input type="text" name="fullName" class="form-control" required>
+							<input type="text" name="fullname" class="form-control" required>
 							<div class="invalid-feedback">
 								Please provide a valid Name.
 							</div>
 						</div>
 						<div class="form-group">
 							<label>User Name</label>
-							<input type="text" name="userName" class="form-control " required>
+							<input type="text" name="username" class="form-control " required>
 							<div class="invalid-feedback">
 								Please provide a valid User Name.
 							</div>

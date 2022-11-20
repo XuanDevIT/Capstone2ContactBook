@@ -1,9 +1,9 @@
 package com.example.capstone.entity;
 
-import java.util.List;
+import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,12 +26,12 @@ public class StudentEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long studentId;
-	
-	private String userName;
+
 	private String password;
-	private String fullName;
+	@Column(columnDefinition = "NVARCHAR(50)")
+	private String fullname;
+	private String username;
 	private String classStudent;
-	private int age;
 	private String birthDay;
 	private String address;
 	private String phone;
@@ -40,14 +40,17 @@ public class StudentEntity {
 	private String birthDayParent;
 	private String sexStudent;
 	private String sexParent;
-//	@ManyToMany
-//	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-//	private List<RoleEntity> roles = new ArrayList<>();
+
 	@JsonIgnore
-	@OneToMany(mappedBy = "studentID",fetch = FetchType.LAZY)
-	private List<AttendenceEntity> attendenceEntities;
-	@JsonIgnore
-	@OneToMany(mappedBy = "studentID",fetch = FetchType.LAZY)
-	private List<ClassStudyEntity> attendenceEntities1;
+	@OneToMany(mappedBy = "student")
+	private Set<StudentSubject> subject;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "student")
+	private Set<StudentClassStudy> classStudy;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "student")
+	private Set<AttendanceEntity> attendance;
+
 }

@@ -11,11 +11,13 @@ public interface SubjectService {
 
 	public SubjectEntity save(SubjectEntity subjectEntity);
 	
-	public SubjectEntity findByID(Long id);
+	public SubjectEntity findById(Long id);
 	
 	public List<SubjectEntity> findAll();
 	
 	public boolean delete(Long Id);
+	
+	public SubjectEntity subSave(Long subjectId, Long teacherId);
 	
 	
 }

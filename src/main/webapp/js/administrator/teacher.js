@@ -86,7 +86,7 @@ const popup_cancel = () => {
 	element2.css("display", "none")
 	$('body').removeClass('modal-open')
 	$('.modal-backdrop').remove()
-	
+
 }
 
 const item_tr_data_student = (ob) => {
@@ -104,11 +104,11 @@ const item_tr_data_student = (ob) => {
 							<td >${ob.classStudent}</td>
 
 							<td>
-								
+
 
 								<a href="#addEmployeeModal" data-student_id=${ob.studentId} class="edit" onclick="showTeacherModal()
 									data-toggle="modal"><i class="material-icons ">&#xE254;</i></a>
-								
+
 								<a href="#deleteEmployeeModal" data-student_id=${ob.studentId}  class="material-icons delete_student" data-toggle="modal"><i
 										class="material-icons">&#xE15C;</i> </a>
 							</td>
@@ -117,7 +117,7 @@ const item_tr_data_student = (ob) => {
 
 const show_data_student = () => {
 	var appen_data = $('#data_student')
-	
+
 	var html ;
 	handler_show_data_student().then(rs => {
 		rs.forEach(row =>{
@@ -132,7 +132,7 @@ const show_data_student = () => {
 $(document).ready(function () {
 	show_data_student()
 	//event save onclick
-	$('#save_inforStudent').on('click', function () {
+	$('#save_inforTeacher').on('click', function () {
 		debugger
 		var check = result_validate();
 		if (check == true) {
@@ -158,7 +158,7 @@ $(document).ready(function () {
 
 
 
-	
+
 
 	$('#data_student').on('click', '.delete_student',function () {
 		debugger
@@ -251,6 +251,4 @@ $(document).ready(function () {
 		}
 		return true;
 	}
-
-
 })

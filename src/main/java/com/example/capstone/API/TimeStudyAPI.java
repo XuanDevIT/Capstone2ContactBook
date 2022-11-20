@@ -22,6 +22,7 @@ public class TimeStudyAPI {
 
 	@PostMapping("/v1/TimeStudy")
 	public TimeStudyEntity save(@RequestBody TimeStudyEntity timeStudyEntity) {
+
 		return timeStudyService.save(timeStudyEntity);
 	}
 
@@ -54,10 +55,14 @@ public class TimeStudyAPI {
 		}
 	}
 
-
 	@GetMapping(("/v1/calendar"))
 	public List<Object> findAllCalendar() {
 		// TODO Auto-generated method stub
 		return timeStudyService.findAllCalendar();
+	}
+	
+	@GetMapping("/v1/TimeStudy/getAll")
+	public List<Object> findALl() {
+		return timeStudyService.getAll();
 	}
 }
