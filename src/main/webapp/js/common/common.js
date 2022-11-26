@@ -43,26 +43,24 @@ g_common.setValueFromInfo = function (data_rs, ob) {
 g_common.getValue = function (ob) {
     return `
                  <tr >
-                    <td >${ob.fullName}</td>
+                    <td >${ob.fullname}</td>
                     <td> ${ob.sex} </td>
                     <td>${ob.address} </td>
                     <td>${ob.email} </td>
                     <td>${ob.phone} </td>
                     <td>
                         <button type="button" class="btn btn-primary btn-sm btn-crud" data_id=${ob.teacherId} id="btn_update">
-                            <!-- <i class="fa-sharp fa-solid fa-pen-to-square"></i> -->
-                            update
+                            <i class="fa-solid fa-pen-to-square"></i>
                         </button>
                         <a
-                            class="btn btn-danger btn-sm btn-crud" id="btn_delete" data_id=${ob.teacherId} data-toggle="modal"
-                            data-target="#deleteTeacherModal">
-                            <!-- <i class="fa-solid fa-trash"></i> -->
-                            delete
+                            class="material-icons delete_student" id="btn_delete" data_id=${ob.teacherId} data-toggle="modal"
+                            data-target="#deleteTeacherModal" style="color: red;">
+                            <i class="fa-sharp fa-solid fa-trash"></i>
                         </a>
                     </td>
                     <!-- Modal -->
 
-                </tr>           
+                </tr>
             `
 }
 export {g_common}

@@ -8,8 +8,6 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,17 +22,6 @@ public class TeacherApi {
 
 	@Autowired
 	public TeacherService teacherService;
-
-	@PostMapping("/v1/teacher")
-	public TeacherEntity add(@RequestBody TeacherEntity teacher) {
-		return teacherService.save(teacher);
-	}
-
-//	@PostMapping("teacher")
-//	public ResponseEntity<TeacherEntity> update(@RequestBody TeacherEntity teacher) {
-//		TeacherEntity teacher2 = teacherRepository.save(teacher);
-//		return new ResponseEntity<TeacherEntity>(teacher2, HttpStatus.OK);
-//	}
 
 	@GetMapping("/v1/teacher")
 	public List<TeacherEntity> getAll() {

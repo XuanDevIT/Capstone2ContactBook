@@ -195,25 +195,25 @@
 									<div class="w-100"></div>
 									<div class="col">
 										<div class="nav-teacher-subject pagination">
+											<div class="page-item btn btn-secondary" id="show-teacher-list">
+												<h4>List teacher</h4>
+											</div>
 											<div class="page-item btn btn-secondary" id="show-subject-list">
 												<h4>List subject</h4>
 											</div>
-											<div class="page-item btn btn-primary" id="show-teacher-list">
-												<h4>List teacher</h4>
-											</div>
-											<div class="page-item btn btn-primary" id="show-classStudy-list">
+											<div class="page-item btn btn-secondary" id="show-classStudy-list">
 												<h4>Class study</h4>
 											</div>
 										</div>
 										<table class="table table-crud" id="table-teacher">
 											<thead class="thead-dark">
 												<tr>
-													<th scope="col"></th>
 													<th scope="col">Fullname</th>
 													<th scope="col">Gender</th>
 													<th scope="col">Address</th>
 													<th scope="col">Email</th>
 													<th scope="col">Phone</th>
+													<th scope="col"></th>
 													<th></th>
 												</tr>
 											</thead>
@@ -249,7 +249,7 @@
 							</div>
 							<div id="class-manage-mng">
 								<div id="header-class-mng"></div>
-								<div class="content-class">
+								<div class="content-class d-none">
 									<table class="table">
 										<thead>
 											<tr>
@@ -327,8 +327,9 @@
 						<div class="col">
 							<form id="subject_form">
 								<div>
+									<input type="hidden" name="subjectId" id="subjectId">
 									<label class="col-form-label">Subject name</label>
-									<input type="text" name="subjectName" class="form-control"
+									<input type="text" name="subjectName" id="subjectName" class="form-control"
 										placeholder="subject name">
 								</div>
 								<button id="subjectSubmit" type="submit" class="d-none"></button>
@@ -526,12 +527,11 @@
 	<script th:src="@{/js/mixitup.min.js}"></script>
 	<script th:src="@{/js/owl.carousel.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
-	<script th:src="@{/js/admin/showInfoStudent.js}"></script>
 	<script th:src="@{/js/handler.js}"></script>
 	<script th:src="@{/CallEvent/main.js}"></script>
 	<script th:src="@{/js/common/api.js}"></script>
 
-	<script src="/js/common/main.js" type="module"></script>
+	<!-- <script src="/js/common/main.js" type="module"></script> -->
 
 	<script src="/js/jquery-3.3.1.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
@@ -539,7 +539,7 @@
 	<script src="/js/jquery-ui.min.js"></script>
 	<script src="/js/mixitup.min.js"></script>
 	<script src="/js/owl.carousel.min.js"></script>
-	<script src="/js/main.js"></script>
+	<!-- <script src="/js/main.js"></script> -->
 	<!-- <script src="/js/common/api.js"></script> -->
 	<!-- <script src="/js/admin/showInfoStudent.js"></script> -->
 
@@ -555,9 +555,9 @@
 	<script src="../../../js/administrator/administrator.js"></script>
 	<script th:src="@{/js/commonApi/app.js}"></script>
 
-	<script src="../../../js/commonApi/app.js"></script>
+	<!-- <script src="../../../js/commonApi/app.js"></script> -->
 
-	<script src="/js/main.js"></script>
+	<!-- <script src="/js/main.js"></script> -->
 	<script src="/js/common/main.js" type="module"></script>
 </body>
 

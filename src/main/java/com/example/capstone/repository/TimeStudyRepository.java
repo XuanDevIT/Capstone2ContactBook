@@ -1,5 +1,6 @@
 package com.example.capstone.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -25,4 +26,7 @@ public interface TimeStudyRepository extends JpaRepository<TimeStudyEntity, Long
 			+ "        join teacher teach on teach.teacher_id = cs.teacher_id"
 			+ "        join subject sj on sj.subject_id = cs.subject_id")
 	public List<TimeStudyDTO> getAll();
+	
+	@Query(nativeQuery = true, value = "Select time_study_day from time_study where class_study_id = ?1")
+	List<Date> findByClassStudyId(Long classStudyId);
 }

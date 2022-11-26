@@ -10,8 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,9 +25,9 @@ public class SubjectAPI {
 	@Autowired
 	private SubjectService subjectService;
 
-	@RequestMapping( value = "/v1/add/subject", method= RequestMethod.POST ,consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping( value = "/v1/subject", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public SubjectEntity save(SubjectRequest subjectRequest) {
+	public SubjectEntity save(@RequestBody SubjectRequest subjectRequest) {
 		SubjectEntity subjectEntity = new SubjectEntity();
 		BeanUtils.copyProperties(subjectRequest, subjectEntity);
 		return subjectService.save(subjectEntity);

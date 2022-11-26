@@ -37,6 +37,6 @@
     color: rgb(64, 117, 241);
 }
 
-.modal-backdrop {
-    z-index: -1 !important;
+.btn-primary {
+    background-color: #007bff !important;
 }

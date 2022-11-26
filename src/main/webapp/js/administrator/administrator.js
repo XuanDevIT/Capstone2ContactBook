@@ -21,9 +21,11 @@ $(function() {
             success: function(response) {
                 popup_cancel('#teacherModal');
                 alert('Thêm giáo viên thành công');
+                $('.modal-backdrop').remove();
             },
             error: function() {
-                // alert('Error');
+                $('.modal-backdrop').remove();
+                alert('Error');
             }
         });
     });
@@ -33,15 +35,19 @@ $(function() {
     $('#save_subject').on('click', function(e) {
         e.preventDefault();
         let formData = getFormData($("#subject_form"));
+        data = JSON.stringify(formData)
         $.ajax({
             type: "POST",
-            url: "/v1/add/subject",
-            data: formData,
+            url: "/v1/subject",
+            data: data,
+            contentType: "application/json; charset=UTF-8",
             success: function(response) {
                 popup_cancel('#subjectModal');
+                $('.modal-backdrop').remove();
                 alert('Thêm môn học thành công');
             },
             error: function() {
+                $('.modal-backdrop').remove();
                 alert('Error');
             }
         });
@@ -60,9 +66,11 @@ $(function() {
             contentType: "application/json; charset=UTF-8",
             success: function(response) {
                 popup_cancel('#classModal');
+                $('.modal-backdrop').remove();
                 alert('Thêm lớp thành công');
             },
             error: function() {
+                $('.modal-backdrop').remove();
                 alert('Error');
             }
         });
@@ -113,8 +121,9 @@ $(function() {
             data: data,
             contentType: "application/json; charset=UTF-8",
             success: function(response) {
-                // popup_cancel('#classModal');
+                popup_cancel('#AddStudentToClassModal');
                 alert('add student success');
+                $('.modal-backdrop').remove();
             },
             error: function() {
                 alert('Error');
@@ -124,24 +133,48 @@ $(function() {
     })
 });
 
-/* ======================== classs ====================== */
+/* ========================  toggle class css  ====================== */
 $(function() {
-    $('#show-subject-list').on('click', function(e) {
-        console.log("show subject-litst");
-        $('#table-subject').removeClass('d-none');
-        $('#table-teacher').addClass('d-none');
-        $('#table-classStudy').addClass('d-none');
-    });
 
     $('#show-teacher-list').on('click', function(e) {
-        console.log("show subject-litst");
+        $('#show-teacher-list').removeClass('btn-secondary');
+        $('#show-teacher-list').addClass('btn-primary');
+        $('#show-subject-list').removeClass('btn-primary');
+        $('#show-classStudy-list').removeClass('btn-primary');
+        $('#show-subject-list').addClass('btn-secondary');
+        $('#show-classStudy-list').addClass('btn-secondary');
+
         $('#table-teacher').removeClass('d-none');
         $('#table-subject').addClass('d-none');
         $('#table-classStudy').addClass('d-none');
     });
 
+    $('#show-subject-list').on('click', function(e) {
+
+        $('#show-subject-list').addClass('btn-primary');
+        $('#show-subject-list').removeClass('btn-secondary');
+
+        $('#show-teacher-list').removeClass('btn-primary');
+        $('#show-teacher-list').addClass('btn-secondary');
+        $('#show-classStudy-list').removeClass('btn-primary');
+        $('#show-classStudy-list').addClass('btn-secondary');
+
+
+        $('#table-subject').removeClass('d-none');
+        $('#table-teacher').addClass('d-none');
+        $('#table-classStudy').addClass('d-none');
+    });
+
     $('#show-classStudy-list').on('click', function(e) {
-        console.log("show class study litst");
+
+        $('#show-classStudy-list').removeClass('btn-secondary');
+        $('#show-classStudy-list').addClass('btn-primary');
+
+        $('#show-subject-list').addClass('btn-secondary');
+        $('#show-subject-list').removeClass('btn-primary');
+        $('#show-teacher-list').addClass('btn-secondary');
+        $('#show-teacher-list').removeClass('btn-primary');
+
         $('#table-teacher').addClass('d-none');
         $('#table-subject').addClass('d-none');
         $('#table-classStudy').removeClass('d-none');
@@ -190,7 +223,6 @@ const show_data_subject = (data) => {
 const show_data_idclass_ob = (data) => {
     var append_data = $('#header-class-mng')
     var htmlInfo =  view_class_study(data);
-    console.log("show_data_idclass_ob");
     append_data.html(htmlInfo);
 }
 
@@ -228,21 +260,22 @@ const item_tr_data_subject = (ob) => {
         <tr>
             <td >${ob.subjectName}</td>
             <td>
-                <a href="#subjectModal" data-student_id=${ob.subjectId} class="edit"
+                <a href="#subjectModal" data-name=${ob.subjectId} data-id=${ob.subjectName} class="edit-subject"
                     data-toggle="modal">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
-                <a href="#deleteEmployeeModal" data-student_id=${ob.subjectId}  class="material-icons delete_student" data-toggle="modal">
+                <a href="#deleteEmployeeModal" data-student_id=${ob.subjectId}  class="material-icons delete_student" style="color: red;" data-toggle="modal">
                     <i class="fa-sharp fa-solid fa-trash"></i>
                 </a>
             </td>
         </tr>`
 }
 
-
 $(document).on("click", ".item-class", function() {
     var clickedBtnID = $(this).attr('id');
     console.log(` id class : ${clickedBtnID}` );
+    $('.content-class').removeClass('d-none')
+
     getListClassStudyById(clickedBtnID).then( function(val) {
         show_data_idclass_ob(val)
         $('#main-administrator').addClass('d-none');
@@ -292,11 +325,11 @@ const item_tr_data_class = (ob) => {
             <td >${ob.subjectName}</td>
             <td >${ob.fullname}</td>
             <td>
-                <a href="#addEmployeeModal" data-student_id=${ob.classStudyId} class="edit"
+                <a href="#addEmployeeModal" data-ob=${ob} class="edit"
                     data-toggle="modal">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
-                <a href="#deleteEmployeeModal" data-student_id=${ob.classStudyId}  class="material-icons delete_student" data-toggle="modal">
+                <a href="#subjectModal" data-ob=${ob.subjectId}  class="material-icons delete_student" style="color: red;" data-toggle="modal">
                     <i class="fa-sharp fa-solid fa-trash"></i>
                 </a>
             </td>
@@ -313,7 +346,8 @@ const item_data_student = (ob) => {
                 data-toggle="modal">
                 <i class="fa-solid fa-pen-to-square"></i>
             </a>
-            <a href="#deleteEmployeeModal" data-student_id=${ob.studentId}  class="material-icons delete_student" data-toggle="modal">
+            <a href="#deleteEmployeeModal" data-student_id=${ob.studentId}  class="material-icons delete_student"
+             style="color: red;" data-toggle="modal">
                 <i class="fa-sharp fa-solid fa-trash"></i>
             </a>
         </td>
