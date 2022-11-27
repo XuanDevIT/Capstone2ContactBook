@@ -45,4 +45,9 @@ public class ClassStudyServiceImpl implements ClassStudyService {
 	public List<ClassStudyDTO> getClassStudyByTeacherId(Long id) {
 		return classStudyRepository.getClassStudyByTeacherId(id);
 	}
+
+	@Override
+	public List<ClassStudyDTO> getAllClassStudyDTO() {
+		return classStudyRepository.getClassStudy();
+	}
 }

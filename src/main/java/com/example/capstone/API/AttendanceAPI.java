@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -75,8 +74,9 @@ public class AttendanceAPI {
 	}
 	
 
-	@GetMapping(value = "/v1/attendance",produces = MediaType.APPLICATION_JSON_VALUE ,consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Map<String, Object>> test(@RequestBody Long classStudyId) { 
+	@GetMapping(value = "/v1/attendance/{id}")
+	@ResponseBody
+	public ResponseEntity<?> getAttendance(@PathVariable(value = "id") Long classStudyId) { 
 		return new ResponseEntity<Map<String, Object>>(attendanceService.findAttendanceByClassId(classStudyId), HttpStatus.OK);
 	}
 

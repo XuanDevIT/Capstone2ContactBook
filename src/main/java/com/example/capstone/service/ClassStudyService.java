@@ -16,4 +16,6 @@ public interface ClassStudyService {
 	List<ClassStudyEntity> getAllClassStudy();
 	
 	List<ClassStudyDTO> getClassStudyByTeacherId(Long id);
+	
+	public List<ClassStudyDTO> getAllClassStudyDTO();
 }

@@ -227,6 +227,7 @@ const show_data_idclass_ob = (data) => {
 }
 
 const show_data_class = (data) => {
+    console.log(data);
 	var append_data = $('#show_data_class')
     var htmlClass = '';
     data.forEach(item =>  {

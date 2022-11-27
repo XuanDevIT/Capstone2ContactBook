@@ -55,9 +55,9 @@ public class ClassStudyAPI {
 	}
 
 	@GetMapping(value = "/v1/classstudy/getall")
-	public ResponseEntity<List<ClassStudyEntity>> getAllClassStudy() {
-		List<ClassStudyEntity> listClassStudy = classStudyService.getAllClassStudy();
-		return new ResponseEntity<List<ClassStudyEntity>>(listClassStudy, HttpStatus.OK);
+	public ResponseEntity<List<ClassStudyDTO>> getAllClassStudy() {
+		List<ClassStudyDTO> listClassStudy = classStudyService.getAllClassStudyDTO();
+		return new ResponseEntity<List<ClassStudyDTO>>(listClassStudy, HttpStatus.OK);
 	}
 	
 	@GetMapping(value = "/v1/classStudy")
