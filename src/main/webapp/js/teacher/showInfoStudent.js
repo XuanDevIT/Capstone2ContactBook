@@ -12,6 +12,8 @@ const getDataFromInfo = () => {
 	if (data.studentId == '') {
 		delete data.studentId;
 	}
+	// ifile = $("#imgStudent").val;
+	// data.file = ifile;
 	return data;
 
 }
@@ -54,11 +56,28 @@ const popup_edit_show = (id) => {
 
 //xu ly button save cua dialog
 const popup_save = () => {
-	handler_insert_student(getDataFromInfo()).then(rs => {
+	//var data = new FormData();
+	//data.append("image", imgStudent.files[0], "file");
+	//var file = $('#imgStudent')[0].files[0];
+	//data.append("file",file);
+	//data.append("student",JSON.stringify(getDataFromInfo()));
+	// handler_insert_student(data).then(rs => {
+	// 	debugger
+	// 	show_data_student();
+	// 	popup_cancel();
+	// })
+
+	var form = new FormData();
+    form.append("image", imgStudent.files[0], "file");
+    form.append("student", JSON.stringify(getDataFromInfo()));
+
+	handler_insert_student(form).then(rs => {
 		debugger
 		show_data_student();
 		popup_cancel();
 	})
+
+
 }
 
 const popup_cancel = () => {
