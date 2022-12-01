@@ -22,6 +22,12 @@ public class CommonController {
                 case "subject":
                     url.append("subject/" + nameFd[1]);
                     break;
+                case "student":
+                    url.append("student/" + nameFd[1]);
+                    break;
+                case "admin":
+                    url.append("administrator/" + nameFd[1]);
+                    break;
                 default:
                     url.append("administrator/" + nameFd[1]);
                     break;
