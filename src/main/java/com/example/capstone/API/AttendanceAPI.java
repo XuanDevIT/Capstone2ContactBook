@@ -68,7 +68,7 @@ public class AttendanceAPI {
 			attendanceService.save(attendanceEntity);
 
 			attendanceListResponse.add(attendanceEntity);
-		}
+		} 
 
 		return new ResponseEntity<List<AttendanceEntity>>(attendanceListResponse, HttpStatus.OK);
 	}

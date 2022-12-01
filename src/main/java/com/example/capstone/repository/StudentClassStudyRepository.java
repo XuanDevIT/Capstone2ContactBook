@@ -16,7 +16,7 @@ public interface StudentClassStudyRepository extends JpaRepository<StudentClassS
 	
 	@Query(nativeQuery = true, value = "Select scs.student_id as studentId, ss.fullname as studentName from student_class_study scs "
 			+ "inner join student ss on ss.student_id = scs.student_id "
-			+ "where class_Study_Id = ?1")
+			+ "where scs.class_Study_Id = ?1")
 	public List<StudentClassStudyDTO> getStudentByClassStudyId(Long classStudyId);
 	
 }

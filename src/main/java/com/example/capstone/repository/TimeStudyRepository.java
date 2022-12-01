@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.example.capstone.dto.TimeStudyDTO;
+import com.example.capstone.entity.ClassStudyEntity;
 import com.example.capstone.entity.TimeStudyEntity;
 
 @Repository
@@ -29,4 +30,7 @@ public interface TimeStudyRepository extends JpaRepository<TimeStudyEntity, Long
 	
 	@Query(nativeQuery = true, value = "Select time_study_day from time_study where class_study_id = ?1")
 	List<Date> findByClassStudyId(Long classStudyId);
+	
+	List<TimeStudyEntity> findByClassStudyId(ClassStudyEntity classStudyId);
+	
 }

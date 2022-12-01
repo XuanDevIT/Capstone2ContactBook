@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.capstone.entity.ClassStudyEntity;
 import com.example.capstone.entity.TimeStudyEntity;
 
 @Service
@@ -20,4 +21,6 @@ public interface TimeStudyService {
 	public List<Object> getAll();
 	
 	public List<Date> findByClassStudyId(Long classStudyEntity);
+	
+	List<TimeStudyEntity> findByClassStudyId(ClassStudyEntity classStudyEntity);
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.capstone.dto.TimeStudyDTO;
+import com.example.capstone.entity.ClassStudyEntity;
 import com.example.capstone.entity.TimeStudyEntity;
 import com.example.capstone.repository.TimeStudyRepository;
 import com.example.capstone.service.TimeStudyService;
@@ -134,6 +135,11 @@ public class TimeStudyServiceImlp implements TimeStudyService{
 	@Override
 	public List<Date> findByClassStudyId(Long classStudyId) {
 		return timeStudyRepository.findByClassStudyId(classStudyId);
+	}
+
+	@Override
+	public List<TimeStudyEntity> findByClassStudyId(ClassStudyEntity classStudyEntity) {
+		return timeStudyRepository.findByClassStudyId(classStudyEntity);
 	}
 
 

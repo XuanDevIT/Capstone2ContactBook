@@ -17,9 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.capstone.dto.StudentClassStudyDTO;
 import com.example.capstone.entity.StudentClassStudy;
 import com.example.capstone.entity.StudentClassStudyKey;
-import com.example.capstone.entityRequest.ClassStudyIdRequest;
 import com.example.capstone.entityRequest.StudentClassStudyRequest;
-import com.example.capstone.service.ClassStudyService;
 import com.example.capstone.service.StudentClassStudyService;
 
 @RestController

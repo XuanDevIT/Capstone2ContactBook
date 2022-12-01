@@ -3,15 +3,20 @@ package com.example.capstone.API;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.capstone.entity.ClassStudyEntity;
 import com.example.capstone.entity.TimeStudyEntity;
+import com.example.capstone.service.ClassStudyService;
 import com.example.capstone.service.TimeStudyService;
 
 @RestController
@@ -19,6 +24,8 @@ public class TimeStudyAPI {
 	@Autowired
 	TimeStudyService timeStudyService;
 
+	@Autowired
+	ClassStudyService classStudyService;
 
 	@PostMapping("/v1/TimeStudy")
 	public TimeStudyEntity save(@RequestBody TimeStudyEntity timeStudyEntity) {
@@ -64,5 +71,11 @@ public class TimeStudyAPI {
 	@GetMapping("/v1/TimeStudy/getAll")
 	public List<Object> findALl() {
 		return timeStudyService.getAll();
+	}
+	
+	@GetMapping("/v1/timestudy/classstudy/{id}")
+	public ResponseEntity<?> findByClassStudyId(@PathVariable(value = "id") Integer classStudyId) {
+		ClassStudyEntity obj = classStudyService.findByCLassStudy(Long.valueOf(classStudyId));
+		return new ResponseEntity<List<TimeStudyEntity>>(timeStudyService.findByClassStudyId(obj), HttpStatus.OK);
 	}
 }

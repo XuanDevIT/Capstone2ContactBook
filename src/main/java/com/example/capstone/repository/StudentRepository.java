@@ -15,4 +15,8 @@ public interface StudentRepository extends JpaRepository<StudentEntity, Long>{
 	@Query(nativeQuery = true, value = "Select st.student_id as id, st.fullname as fullname from student st inner join student_subject ss on st.student_id = ss.student_id ")
 	public List<StudentWithSubjectDTO> getStudentWithSubject();
 	
+//	@Query(nativeQuery = true, value = "Select st.student_id as id, st.fullname as fullname from student st inner join student_class_study ss on st.student_id = ss.student_id "
+//			+ "where ss.class_study_id = ?1")
+//	public List<StudentWithSubjectDTO> getStudentByClassStudyId(Long classStudyId);
+	
 }

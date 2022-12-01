@@ -30,7 +30,7 @@ public class ClassStudyServiceImpl implements ClassStudyService {
 			return 0;
 		}
 	}
-
+	
 	@Override
 	public List<ClassStudyEntity> getAllClassStudy() {
 		return classStudyRepository.findAll();
@@ -49,5 +49,10 @@ public class ClassStudyServiceImpl implements ClassStudyService {
 	@Override
 	public List<ClassStudyDTO> getAllClassStudyDTO() {
 		return classStudyRepository.getClassStudy();
+	}
+
+	@Override
+	public ClassStudyEntity findByCLassStudy(Long classStudyId) {
+		return classStudyRepository.findById(classStudyId).get();
 	}
 }

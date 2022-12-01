@@ -18,4 +18,8 @@ public interface ClassStudyService {
 	List<ClassStudyDTO> getClassStudyByTeacherId(Long id);
 	
 	public List<ClassStudyDTO> getAllClassStudyDTO();
+	
+	public ClassStudyEntity findByCLassStudy(Long classStudyId);
 }
+
+
