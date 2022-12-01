@@ -15,28 +15,29 @@ import com.example.capstone.util.ImageUtils;
 @Service
 public class StorageService {
 
-    @Autowired
-    private StorageRepository repository;
+	@Autowired
+	private StorageRepository repository;
 
-    public String uploadImage(MultipartFile file, StudentEntity studentEntity) throws IOException {
+	public String uploadImage(MultipartFile[] file, StudentEntity studentEntity) throws IOException {
 
-        ImageData imageData = repository.save(ImageData.builder()
-                .name(file.getOriginalFilename())
-                .type(file.getContentType())
-                .imageDataStudent(studentEntity)
-                .imageData(ImageUtils.compressImage(file.getBytes())).build()
-            
-                );
-        
-        if (imageData != null) {
-            return "file uploaded successfully : " + file.getOriginalFilename();
-        }
-        return null;
-    }
+		for (int i = 0; i < file.length; i++) {
+			System.out.print(file.length);
+			ImageData imageData = repository.save(ImageData.builder().name(file[i].getOriginalFilename())
+					.type(file[i].getContentType()).imageDataStudent(studentEntity)
+					.imageData(ImageUtils.compressImage(file[i].getBytes())).build()
 
-    public byte[] downloadImage(String fileName){
-        Optional<ImageData> dbImageData = repository.findByName(fileName);
-        byte[] images=ImageUtils.decompressImage(dbImageData.get().getImageData());
-        return images;
-    }
+			);
+
+//            if (imageData != null) {
+//                return "file uploaded successfully : " + file[i].getOriginalFilename();
+//            }
+		}
+		return "file uploaded successfully!";
+	}
+
+	public byte[] downloadImage(String fileName) {
+		Optional<ImageData> dbImageData = repository.findByName(fileName);
+		byte[] images = ImageUtils.decompressImage(dbImageData.get().getImageData());
+		return images;
+	}
 }

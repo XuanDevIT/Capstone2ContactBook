@@ -56,26 +56,30 @@ const popup_edit_show = (id) => {
 
 //xu ly button save cua dialog
 const popup_save = () => {
-	//var data = new FormData();
-	//data.append("image", imgStudent.files[0], "file");
-	//var file = $('#imgStudent')[0].files[0];
-	//data.append("file",file);
-	//data.append("student",JSON.stringify(getDataFromInfo()));
-	// handler_insert_student(data).then(rs => {
-	// 	debugger
-	// 	show_data_student();
-	// 	popup_cancel();
-	// })
-
+	
+	debugger;
 	var form = new FormData();
-    form.append("image", imgStudent.files[0], "file");
-    form.append("student", JSON.stringify(getDataFromInfo()));
+	//var imgArr = imgStudent.files;
+	//form.append("image", imgArr);
+	if(imgStudent.files.length === 4){
+		form.append("image", imgStudent.files[0], "file");
+	    form.append("image", imgStudent.files[1], "file");
+		form.append("image", imgStudent.files[2], "file");
+	    form.append("image", imgStudent.files[3], "file");
 
-	handler_insert_student(form).then(rs => {
-		debugger
-		show_data_student();
-		popup_cancel();
-	})
+    
+	
+		form.append("student", JSON.stringify(getDataFromInfo()));
+		debugger;
+		handler_insert_student(form).then(rs => {
+			debugger
+			show_data_student();
+			popup_cancel();
+		})
+	}else{
+		alert("Please input 4 image!!!!")
+	}
+	
 
 
 }

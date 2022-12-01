@@ -33,7 +33,8 @@ public class ImageAPI {
 	private StorageRepository storageRepository;
 	
 	@PostMapping("/v1/image")
-	public ResponseEntity<?> uploadImage(@RequestParam("image")MultipartFile file, @RequestParam("student") String model) throws IOException {
+	public ResponseEntity<?> uploadImage(@RequestParam("image")MultipartFile[] file, @RequestParam("student") String model) throws IOException {
+		System.out.print(file.length);
 		 ObjectMapper objectMapper = new ObjectMapper();
 		 StudentEntity studentEntity = objectMapper.readValue(model, StudentEntity.class);
 		 studentService.save(studentEntity);
