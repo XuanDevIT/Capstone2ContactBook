@@ -1,6 +1,8 @@
 package com.example.capstone.service;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,4 +42,24 @@ public class StorageService {
 		byte[] images = ImageUtils.decompressImage(dbImageData.get().getImageData());
 		return images;
 	}
+
+	public byte[] getByID(Long id) {
+		Optional<ImageData> imOptional = repository.findById(id);
+		byte[] images = ImageUtils.decompressImage(imOptional.get().getImageData());
+		return images;
+	}
+
+	public List<byte[]> getAll(){
+		List<ImageData> list = repository.findAll();
+		
+		List<byte[]> listImg = new ArrayList<byte[]>();
+		for(int i = 0; i < list.size(); i ++) {
+			byte[] img = ImageUtils.decompressImage(list.get(i).getImageData());
+			listImg.add(img);
+		}
+		
+		return listImg;
+		
+		
+	}	
 }

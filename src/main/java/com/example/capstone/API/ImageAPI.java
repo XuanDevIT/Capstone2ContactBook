@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.capstone.entity.ImageData;
 import com.example.capstone.entity.StudentEntity;
 import com.example.capstone.repository.StorageRepository;
 import com.example.capstone.service.StorageService;
@@ -55,10 +54,18 @@ public class ImageAPI {
 	@GetMapping("/v1/image")
 	public ResponseEntity<?> show(){
 		
-		List<ImageData> imageData = storageRepository.findAll();
+		List<byte[]> imageData = service.getAll();
 		
-		return new ResponseEntity<List<ImageData>>(imageData, HttpStatus.OK);
+		return new ResponseEntity<List<byte[]>>(imageData, HttpStatus.OK);
 
+	}
+	
+	@GetMapping("/v1/image/getID/{id}")
+	public ResponseEntity<?> getByID(@PathVariable Long id){
+		byte[] imageData=service.getByID(id);
+		return ResponseEntity.status(HttpStatus.OK)
+				.contentType(MediaType.valueOf("image/png"))
+				.body(imageData);
 	}
 
 }
