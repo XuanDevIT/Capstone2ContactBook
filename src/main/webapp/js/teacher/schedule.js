@@ -287,7 +287,7 @@ const row = (ob) => {
 
                             <input disabled type="hidden" value="${command.getDate}"  name="timeStudyDay" class="form-control" >
 
-                        <div class="col-2">
+                        <div class="col-4">
                             <select id="input_subject" name="classStudyId" class="form-control input_subject">
                                ${getClassStudy(command.classStudy)}
                             </select>

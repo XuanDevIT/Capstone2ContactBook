@@ -9,11 +9,13 @@ const getDataFromInfo = () => {
 	$.each(inputs, (index, val) => {
 		data = { ...data, [val.name]: val.value }
 	})
+	var selects = element.children().children('select');
+	$.each(selects, (index, val) => {
+		data = { ...data, [val.name]: val.value }
+	})
 	if (data.studentId == '') {
 		delete data.studentId;
 	}
-	// ifile = $("#imgStudent").val;
-	// data.file = ifile;
 	return data;
 
 }
