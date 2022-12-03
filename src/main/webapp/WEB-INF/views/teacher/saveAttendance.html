@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="../../../css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="../../../css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../../../css/style.css" type="text/css">
+    <link rel="stylesheet" href="../../../css/saveAttendance.css" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
         crossorigin="anonymous"></script>
@@ -166,25 +167,23 @@
                 <!--Attendance System-->
                 <div class="col-lg-9 bg-light p-3">
                     <div class="list-class-container">
-                        <ul class="list-group list-class" id="list-class">
-                            <li class="list-group-item disabled">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Morbi leo risus</li>
-                            <li class="list-group-item">Porta ac consectetur ac</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
+                        <h3 class="titleAttendance">Attendance Management</h3>
+                    </div>
+                    <div class="list-timeStudy-container listClassStudy">
+                        <ul class="list-group" id="list-classStudy">
+
                         </ul>
                     </div>
-                    <div class="list-timeStudy-container">
+                    <div class="list-timeStudy-container listTimeStudy">
                         <ul class="list-group" id="list-timeStudy">
-                            <li class="list-group-item disabled">Time 1</li>
-                            <li class="list-group-item">Time 2</li>
-                            <li class="list-group-item">Time 3</li>
-                            <li class="list-group-item">Time 4</li>
-                            <li class="list-group-item">Time 5</li>
+
                         </ul>
+                        <button class="back-button" id="back-to-list-class">
+                            <i class="fa-solid fa-backward">  Back</i>
+                        </button>
                     </div>
 
-                    <div class="list-timeStudy-container">
+                    <div class="list-timeStudy-container list-student-by-class">
                         <table class="table table-bordered">
                             <thead class="text-white bg-success">
                                 <tr>
@@ -197,136 +196,14 @@
                             <tbody id="list-student">
 
                             </tbody>
-                            <button id="saveAttendance" >Save attendance</button>
                         </table>
+
+                        <button id="saveAttendance" >Save</button>
+                        <button class="back-button" id="back-to-list-timeStudy">
+                            <i class="fa-solid fa-backward">  Back</i>
+                        </button>
                     </div>
 
-                    <div class="attendance-header pb-3 border-bottom">
-                        <div class="row mb-3">
-                            <div class="col h2">Attendance</div>
-                            <div class="col empty"></div>
-                            <div class="col">
-                                <input class="date border p-1 bg-white rounded w-75" type="date"></input>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <!--Class selector-->
-                            <div class="col-3">
-                                <select class="custom-select custom-select-sm w-100" id="gender2">
-                                    <option selected>Select Class</option>
-                                    <option value="1">D</option>
-                                    <option value="2">A</option>
-                                </select>
-                            </div>
-                            <!--Subject Selector-->
-                            <div class="col-3">
-                                <select class="custom-select w-100" id="gender2">
-                                    <option selected>Select Subject</option>
-                                    <option value="1">A</option>
-                                    <option value="2">A</option>
-                                </select>
-                            </div>
-                            <div class="col-3">
-                                <button class="btn btn-success w-75">Take Attendance</button>
-                            </div>
-
-                            <div class="col-3">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text bg-white">
-                                            <i class="fa fa-search" aria-hidden="true"></i>
-                                        </div>
-                                    </div>
-                                    <input type="text" class="form-control" id="inlineFormInputGroup"
-                                        placeholder="Search">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="attendace-body">
-                        <table class="table table-bordered">
-                            <thead class="thead text-white bg-success">
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col"><i class="fa fa-font" aria-hidden="true"></i> Student Name</th>
-                                    <th scope="col"><i class="fa fa-tag" aria-hidden="true"></i> Status</th>
-                                    <th scope="col"><i class="fa fa-star" aria-hidden="true"></i> Participation</th>
-                                    <th scope="col"><i class="fa fa-commenting-o" aria-hidden="true"></i> Teacher's Note
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td class="student-name">Mark Robert</td>
-                                    <td class="status p-1">
-                                        <select class="custom-select border-0 bg-transparent w-100">
-                                            <option selected>Select Status</option>
-                                            <option value="1">Attended</option>
-                                            <option value="2">Permission</option>
-                                            <option value="3">Skipped</option>
-                                        </select>
-                                    </td>
-                                    <td class="participation text-center">5</td>
-                                    <td class="note">
-                                        <textarea type="text" rows="1" placeholder="Note"
-                                            class="border-0 w-100 bg-transparent"></textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td class="student-name">Mark Robert</td>
-                                    <td class="status p-1">
-                                        <select class="custom-select border-0 bg-transparent w-100">
-                                            <option>Select Status</option>
-                                            <option selected value="1">Attended</option>
-                                            <option value="2">Permission</option>
-                                            <option value="3">Skipped</option>
-                                        </select>
-                                    </td>
-                                    <td class="participation text-center">5</td>
-                                    <td class="note">
-                                        <textarea type="text" rows="1" placeholder="Note"
-                                            class="border-0 w-100 bg-transparent"></textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td class="student-name">Mark Robert</td>
-                                    <td class="status p-1">
-                                        <select class="custom-select border-0 bg-transparent w-100">
-                                            <option>Select Status</option>
-                                            <option value="1">Attended</option>
-                                            <option selected value="2">Permission</option>
-                                            <option value="3">Skipped</option>
-                                        </select>
-                                    </td>
-                                    <td class="participation text-center">5</td>
-                                    <td class="note">
-                                        <textarea type="text" rows="1" placeholder="Note"
-                                            class="border-0 w-100 bg-transparent"></textarea>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td class="student-name">Mark Robert</td>
-                                    <td class="status p-1">
-                                        <select class="custom-select border-0 bg-transparent w-100">
-                                            <option>Select Status</option>
-                                            <option value="1">Attended</option>
-                                            <option value="2">Permission</option>
-                                            <option selected value="3">Skipped</option>
-                                        </select>
-                                    </td>
-                                    <td class="participation text-center">5</td>
-                                    <td class="note">
-                                        <textarea type="text" rows="1" placeholder="Note"
-                                            class="border-0 w-100 bg-transparent"></textarea>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
             </div>
         </div>
@@ -394,7 +271,9 @@
     <script src="../../../js/main.js"></script>
 
     <script src="../../../js/teacher/saveAttendance.js"> </script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </body>
 
 </html>
