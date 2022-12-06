@@ -2,7 +2,6 @@ package com.example.capstone.entity;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,8 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -47,8 +44,4 @@ public class TimeStudyEntity {
 	@ManyToOne
 	@JoinColumn(name = "classStudyId")
 	private ClassStudyEntity classStudyId;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy="imageDataStudy")
-	private Set<FileData> imageDataStudy;;
 }

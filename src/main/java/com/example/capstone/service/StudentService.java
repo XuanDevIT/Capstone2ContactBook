@@ -17,4 +17,6 @@ public interface StudentService {
 	public List<StudentWithSubjectDTO> selectStudentWithSubject();	
 	List<StudentEntity> findAll();
 	public boolean delete (Long id);
+	
+	public List<Long> getArrId();
 }

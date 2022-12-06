@@ -51,6 +51,11 @@ public class StudentServiceImpl implements StudentService {
 		List<StudentWithSubjectDTO> objs = studentRepository.getStudentWithSubject();
 		return objs;
 	}
+	
+	@Override
+	public List<Long> getArrId(){
+		return studentRepository.getArrID();
+	}
 
 
 }

@@ -54,4 +54,9 @@ public class StudentAPI {
 		List<StudentWithSubjectDTO> objs = studentService.selectStudentWithSubject();
 		return new ResponseEntity<List<StudentWithSubjectDTO>>(objs, HttpStatus.OK);
 	}
+	
+	@GetMapping("/v1/student/getArrId")
+	public List<Long> getArrId(){
+		return studentService.getArrId();
+	}
 }

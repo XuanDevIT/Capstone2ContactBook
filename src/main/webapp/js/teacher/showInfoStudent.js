@@ -58,41 +58,30 @@ const popup_edit_show = (id) => {
 
 //xu ly button save cua dialog
 const popup_save = () => {
-
+	
 	debugger;
 	var form = new FormData();
 	//var imgArr = imgStudent.files;
 	//form.append("image", imgArr);
+	if(imgStudent.files.length === 4){
+		form.append("image", imgStudent.files[0], "file");
+	    form.append("image", imgStudent.files[1], "file");
+		form.append("image", imgStudent.files[2], "file");
+	    form.append("image", imgStudent.files[3], "file");
 
-	var arr = [];
-	var arrName = [];
-	if (imgStudent.files.length === 4) {
-		// for(var i = 0; i < imgStudent.files.length; i ++ ){
-		// 	arr[i]=imgStudent.files[i];
-		// 	arrName = imgStudent.files[i].name;
-		// }
-
-		// form.append("image", arr, arrName);
-
-		form.append("image", imgStudent.files[0], imgStudent.files[0].name);
-		form.append("image", imgStudent.files[1], imgStudent.files[1].name);
-		form.append("image", imgStudent.files[2], imgStudent.files[2].name);
-		form.append("image", imgStudent.files[3], imgStudent.files[3].name);
-
-		debugger;
-
+    
+	
 		form.append("student", JSON.stringify(getDataFromInfo()));
 		debugger;
-		handler_insert_student2(form).then(rs => {
+		handler_insert_student(form).then(rs => {
 			debugger
 			show_data_student();
 			popup_cancel();
 		})
-		show_data_student();
-	} else {
+	}else{
 		alert("Please input 4 image!!!!")
 	}
-
+	
 
 
 }
@@ -106,7 +95,7 @@ const popup_cancel = () => {
 	element2.css("display", "none")
 	$('body').removeClass('modal-open')
 	$('.modal-backdrop').remove()
-
+	
 }
 
 const item_tr_data_student = (ob) => {
@@ -124,22 +113,23 @@ const item_tr_data_student = (ob) => {
 							<td >${ob.classStudent}</td>
 
 							<td>
-								<a href="#addEmployeeModal" data-student_id=${ob.studentId} class="edit"
-									data-toggle="modal"><i class="fa-regular fa-pen-to-square"></i></a>
 								
-								<a href="#deleteEmployeeModal" data-student_id=${ob.studentId}  class="delete_student"
-								    data-toggle="modal"><i class="fa-regular fa-trash-can"></i></a>
+
+								<a href="#addEmployeeModal" data-student_id=${ob.studentId} class="edit"
+									data-toggle="modal"><i class="material-icons ">&#xE254;</i></a>
+								
+								<a href="#deleteEmployeeModal" data-student_id=${ob.studentId}  class="material-icons delete_student" data-toggle="modal"><i
+										class="material-icons">&#xE15C;</i> </a>
 							</td>
 						</tr>`
 }
 
 const show_data_student = () => {
 	var appen_data = $('#data_student')
-
-	var html;
+	
+	var html ;
 	handler_show_data_student().then(rs => {
-		debugger;
-		rs.forEach(row => {
+		rs.forEach(row =>{
 			html = html + item_tr_data_student(row)
 		})
 		appen_data.html(html);
@@ -150,7 +140,7 @@ const show_data_student = () => {
 //su kienej
 $(document).ready(function () {
 	show_data_student()
-
+	
 	//event save onclick
 	$('#save_inforStudent').on('click', function () {
 		debugger
@@ -165,7 +155,7 @@ $(document).ready(function () {
 	})
 
 	//event edit onclick
-	$('#data_student').on('click', '.edit', function () {
+	$('#data_student').on('click', '.edit',function () {
 		debugger
 		var id = $(this).attr('data-student_id')
 
@@ -181,9 +171,9 @@ $(document).ready(function () {
 
 
 
+	
 
-
-	$('#data_student').on('click', '.delete_student', function () {
+	$('#data_student').on('click', '.delete_student',function () {
 		debugger
 		var id = $(this).attr('data-student_id')
 		$('#confirm_delete').on('click', () => {

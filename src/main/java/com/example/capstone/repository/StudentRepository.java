@@ -19,4 +19,7 @@ public interface StudentRepository extends JpaRepository<StudentEntity, Long>{
 //			+ "where ss.class_study_id = ?1")
 //	public List<StudentWithSubjectDTO> getStudentByClassStudyId(Long classStudyId);
 	
+	@Query(nativeQuery = true, value = "select student_id from student")
+	public List<Long> getArrID();
+	
 }

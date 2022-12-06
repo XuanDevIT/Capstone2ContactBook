@@ -18,7 +18,7 @@ const getDataFromInfo = () => {
 	debugger;
 
 	
-	data.teacherID={"teacherId":selects};
+	data.teacherId={"teacherId":selects};
 	
 	console.log(data);
 	
@@ -40,7 +40,7 @@ const reset_value_from = () => {
 	var element = $('#inforSubject')
 
 	var inputs = element.children().children('input');
-	var selects = $('#teacherID').val();
+	var selects = $('#teacherId').val();
 
 	$.each(inputs, (index, val) => {
 		val.value = '';
@@ -56,7 +56,7 @@ const reset_value_from = () => {
 const save_subject = () => {
 	debugger
 	var data ={};
-	data.subjectId = $('#subjectid').val();
+	data.subjectId = $('#subjectId').val();
 	data.teacherId = $('#teacherId').val();
 	
 	subSave_teach_subject(data).then(rs => {
@@ -126,10 +126,10 @@ const getSuject = (rs) => {
 	var subject = `
 			<option selected>Choose...</option>`;
 	for (const key in rs) {
-		subject = subject + `<option value = "${rs[key].subjectID}">${rs[key].subjectName}</option>`
+		subject = subject + `<option value = "${rs[key].subjectId}">${rs[key].subjectName}</option>`
 	}
 
-	var subject_child= $('#subjectid')
+	var subject_child= $('#subjectId')
 	subject_child.html(subject)
 }
 
@@ -139,7 +139,7 @@ const getTeacher = (rs) => {
 	var teacher = `
 			<option selected>Choose...</option>`;
 	for (const key in rs) {
-		teacher = teacher + `<option value = "${rs[key].teacherId}">${rs[key].fullName}</option>`
+		teacher = teacher + `<option value = "${rs[key].teacherId}">${rs[key].fullname}</option>`
 	}
 	
 

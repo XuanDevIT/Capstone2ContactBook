@@ -55,8 +55,5 @@ public class StudentEntity {
 	@JsonIgnore
 	@OneToMany(mappedBy = "student")
 	private Set<AttendanceEntity> attendance;
-	
-	@JsonIgnore
-	@OneToMany(mappedBy="imageDataStudent")
-	private Set<FileData> imageDataStudent;
+
 }
