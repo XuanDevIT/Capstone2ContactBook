@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AI face</title>
+	<style>
+		#container {
+			width: 50%;
+			
+			position: relative;
+		}
+
+		#container img {
+			width: 100%;
+			height: 100%;
+		}
+
+		canvas {
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+	</style>
+	<link href="/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="/css/elegant-icons.css" rel="stylesheet" />
+	<link href="/css/nice-select.css" rel="stylesheet" />
+	<link href="/css/jquery-ui.min.css" rel="stylesheet" />
+	<link href="/css/owl.carousel.min.css" rel="stylesheet" />
+	<link href="/css/slicknav.min.css" rel="stylesheet" />
+	<link href="/css/style.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+</head>
+
+<body>
+	<h1>AI Face</h1>
+
+	<p id="loading">Hệ thống đang tải dữ liệu ... </p>
+	<input type="file" name="file" id="file-input" />
+
+	<div id="container"></div>
+
+
+	<div> upload image</div>
+	<img id="container1" name="imagedata"></img>
+</body>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.js"
+	integrity="sha256-JOJ7NmVm2chxYZ1KPcAYd2bwVK7NaFj9QKMp7DClews=" crossorigin="anonymous"></script>
+
+<script src="./js/jquery-3.3.1.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/jquery.nice-select.min.js"></script>
+<script src="./js/jquery-ui.min.js"></script>
+<script src="./js/mixitup.min.js"></script>
+<script src="./js/owl.carousel.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/teacher/scripts.js"></script>
+<script type="text/javascript" src="/jquery/jquery-3.6.0.min.js"></script>
+<!-- <script src="/js/teacher/handlerAttendanceAI.js"></script> -->
+
+</html>

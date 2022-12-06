@@ -11,26 +11,38 @@ const handler_insert_student1 = (ob) => {
         })
     })
 }
+
 const handler_insert_student = (ob) => {
+    debugger;
     return new Promise((resolve, reject) => {
         $.ajax({
-
-            url: "http://localhost:8084/v1/image",
-            method: "POST",
+            url: '/v1/fileSystem',
+            method: 'POST',
             timeout: 0,
             processData: false,
-            mimeType: "multipart/form-data",
+            mimeType: 'multipart/form-data',
             contentType: false,
             data: ob
-
         }).done(function(rs){
             resolve(rs);
         })
     })
+}
 
-    
-
-
+const handler_insert_student2 = (ob) => {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            method: 'POST',
+            url: '/v1/fileSystem',
+            contentType: false,
+            timeout: 0,
+            processData: false,
+            mimeType: 'multipart/form-data',
+            data: ob
+        }).done(function (rs) {
+            resolve(rs);
+        })
+    })
 }
 
 const handler_findByID = (id) => {
