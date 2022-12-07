@@ -1,15 +1,28 @@
-function getFormData($form){
-    var unindexed_array = $form.serializeArray();
-    var indexed_array = {};
-
-    $.map(unindexed_array, function(n, i){
-        indexed_array[n['name']] = n['value'];
-    });
-
-    return indexed_array;
-}
-
 $(function() {
+    saveTeacher()
+
+    saveSubject()
+
+    saveClassStudy()
+
+    searchTeacherById()
+
+    searchSubject()
+
+    searchStudentClass()
+
+    saveStudentToClass()
+
+    toggleRedirectView()
+
+    getListSubject()
+
+    getListClassStudy()
+
+    showDataTeacher()
+});
+
+const saveTeacher = () => {
     $('#save_inforTeacher').on('click', function(e) {
         e.preventDefault();
         let formData = getFormData($("#teacher_form"));
@@ -21,6 +34,7 @@ $(function() {
             success: function(response) {
                 popup_cancel('#teacherModal');
                 alert('Thêm giáo viên thành công');
+                showDataTeacher
                 $('.modal-backdrop').remove();
             },
             error: function() {
@@ -29,9 +43,9 @@ $(function() {
             }
         });
     });
-});
+}
 
-$(function() {
+const saveSubject = () => {
     $('#save_subject').on('click', function(e) {
         e.preventDefault();
         let formData = getFormData($("#subject_form"));
@@ -44,6 +58,7 @@ $(function() {
             success: function(response) {
                 popup_cancel('#subjectModal');
                 $('.modal-backdrop').remove();
+                getListSubject();
                 alert('Thêm môn học thành công');
             },
             error: function() {
@@ -53,10 +68,11 @@ $(function() {
         });
         return false;
     });
+}
 
+const saveClassStudy = () => {
     $('#save-class-study').on('click', function(e) {
         e.preventDefault();
-        console.log('save class study');
         let formData = getFormData($("#class_study_form"));
         data = JSON.stringify(formData);
         $.ajax({
@@ -67,6 +83,7 @@ $(function() {
             success: function(response) {
                 popup_cancel('#classModal');
                 $('.modal-backdrop').remove();
+                getListClassStudy();
                 alert('Thêm lớp thành công');
             },
             error: function() {
@@ -76,41 +93,45 @@ $(function() {
         });
         return false;
     })
+}
 
-    // search teacher by id
+const searchTeacherById= () => {
     $('#search-teacher').on('click', function(e) {
         let teacherId = $('#teacherId-in-class').val();
         getTeacherById(teacherId).then( function(val) {
             $('#teacher-name').text(val.fullname)
-            console.log(val);
         })
         .catch(function(eror) {
             alert('None teacher with id ' + teacherId);
         })
     })
+}
 
+const searchSubject = () => {
     $('#search-subject').on('click', function(e) {
         let subjectId = $('#subjectId-in-class').val();
         getSubjectById(subjectId).then( function(val) {
             $('#subject-name').text(val.subjectName)
-            console.log(val);
         })
         .catch(function(eror) {
             alert('None subject found with id ' + teacherId);
         })
     })
+}
 
+const searchStudentClass = () => {
     $('#search-student-class').on('click', function(e) {
         let studentId = $('#studentIdSaveToClass').val();
         getStudentById(studentId).then( function(val) {
             $('#student-name').text(val.fullname)
-            console.log(val);
         })
         .catch(function(eror) {
             alert('None subject found with id ' + teacherId);
         })
     })
+}
 
+const saveStudentToClass = () => {
     $('#save-student-to-class').on('click', function(e) {
         e.preventDefault();
         let formData = getFormData($("#add-student-to-class-form"));
@@ -131,11 +152,11 @@ $(function() {
         });
         return false;
     })
-});
+}
+
 
 /* ========================  toggle class css  ====================== */
-$(function() {
-
+const toggleRedirectView = () => {
     $('#show-teacher-list').on('click', function(e) {
         $('#show-teacher-list').removeClass('btn-secondary');
         $('#show-teacher-list').addClass('btn-primary');
@@ -179,40 +200,39 @@ $(function() {
         $('#table-subject').addClass('d-none');
         $('#table-classStudy').removeClass('d-none');
     });
-});
+}
 
-$(function() {
-    console.log("get subjects");
+
+
+const getListSubject = () => {
     $.ajax({
         type: "GET",
         url: "/v1/subject",
         success: function(response) {
-            console.log('get subject success');
             show_data_subject(response);
         },
         error: function() {
-            console.log('show subject info error');
+            alert("get subject Error !!!")
         }
     });
-});
+}
 
-$(function() {
-    console.log("get class study");
+const getListClassStudy = () => {
     $.ajax({
         type: "GET",
         url: "/v1/classstudy/getall",
         success: function(response) {
-            console.log('get class study success');
             show_data_class(response);
         },
         error: function() {
-            console.log('get class study error');
+            alert("get class study error")
         }
     });
-});
+}
 
 const show_data_subject = (data) => {
 	var append_data = $('#show_data_subject')
+    append_data.empty();
     var htmlSubject = '';
     data.forEach(item =>  {
         htmlSubject += item_tr_data_subject(item);
@@ -222,13 +242,14 @@ const show_data_subject = (data) => {
 
 const show_data_idclass_ob = (data) => {
     var append_data = $('#header-class-mng')
+    append_data.empty();
     var htmlInfo =  view_class_study(data);
     append_data.html(htmlInfo);
 }
 
 const show_data_class = (data) => {
-    console.log(data);
 	var append_data = $('#show_data_class')
+    append_data.empty();
     var htmlClass = '';
     data.forEach(item =>  {
         htmlClass += item_tr_data_class(item);
@@ -237,8 +258,8 @@ const show_data_class = (data) => {
 }
 
 const show_list_student = (data) => {
-    console.log(data);
     var append_data = $('#content-list-student');
+    append_data.empty();
     var htmlClass = '';
     data.forEach(item => {
         htmlClass += item_data_student(item);
@@ -478,17 +499,59 @@ const getListClassStudyById = (id) => {
     })
 }
 
-const getListClassStudy = () => {
+const showDataTeacher = () => {
+    getTeacherApi().then(function(response) {
+        $('#show_data').empty()
+        response.forEach(element => {
+            $('#show_data').append(itemTeacher(element));
+        })
+    })
+}
+
+const getTeacherApi = () => {
     return new Promise(function(resolve, reject) {
         $.ajax({
             method: 'GET',
-            url: '/v1/classstudy',
+            url: '/v1/teacher/',
             success: function(response) {
                 resolve(response)
             },
             error: function() {
-                console.log('show get list class study info error');
+                alert('get class study by id failllll');
             }
         })
     })
+}
+
+const itemTeacher = (ob) => {
+    return `
+                 <tr >
+                    <td >${ob.fullname}</td>
+                    <td> ${ob.sex} </td>
+                    <td>${ob.address} </td>
+                    <td>${ob.email} </td>
+                    <td>${ob.phone} </td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm btn-crud" data_id=${ob.teacherId} id="btn_update">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <a
+                            class="material-icons delete_student" id="btn_delete" data_id=${ob.teacherId} data-toggle="modal"
+                            data-target="#deleteTeacherModal" style="color: red;">
+                            <i class="fa-sharp fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            `
+}
+
+function getFormData($form){
+    var unindexed_array = $form.serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n['name']] = n['value'];
+    });
+
+    return indexed_array;
 }
