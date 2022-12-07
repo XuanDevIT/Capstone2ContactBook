@@ -22,4 +22,10 @@ public interface StudentRepository extends JpaRepository<StudentEntity, Long>{
 	@Query(nativeQuery = true, value = "select student_id from student")
 	public List<Long> getArrID();
 	
+	@Query(nativeQuery = true, value = "delete from file_data where student_id = :id")
+	public void deleteByIdImage(Long id);
+	
+	@Query(nativeQuery = true, value = "delete from student where student_id = :id")
+	public void deleteById(Long id);
+	
 }

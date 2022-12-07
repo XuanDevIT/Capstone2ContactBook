@@ -35,15 +35,16 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public boolean delete(Long id) {
-		StudentEntity studentEntity = new StudentEntity();
-		studentEntity.setStudentId(id);
+
 		try {
-			studentRepository.delete(studentEntity);
+			studentRepository.deleteByIdImage(id);
+			studentRepository.deleteById(id);
+			
 			return true;
 		} catch (Exception e) {
 			return false;
 		}
-
+		
 	}
 
 	@Override

@@ -47,6 +47,7 @@ const handler_findByID = (id) => {
 }
 
 const handler_delete_student = (id) => {
+    debugger
     return new Promise((resolve, reject) => {
         $.ajax({
             method: 'DELETE',

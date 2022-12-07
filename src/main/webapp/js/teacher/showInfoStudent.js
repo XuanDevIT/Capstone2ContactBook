@@ -113,13 +113,13 @@ const item_tr_data_student = (ob) => {
 							<td >${ob.classStudent}</td>
 
 							<td>
-								
-
+						
+						
 								<a href="#addEmployeeModal" data-student_id=${ob.studentId} class="edit"
-									data-toggle="modal"><i class="material-icons ">&#xE254;</i></a>
+									data-toggle="modal"><i class="fa-sharp fa-solid fa-pen"></i></a>
 								
 								<a href="#deleteEmployeeModal" data-student_id=${ob.studentId}  class="material-icons delete_student" data-toggle="modal"><i
-										class="material-icons">&#xE15C;</i> </a>
+										class="fa-solid fa-trash-can"></i> </a>
 							</td>
 						</tr>`
 }
@@ -177,7 +177,7 @@ $(document).ready(function () {
 		debugger
 		var id = $(this).attr('data-student_id')
 		$('#confirm_delete').on('click', () => {
-
+			debugger
 			handler_delete_student(id).then(rs => {
 				show_data_student();
 				popup_cancel();
