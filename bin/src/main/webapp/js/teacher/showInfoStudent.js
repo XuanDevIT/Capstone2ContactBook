@@ -9,6 +9,10 @@ const getDataFromInfo = () => {
 	$.each(inputs, (index, val) => {
 		data = { ...data, [val.name]: val.value }
 	})
+	var selects = element.children().children('select');
+	$.each(selects, (index, val) => {
+		data = { ...data, [val.name]: val.value }
+	})
 	if (data.studentId == '') {
 		delete data.studentId;
 	}
@@ -54,11 +58,32 @@ const popup_edit_show = (id) => {
 
 //xu ly button save cua dialog
 const popup_save = () => {
-	handler_insert_student(getDataFromInfo()).then(rs => {
-		debugger
-		show_data_student();
-		popup_cancel();
-	})
+	
+	debugger;
+	var form = new FormData();
+	//var imgArr = imgStudent.files;
+	//form.append("image", imgArr);
+	if(imgStudent.files.length === 4){
+		form.append("image", imgStudent.files[0], "file");
+	    form.append("image", imgStudent.files[1], "file");
+		form.append("image", imgStudent.files[2], "file");
+	    form.append("image", imgStudent.files[3], "file");
+
+    
+	
+		form.append("student", JSON.stringify(getDataFromInfo()));
+		debugger;
+		handler_insert_student(form).then(rs => {
+			debugger
+			show_data_student();
+			popup_cancel();
+		})
+	}else{
+		alert("Please input 4 image!!!!")
+	}
+	
+
+
 }
 
 const popup_cancel = () => {
@@ -82,7 +107,7 @@ const item_tr_data_student = (ob) => {
 									<label for="checkbox1"></label>
 								</span>
 							</td> -->
-							<td >${ob.fullName}</td>
+							<td >${ob.fullname}</td>
 							<td >${ob.birthDay}</td>
 							<td >${ob.phone}</td>
 							<td >${ob.classStudent}</td>

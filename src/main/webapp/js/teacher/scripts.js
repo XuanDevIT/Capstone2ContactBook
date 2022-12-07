@@ -49,7 +49,7 @@ async function loadTrainingData() {
 			text: `Training xong data của ${label}!`
 		}).showToast();
 	}
-
+debugger
 	return faceDescriptors
 }
 
@@ -100,11 +100,22 @@ fileInput.addEventListener('change', async () => {
 
 	// faceapi.draw.drawDetections(canvas, resizedDetections)
 
-
+	var studentID = [];
 	for (const detection of resizedDetections) {
 		const drawBox = new faceapi.draw.DrawBox(detection.detection.box, {
 			label: faceMatcher.findBestMatch(detection.descriptor).toString()
 		})
+		studentID.push(faceMatcher.findBestMatch(detection.descriptor).toString().charAt(0));
+
 		drawBox.draw(canvas)
 	}
+	debugger
+
+	var studentIdLong = [];
+	for(const a of studentID){
+		studentIdLong.push(parseInt(a));
+	}
+	console.log(studentIdLong);
+
+
 })
