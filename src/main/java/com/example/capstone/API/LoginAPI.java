@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.capstone.entity.StudentEntity;
 import com.example.capstone.entity.TeacherEntity;
 import com.example.capstone.service.LoginService;
+import com.example.capstone.service.StudentService;
 import com.example.capstone.service.TeacherService;
 
 
@@ -21,6 +23,9 @@ public class LoginAPI {
 	
 	@Autowired
 	TeacherService teacherService;
+	
+	@Autowired
+	StudentService studentService;
 	
 	@GetMapping(value = "/v1/login/{user}/{pass}")
 	public TeacherEntity login(@PathVariable("user") String user, @PathVariable("pass")  String pass) {
@@ -39,4 +44,20 @@ public class LoginAPI {
 		return null;
 	}
 
+	@GetMapping(value = "/v1/loginStudent/{user}/{pass}")
+	public StudentEntity loginStudent(@PathVariable("user") String user, @PathVariable("pass")  String pass) {
+		List<StudentEntity> list =  studentService.findAll();
+		StudentEntity  teacherEntity;
+		for(int i = 0; i < list.size(); i ++) {
+			Boolean pass1 = list.get(i).getPassword().toString().equals(pass.toString());
+			
+			Boolean user1 = list.get(i).getUsername().toString().equals(user.toString());
+			if(( pass1 && user1 )) {
+				teacherEntity = list.get(i);
+				return teacherEntity;
+				
+			}
+		}
+		return null;
+	}
 }
