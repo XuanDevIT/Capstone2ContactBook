@@ -1,4 +1,6 @@
 $(function () {
+	
+	//khoi tao get class study by teacher id = 1
 	getClassStudyById(1).then(function (response) {
 		console.log(response);
 		console.log("response get by teach");
@@ -23,6 +25,8 @@ $(function () {
 	buttonBack();
 });
 
+
+// get timeStudy by by class Study id
 const getTimeStudy = (id) => {
 	getTimeStudyByClassStudyId(id).then(function (response) {
 		response.forEach((element) => {
@@ -39,6 +43,7 @@ const getTimeStudy = (id) => {
 	});
 };
 
+ // xu li su kien onclick classStudy
 const selectClassStudy = () => {
 	$(document).on("click", ".item-classStudy", function () {
 		var classStudyId = $(this).attr("id");
@@ -49,6 +54,7 @@ const selectClassStudy = () => {
 	});
 };
 
+// xu li su kien on click timestudy
 const selectTimeStudy = () => {
 	$(document).on("click", ".item-time-study", function () {
 		localStorage.setItem("timeStudyId", $(this).attr("id"));
@@ -61,6 +67,7 @@ const selectTimeStudy = () => {
 		$(".list-student-by-class").show();
 	});
 };
+
 
 const getTimeStudyByClassStudy = (id) => {
 	getTimeStudyByClassStudyId(id).then(function (response) {
@@ -79,6 +86,8 @@ const getTimeStudyByClassStudy = (id) => {
 	});
 };
 
+
+// xu li button back
 const buttonBack = () => {
 	$("#back-to-list-timeStudy").on("click", function () {
 
@@ -98,6 +107,8 @@ const buttonBack = () => {
 	});
 };
 
+
+//render list student
 const getListStudentByClassStudy = (id) => {
 	getStudentByClassStudyId(1).then(function (response) {
 		response.forEach((element) => {
@@ -107,7 +118,7 @@ const getListStudentByClassStudy = (id) => {
 		});
 	});
 };
-
+// call service save attendance
 const saveAttendance = () => {
 	$("#saveAttendance").on("click", function () {
 		$.ajax({
@@ -126,6 +137,7 @@ const saveAttendance = () => {
 	});
 };
 
+// get class study by teacher
 const getClassStudyById = (teacherId) => {
 	return new Promise(function (resolve, reject) {
 		$.ajax({
@@ -156,6 +168,8 @@ const getTimeStudyByClassStudyId = (classStudyId) => {
 	});
 };
 
+// get listutudent by class study 
+
 const getStudentByClassStudyId = (classStudyId) => {
 	return new Promise(function (resolve, reject) {
 		$.ajax({
@@ -171,8 +185,10 @@ const getStudentByClassStudyId = (classStudyId) => {
 	});
 };
 
+
 const sliceDate = (dateString) => dateString.slice(0, 10);
 
+// item 1 student 
 const itemStudentAttendance = (ob) =>
 	`<tr class="item-student" id="${ob.studentId}">
         <th scope="row" id="studentId">${ob.studentId}</th>
@@ -187,7 +203,7 @@ const itemStudentAttendance = (ob) =>
             <input class="form-control" id="reason" type="text" name="reason"></input>
         </td>
     </tr>`;
-
+// get thong tin diem danh tu giao dien.
 const getInfoAttendance = () => {
 	var resultToSave = [];
 	const nodeList = document.querySelectorAll(".item-student");

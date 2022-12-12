@@ -30,80 +30,76 @@
     </div>
 
     <!-- Header Section Begin -->
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6">
-                        <div class="header__top__left">
-                            <ul>
-                                <li><i class="fa fa-envelope"></i>System@ContactBook.com</li>
-                                <li>Welcome to ContactBook.com</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="header__top__right">
-                            <div class="header__top__right__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                            </div>
-                            <div class="header__top__right__auth">
-                                <a href="#"><i class="fa fa-user"></i> Login</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="header__logo">
-                        <a href="./path?path_url=teacher/teacherHomepage"><img src="img/logo1.png" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <nav class="header__menu">
-                        <ul>
-                            <li><a href="./path?path_url=teacher/teacherHomepage">Home</a></li>
-                            <li><a href="./path?path_url=teacher/teacherProfile">Profile</a></li>
-                            <li><a href="./path?path_url=teacher/notification">Notification</a></li>
-                            <li><a href="./path?path_url=teacher/academicTranscript">Grades</a></li>
-                            <li class="active"><a href="./path?path_url=teacher/aboutUs">About Us</a></li>
-                        </ul>
-                    </nav>
-                </div>
-               
-            </div>
-            <div class="humberger__open">
-                <i class="fa fa-bars"></i>
-            </div>
-        </div>
-    </header>
+	<header class="header">
+		<div class="header__top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 col-md-6">
+						<div class="header__top__left">
+							<ul>
+								<li><i class="fa fa-envelope"></i>System@ContactBook.com</li>
+								<li>Welcome to ContactBook.com</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-6 col-md-6">
+						<div class="header__top__right">
+							<div class="header__top__right__social">
+
+							</div>
+							<div class="header__top__right__auth">
+								<a href="/path?path_url=teacher/login"><i class="fa fa-user"></i> Log out</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3">
+					<div class="header__logo">
+						<a href="./index.html"><img src="img/logo1.png" alt=""></a>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<nav class="header__menu">
+						<ul>
+							<li><a href="/path?path_url=teacher/Homepage">Home</a></li>
+							<li><a href="/path?path_url=teacher/ProfileManage">Profile</a></li>
+							<li><a href="/path?path_url=teacher/getNotify">Notify</a></li>
+							<li><a href="/path?path_url=teacher/contact">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
+
+			</div>
+			<div class="humberger__open">
+				<i class="fa fa-bars"></i>
+			</div>
+		</div>
+	</header>
     <!-- Header Section End -->
 
     <!-- Hero Section Begin -->
     <section class="hero">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="hero__categories">
-                        <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
-                            <span>Menu</span>
-                        </div>
-                        <ul>
-                            <li><a href="./path?path_url=teacher/teacherManage1.html">Teacher Management</a></li>
-                            <li><a href="./path?path_url=teacher/">Class Management</a></li>
-                            <li><a href="./path?path_url=teacher/">Subject Management</a></li>
-                            <li><a href="./path?path_url=teacher/">Schedule Management</a></li>
-                            <li><a href="./path?path_url=teacher/">Feedback Management</a></li>
-                        </ul>
-                    </div>
-                </div>
+					<div class="hero__categories">
+						<div class="hero__categories__all" style="background-color: #28a745;">
+							<i class="fa fa-bars"></i> <span>Menu</span>
+						</div>
+						<ul>
+							<li><a href="/path?path_url=teacher/showInfoStudent">Add Student</a></li>
+							<li><a href="/path?path_url=teacher/academicTranscript">See Grades</a></li>
+							<li><a href="/path?path_url=teacher/saveAttendance">Attendance</a></li>
+							<li><a href="/path?path_url=teacher/schedule">Schedule</a></li>
+							<li><a href="/path?path_url=teacher/sendNotify">Send Notify Teacher</a></li>
+							<li><a href="/path?path_url=teacher/aboutUs">See Feedback Admin</a></li>
+						</ul>
+					</div>
+				</div>
                 <div class="col-lg-9">
                     <div class="hero__item set-bg" style="height:266px" data-setbg="/img/hero/banner1.png">
                     </div>
@@ -159,7 +155,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="./index.html"><img src="img/logo1.png" alt=""></a>
+                            <!-- <a href="./index.html"><img src="img/logo1.png" alt=""></a> -->
                         </div>
                         <ul>
                             <li>254 Nguyễn Văn Linh, Thạc Gián, Thanh Khê, Đà Nẵng 550000</li>
@@ -187,13 +183,11 @@
                         <p>Get E-mail updates about our latest system and notify offers.</p>
                         <form action="#">
                             <input type="text" placeholder="Enter your mail">
-                            <button type="submit" class="site-btn">Subscribe</button>
+                            <button type="submit"  style="background-color: #28a745;" class="site-btn">Subscribe
+                            <a href="path?path_url=teacher/showInfoStudent"></a></button>
                         </form>
                         <div class="footer__widget__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                            
                         </div>
                     </div>
                 </div>

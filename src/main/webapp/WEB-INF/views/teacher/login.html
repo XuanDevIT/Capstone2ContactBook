@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Login Page Design</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet" />
+
+  <!-- Css Styles -->
+  <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+  <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
+  <link th:href="@{/css/elegant-icons.css}" rel="stylesheet" />
+  <link th:href="@{/css/nice-select.css}" rel="stylesheet" />
+  <link th:href="@{/css/jquery-ui.min.css}" rel="stylesheet" />
+  <link th:href="@{/css/owl.carousel.min.css}" rel="stylesheet" />
+  <link th:href="@{/css/slicknav.min.css}" rel="stylesheet" />
+  <link th:href="@{/css/style.css}" rel="stylesheet" />
+
+
+  <link href="/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="/css/elegant-icons.css" rel="stylesheet" />
+  <link href="/css/nice-select.css" rel="stylesheet" />
+  <link href="/css/jquery-ui.min.css" rel="stylesheet" />
+  <link href="/css/owl.carousel.min.css" rel="stylesheet" />
+  <link href="/css/slicknav.min.css" rel="stylesheet" />
+  <link href="/css/style.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/login.css" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+  <section class="form-01-main">
+    <div class="form-cover">
+      <div class="container">
+        <div class="row">
+          <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+            <div class="panel border bg-white">
+              <div class="back_index">
+                <a href="./index.html"><i class="fa fa-home"></i></a>
+              </div>
+              <div class="panel-heading">
+                <h3 class="pt-3 font-weight-bold">Login</h3>
+              </div>
+              <div class="panel-body p-3">
+                <form>
+                  <div class="form-group py-2">
+                    <div class="input-field"> <span class="fa fa-user p-2"></span> <input id="user" type="text"
+                        placeholder="Username" required> </div>
+                  </div>
+                  <div class="form-group py-1 pb-2">
+                    <div class="input-field"> <span class="fa fa-lock px-2"></span> <input id="pass"  type="password"
+                        placeholder="Enter your Password" required> <button id="btnhide" class="btn bg-white text-muted"> <span
+                          class="fa fa-eye-slash"></span> </button> </div>
+                  </div>
+                  <div class="form-inline"> <input type="checkbox" name="remember" id="remember"> <label for="remember"
+                      class="text-muted">Remember me</label> <a href="/path?path_url=teacher/resetPassword.html" id="forgot"
+                      class="font-weight-bold">Forgot password?</a></div>
+                  <div class="btn btn-success btn-block mt-3" id="btnLogin">Login</div>
+                  <!-- <div class="text-center pt-4 text-muted">Don't have an account? <a href="./signUp.html">Sign up</a> </div> -->
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+  <script th:src="@{/js/bootstrap.min.js}"></script>
+  <script th:src="@{/js/jquery.nice-select.min.js}"></script>
+  <script th:src="@{/js/jquery-ui.min.js}"></script>
+  <script th:src="@{/js/mixitup.min.js}"></script>
+  <script th:src="@{/js/owl.carousel.min.js}"></script>
+  <script th:src="@{/js/main.js}"></script>
+
+  <script th:src="@{/CallAPI/main.js}"></script>
+  <script th:src="@{/CallEvent/main.js}"></script>
+
+  <script src="/js/jquery-3.3.1.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jquery.nice-select.min.js"></script>
+  <script src="/js/jquery-ui.min.js"></script>
+  <script src="/js/mixitup.min.js"></script>
+  <script src="/js/owl.carousel.min.js"></script>
+  <script src="/js/main.js"></script>
+
+  <script src="/CallAPI/main.js"></script>
+  <script src="/CallEvent/main.js"></script>
+
+  <script src="/js/teacher/login.js"></script>
+</body>
+
+</html>

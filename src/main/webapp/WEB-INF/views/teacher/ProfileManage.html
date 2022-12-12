@@ -13,14 +13,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
 	<!-- Css Styles -->
-	<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
-	<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" />
-	<link th:href="@{/css/elegant-icons.css}" rel="stylesheet" />
-	<link th:href="@{/css/nice-select.css}" rel="stylesheet" />
-	<link th:href="@{/css/jquery-ui.min.css}" rel="stylesheet" />
-	<link th:href="@{/css/owl.carousel.min.css}" rel="stylesheet" />
-	<link th:href="@{/css/slicknav.min.css}" rel="stylesheet" />
-	<link th:href="@{/css/style.css}" rel="stylesheet" />
+
 
 	<link href="/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="/css/font-awesome.min.css" rel="stylesheet" />
@@ -31,76 +24,17 @@
 	<link href="/css/slicknav.min.css" rel="stylesheet" />
 	<link href="/css/style.css" rel="stylesheet" />
 
+	<link href="/fonts/fontawesome-free-6.2.1/css/all.min.css" rel="stylesheet">
+	<link href="/fonts/fontawesome-free-6.2.1/css/brands.css" rel="stylesheet">
+	<link href="/fonts/fontawesome-free-6.2.1/css/solid.css" rel="stylesheet">
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
 	<!-- Page Preloder -->
-	<div id="preloder">
-		<div class="loader"></div>
-	</div>
-
-	<!-- Humberger Begin -->
-	<div class="humberger__menu__overlay"></div>
-	<div class="humberger__menu__wrapper">
-		<div class="humberger__menu__logo">
-			<a href="#"><img src="img/logo1.png" alt=""></a>
-		</div>
-		<div class="humberger__menu__cart">
-			<ul>
-				<li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-				<li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-			</ul>
-			<div class="header__cart__price">
-				item: <span>$150.00</span>
-			</div>
-		</div>
-		<div class="humberger__menu__widget">
-			<div class="header__top__right__language">
-				<img src="img/language.png" alt="">
-				<div>English</div>
-				<span class="arrow_carrot-down"></span>
-				<ul>
-					<li><a href="#">Spanis</a></li>
-					<li><a href="#">English</a></li>
-				</ul>
-			</div>
-			<div class="header__top__right__auth">
-				<a href="#"><i class="fa fa-user"></i> Login</a>
-			</div>
-		</div>
-		<nav class="humberger__menu__nav mobile-menu">
-			<ul>
-				<li class="active"><a href="./index.html">Home</a></li>
-				<li><a href="./shop-grid.html">Shop</a></li>
-				<li><a href="#">Notify</a>
-					<ul class="header__menu__dropdown">
-						<li><a href="./shop-details.html">Shop Details</a></li>
-						<li><a href="./shoping-cart.html">Shoping Cart</a></li>
-						<li><a href="./checkout.html">Check Out</a></li>
-						<li><a href="./blog-details.html">Blog Details</a></li>
-					</ul>
-				</li>
-				<li><a href="./contact.html">Contact</a></li>
-			</ul>
-		</nav>
-		<div id="mobile-menu-wrap"></div>
-		<div class="header__top__right__social">
-			<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i
-					class="fa fa-linkedin"></i></a>
-			<a href="#"><i class="fa fa-pinterest-p"></i></a>
-		</div>
-		<div class="humberger__menu__contact">
-			<ul>
-				<li><i class="fa fa-envelope"></i>System@ContactBook.com</li>
-				<li>Welcome to ContactBook.com</li>
-			</ul>
-		</div>
-	</div>
-	<!-- Humberger End -->
-
-	<!-- Header Section Begin -->
-	<header class="header">
+	 <!-- Header Section Begin -->
+	 <header class="header">
 		<div class="header__top">
 			<div class="container">
 				<div class="row">
@@ -115,12 +49,10 @@
 					<div class="col-lg-6 col-md-6">
 						<div class="header__top__right">
 							<div class="header__top__right__social">
-								<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-										class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> <a
-									href="#"><i class="fa fa-pinterest-p"></i></a>
+
 							</div>
 							<div class="header__top__right__auth">
-								<a href="#"><i class="fa fa-user"></i> Login</a>
+								<a href="/path?path_url=teacher/login"><i class="fa fa-user"></i> Log out</a>
 							</div>
 						</div>
 					</div>
@@ -137,10 +69,10 @@
 				<div class="col-lg-6">
 					<nav class="header__menu">
 						<ul>
-							<li class="active"><a href="./index.html">Home</a></li>
-							<li><a href="./shop-grid.html">Profile</a></li>
-							<li><a href="#">Notify</a></li>
-							<li><a href="./contact.html">Contact</a></li>
+							<li ><a href="/path?path_url=teacher/Homepage">Home</a></li>
+							<li class="active"><a href="#">Profile</a></li>
+							<li><a href="/path?path_url=teacher/getNotify">Notify</a></li>
+							<li><a href="/path?path_url=teacher/contact">Contact</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -152,13 +84,13 @@
 		</div>
 	</header>
 	<!-- Header Section End -->
-	<section class="hero">
+	<!-- <section class="hero">
 		<div class="">
 			<div class="hero__item set-bg" style="height:266px" data-setbg="/img/hero/banner1.png">
 			</div>
 		</div>
 
-	</section>
+	</section> -->
 
 	<!-- Hero Section Begin -->
 	<section class="hero">
@@ -166,15 +98,16 @@
 			<div class="row">
 				<div class="col-lg-3">
 					<div class="hero__categories">
-						<div class="hero__categories__all">
+						<div class="hero__categories__all" style="background-color: #28a745;">
 							<i class="fa fa-bars"></i> <span>Menu</span>
 						</div>
 						<ul>
-							<li><a href="#">See Grades</a></li>
-							<li><a href="#">Feedback Grades</a></li>
-							<li><a href="#">Chat With Teacher</a></li>
-							<li><a href="#">Comment On System</a></li>
-							<li><a href="#">See Feedback Admin</a></li>
+							<li><a href="/path?path_url=teacher/showInfoStudent">Add Student</a></li>
+							<li><a href="/path?path_url=teacher/academicTranscript">See Grades</a></li>
+							<li><a href="/path?path_url=teacher/saveAttendance">Attendance</a></li>
+							<li><a href="/path?path_url=teacher/schedule">Schedule</a></li>
+							<li><a href="/path?path_url=teacher/sendNotify">Send Notify Teacher</a></li>
+							<li><a href="/path?path_url=teacher/aboutUs">See Feedback Admin</a></li>
 						</ul>
 					</div>
 				</div>
@@ -185,19 +118,19 @@
 
 					<div class="checkout__form">
 						<h4>Profile Teacher</h4>
-						<form id="form_add" th:object=${student} th:action="@{/student}" method="post">
+						<form id="form_add" >
 							<div class="row">
 								<div class="col-lg-8 col-md-6">
 									<div class="checkout__input">
 										<p>
-											Full Name<span>* <input id="fullName" th:field="*{fullName}" type="text">
+											Full Name<span>* <input id="fullName" type="text">
 											</span>
 										</p>
 
 									</div>
 									<div class="checkout__input">
 										<p>
-											User Name<span>*<input id="userName" th:field="*{userName}"
+											User Name<span>*<input id="userName" 
 													type="text"></span>
 										</p>
 										<!-- <div class="alert alert-warning" th:if="${#fields.hasErrors('userName')}"
@@ -205,7 +138,7 @@
 									</div>
 									<div class="checkout__input">
 										<p>
-											PassWord<span>*<input id="password" th:field="*{password}"
+											PassWord<span>*<input id="password" 
 													type="text"></span>
 										</p>
 
@@ -214,7 +147,7 @@
 										<div class="col-lg-6">
 											<div class="checkout__input">
 												<p>
-													Birth Day<span>*<input id="birthDay" th:field="*{birthDay}"
+													Birth Day<span>*<input id="birthDay" 
 															type="date"></span>
 												</p>
 
@@ -223,7 +156,7 @@
 										<div class="col-lg-6">
 											<div class="checkout__input">
 												<p>
-													Age <span>*<input id="age" th:field="*{age}"
+													Age <span>*<input id="age" 
 															type="text"></span>
 												</p>
 
@@ -236,9 +169,9 @@
 										<div class="col-lg-12">
 											<div class="checkout__input">
 												<p>
-													Address<span>*<input id="address" th:field="*{address}" type="text"></span>
+													Address<span>*<input id="address"  type="text"></span>
 												</p>
-												<input th:field="*{address}" type="hidden"></span>
+												<input  type="hidden"></span>
 											</div>
 										</div>
 									</div>
@@ -246,7 +179,7 @@
 										<div class="col-lg-6">
 											<div class="checkout__input">
 												<p>
-													Class Management<span>*<input id="classManage" th:field="*{classManage}" type="text"></span>
+													Class Management<span>*<input id="classManage"  type="text"></span>
 												</p>
 
 											</div>
@@ -254,7 +187,7 @@
 										<div class="col-lg-6">
 											<div class="checkout__input">
 												<p>
-													Sex<span>*<input id="sex" th:field="*{sex}" type="text"></span>
+													Sex<span>*<input id="sex"  type="text"></span>
 												</p>
 
 											</div>
@@ -264,7 +197,7 @@
 										<div class="col-lg-6">
 											<div class="checkout__input">
 												<p>
-													Email<span>*<input id="email" th:field="*{email}" type="text"></span>
+													Email<span>*<input id="email"  type="text"></span>
 												</p>
 
 											</div>
@@ -272,7 +205,7 @@
 										<div class="col-lg-6">
 											<div class="checkout__input">
 												<p>
-													Phone<span>*<input id="phone" th:field="*{phone}" type="text"></span>
+													Phone<span>*<input id="phone"  type="text"></span>
 												</p>
 
 											</div>
@@ -308,7 +241,7 @@
 				<div class="col-lg-3 col-md-6 col-sm-6">
 					<div class="footer__about">
 						<div class="footer__about__logo">
-							<a href="./index.html"><img src="img/logo1.png" alt=""></a>
+							<!-- <a href="./index.html"><img src="img/logo1.png" alt=""></a> -->
 						</div>
 						<ul>
 							<li>254 Nguyễn Văn Linh, Thạc Gián, Thanh Khê, Đà Nẵng
@@ -339,12 +272,10 @@
 							offers.</p>
 						<form action="#">
 							<input type="text" placeholder="Enter your mail">
-							<button type="submit" class="site-btn">Subscribe</button>
+							<button type="submit" style="background-color: #28a745;" class="site-btn">Subscribe</button>
 						</form>
 						<div class="footer__widget__social">
-							<a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i
-									class="fa fa-instagram"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a
-								href="#"><i class="fa fa-pinterest"></i></a>
+							
 						</div>
 					</div>
 				</div>
@@ -355,18 +286,8 @@
 	<!-- Footer Section End -->
 
 	<!-- Js Plugins -->
-	<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
-	<script th:src="@{/js/bootstrap.min.js}"></script>
-	<script th:src="@{/js/jquery.nice-select.min.js}"></script>
-	<script th:src="@{/js/jquery-ui.min.js}"></script>
-	<script th:src="@{/js/mixitup.min.js}"></script>
-	<script th:src="@{/js/owl.carousel.min.js}"></script>
-	<script th:src="@{/js/main.js}"></script>
 
-	<script th:src="@{/CallAPI/main.js}"></script>
-	<script th:src="@{/CallEvent/main.js}"></script>
-
-
+	<script src="/js/showInfoStudent.js"></script>
 	<script src="/js/jquery-3.3.1.min.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
 	<script src="/js/jquery.nice-select.min.js"></script>
@@ -374,11 +295,9 @@
 	<script src="/js/mixitup.min.js"></script>
 	<script src="/js/owl.carousel.min.js"></script>
 	<script src="/js/main.js"></script>
-
-	<script src="/CallAPI/main.js"></script>
+	<script src="/js/teacher/showInfoStudent.js"></script>
+	<script src="/js/teacher/validate.js"></script>
 	<script src="/CallEvent/main.js"></script>
-
-
 
 
 </body>

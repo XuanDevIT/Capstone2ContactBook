@@ -2,8 +2,10 @@ debugger
 const container = document.querySelector('#container');
 const fileInput = document.querySelector('#file-input');
 var command = [];
-$(document).ready(function (){
-	
+var studentIdLong = [];
+const ob = [];
+$(document).ready(function () {
+
 	var settings = {
 		url: "/v1/student/getArrId",
 		method: "GET",
@@ -12,7 +14,7 @@ $(document).ready(function (){
 
 	$.ajax(settings).done(function (response) {
 		console.log(response);
-		for(const b of response){
+		for (const b of response) {
 			command.push(b.toString());
 		}
 	});
@@ -49,7 +51,7 @@ async function loadTrainingData() {
 			text: `Training xong data của ${label}!`
 		}).showToast();
 	}
-debugger
+	debugger
 	return faceDescriptors
 }
 
@@ -111,5 +113,72 @@ fileInput.addEventListener('change', async () => {
 	}
 	debugger
 
-	
+
+	for (const a of studentID) {
+		studentIdLong.push(a);
+	}
+	console.log(studentIdLong);
+
+
 })
+console.log(studentIdLong);
+
+
+$(document).on("click", "#btnConfirm", function () {
+	debugger
+
+	//const ob = [];
+	for (const student of studentIdLong) {
+		let element = {
+			studentId: student,
+			status: '1',
+			reason: '',
+			timeStudyId: localStorage.getItem("timeStudyId"),
+		};
+		ob.push(element);
+
+	}
+	var arrayClass = getInfoAttendance()
+	var arrayClassId = [];
+	for( const arr of arrayClass){
+		arrayClassId.push(arr.studentId);
+	}
+	console.log(arrayClassId);
+
+	for(var i = 0; i < ob.length; i++){
+		if(!arrayClassId.includes(ob[i].studentId)){
+			ob.splice(i, 1);
+		}
+	}
+
+	console.log(ob);
+
+	// const index = array.indexOf(5);
+	// if (index > -1) { // only splice array when item is found
+	// 	array.splice(index, 1); // 2nd parameter means remove one item only
+	// }
+
+	
+
+	// array = [2, 9]
+	return new Promise((resolve, reject) => {
+		$.ajax({
+			method: "POST",
+			url: "/v1/attendance/add",
+			data: JSON.stringify(ob),
+			contentType: "application/json",
+			success: function (response) {
+				alert("điểm danh thành công");
+				console.log(response);
+				container.innerHTML = '';
+				fileInput.value = '';
+			},
+			error: function (response) {
+				console.log(response);
+			},
+		});
+	})
+	debugger
+
+});
+debugger
