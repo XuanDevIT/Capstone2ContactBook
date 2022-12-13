@@ -1,15 +1,41 @@
-function getFormData($form){
-    var unindexed_array = $form.serializeArray();
-    var indexed_array = {};
-
-    $.map(unindexed_array, function(n, i){
-        indexed_array[n['name']] = n['value'];
-    });
-
-    return indexed_array;
-}
-
 $(function() {
+
+    saveTeacher()
+
+    saveSubject()
+
+    saveClassStudy()
+
+    searchTeacherById()
+
+    searchSubject()
+
+    searchStudentClass()
+
+    saveStudentToClass()
+
+    toggleRedirectView()
+
+    getListSubject()
+
+    getListClassStudy()
+
+    showDataTeacher()
+
+    deleteSubject()
+
+    clickItemClass()
+
+    onClickBackButton()
+
+    onClickDeleteSubjectModal()
+
+    passDataTeacherModalEdit()
+
+    setValueForSubjectSelect()
+});
+
+var saveTeacher = () => {
     $('#save_inforTeacher').on('click', function(e) {
         e.preventDefault();
         let formData = getFormData($("#teacher_form"));
@@ -21,17 +47,16 @@ $(function() {
             success: function(response) {
                 popup_cancel('#teacherModal');
                 alert('Thêm giáo viên thành công');
-                $('.modal-backdrop').remove();
+                showDataTeacher()
             },
             error: function() {
-                $('.modal-backdrop').remove();
                 alert('Error');
             }
         });
     });
-});
+}
 
-$(function() {
+var saveSubject = () => {
     $('#save_subject').on('click', function(e) {
         e.preventDefault();
         let formData = getFormData($("#subject_form"));
@@ -43,21 +68,21 @@ $(function() {
             contentType: "application/json; charset=UTF-8",
             success: function(response) {
                 popup_cancel('#subjectModal');
-                $('.modal-backdrop').remove();
+                getListSubject();
                 alert('Thêm môn học thành công');
             },
             error: function() {
-                $('.modal-backdrop').remove();
                 alert('Error');
             }
         });
-        return false;
     });
+}
 
+var saveClassStudy = () => {
     $('#save-class-study').on('click', function(e) {
         e.preventDefault();
-        console.log('save class study');
         let formData = getFormData($("#class_study_form"));
+        console.log(formData);
         data = JSON.stringify(formData);
         $.ajax({
             type: "POST",
@@ -66,51 +91,54 @@ $(function() {
             contentType: "application/json; charset=UTF-8",
             success: function(response) {
                 popup_cancel('#classModal');
-                $('.modal-backdrop').remove();
+                getListClassStudy();
                 alert('Thêm lớp thành công');
             },
             error: function() {
-                $('.modal-backdrop').remove();
                 alert('Error');
             }
         });
         return false;
     })
+}
 
-    // search teacher by id
+var searchTeacherById= () => {
     $('#search-teacher').on('click', function(e) {
         let teacherId = $('#teacherId-in-class').val();
         getTeacherById(teacherId).then( function(val) {
             $('#teacher-name').text(val.fullname)
-            console.log(val);
         })
         .catch(function(eror) {
             alert('None teacher with id ' + teacherId);
         })
     })
+}
 
+var searchSubject = () => {
     $('#search-subject').on('click', function(e) {
         let subjectId = $('#subjectId-in-class').val();
         getSubjectById(subjectId).then( function(val) {
             $('#subject-name').text(val.subjectName)
-            console.log(val);
         })
         .catch(function(eror) {
             alert('None subject found with id ' + teacherId);
         })
     })
+}
 
+var searchStudentClass = () => {
     $('#search-student-class').on('click', function(e) {
         let studentId = $('#studentIdSaveToClass').val();
         getStudentById(studentId).then( function(val) {
             $('#student-name').text(val.fullname)
-            console.log(val);
         })
         .catch(function(eror) {
             alert('None subject found with id ' + teacherId);
         })
     })
+}
 
+var saveStudentToClass = () => {
     $('#save-student-to-class').on('click', function(e) {
         e.preventDefault();
         let formData = getFormData($("#add-student-to-class-form"));
@@ -123,7 +151,6 @@ $(function() {
             success: function(response) {
                 popup_cancel('#AddStudentToClassModal');
                 alert('add student success');
-                $('.modal-backdrop').remove();
             },
             error: function() {
                 alert('Error');
@@ -131,11 +158,10 @@ $(function() {
         });
         return false;
     })
-});
+}
 
 /* ========================  toggle class css  ====================== */
-$(function() {
-
+var toggleRedirectView = () => {
     $('#show-teacher-list').on('click', function(e) {
         $('#show-teacher-list').removeClass('btn-secondary');
         $('#show-teacher-list').addClass('btn-primary');
@@ -179,40 +205,64 @@ $(function() {
         $('#table-subject').addClass('d-none');
         $('#table-classStudy').removeClass('d-none');
     });
-});
+}
 
-$(function() {
-    console.log("get subjects");
+var getListSubject = () => {
     $.ajax({
         type: "GET",
         url: "/v1/subject",
         success: function(response) {
-            console.log('get subject success');
             show_data_subject(response);
         },
         error: function() {
-            console.log('show subject info error');
+            alert("get subject Error !!!")
         }
     });
-});
+}
 
-$(function() {
-    console.log("get class study");
+var getListClassStudy = () => {
     $.ajax({
         type: "GET",
         url: "/v1/classstudy/getall",
         success: function(response) {
-            console.log('get class study success');
             show_data_class(response);
         },
         error: function() {
-            console.log('get class study error');
+            alert("get class study error")
         }
     });
-});
+}
 
-const show_data_subject = (data) => {
+var setValueForSubjectSelect = () => {
+    getSubject().then(function(response) {
+       response.forEach(element => {
+        $('#subject').append(
+            `
+                <option value='${element.subjectId}'>${element.subjectName}</option>
+            `
+        )
+       })
+    })
+}
+
+const getSubject = () => {
+	return new Promise(function (resolve, reject) {
+		$.ajax({
+			method: "GET",
+			url: "/v1/subject",
+			success: function (response) {
+				resolve(response);
+			},
+			error: function () {
+				alert("get list time study error");
+			},
+		});
+	});
+};
+
+var show_data_subject = (data) => {
 	var append_data = $('#show_data_subject')
+    append_data.empty();
     var htmlSubject = '';
     data.forEach(item =>  {
         htmlSubject += item_tr_data_subject(item);
@@ -220,15 +270,18 @@ const show_data_subject = (data) => {
     append_data.html(htmlSubject);
 }
 
-const show_data_idclass_ob = (data) => {
+var show_data_idclass_ob = (data) => {
     var append_data = $('#header-class-mng')
+    append_data.empty();
     var htmlInfo =  view_class_study(data);
     append_data.html(htmlInfo);
+
+
 }
 
-const show_data_class = (data) => {
-    console.log(data);
+var show_data_class = (data) => {
 	var append_data = $('#show_data_class')
+    append_data.empty();
     var htmlClass = '';
     data.forEach(item =>  {
         htmlClass += item_tr_data_class(item);
@@ -236,14 +289,29 @@ const show_data_class = (data) => {
     append_data.html(htmlClass);
 }
 
-const show_list_student = (data) => {
-    console.log(data);
+var show_list_student = (data) => {
     var append_data = $('#content-list-student');
+    append_data.empty();
     var htmlClass = '';
     data.forEach(item => {
         htmlClass += item_data_student(item);
     })
     append_data.html(htmlClass)
+    append_data.append(buttonBackHtml);
+}
+
+const buttonBackHtml = () => {
+    return `
+        <button type="button" id="backToDashBoard" class="btn btn-secondary"><< Back</button>
+    `
+}
+
+var onClickBackButton = () => {
+    $(document).on('click', '#backToDashBoard', function() {
+        $('.content-class').addClass('d-none')
+        $('#main-administrator').removeClass('d-none');
+        $('#class-manage-mng').hide();
+    })
 }
 
 function showTeacherModal(modal) {
@@ -256,7 +324,7 @@ function showTeacherModal(modal) {
     $('#'+modal).modal('show');
 }
 
-const item_tr_data_subject = (ob) => {
+var item_tr_data_subject = (ob) => {
 	return `
         <tr>
             <td >${ob.subjectName}</td>
@@ -265,40 +333,41 @@ const item_tr_data_subject = (ob) => {
                     data-toggle="modal">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
-                <a href="#deleteEmployeeModal" data-student_id=${ob.subjectId}  class="material-icons delete_student" style="color: red;" data-toggle="modal">
+                <a href="#deleteSubjectModal" id="idDeleteSubjectModal" data-id=${ob.subjectId}  class="material-icons delete_student" style="color: red;" data-toggle="modal">
                     <i class="fa-sharp fa-solid fa-trash"></i>
                 </a>
             </td>
         </tr>`
 }
 
-$(document).on("click", ".item-class", function() {
-    var clickedBtnID = $(this).attr('id');
-    console.log(` id class : ${clickedBtnID}` );
-    $('.content-class').removeClass('d-none')
+var clickItemClass = () => {
+    $(document).on("click", ".item-class", function() {
+        var clickedBtnID = $(this).attr('id');
+        $('#class-manage-mng').show()
+        $('.content-class').removeClass('d-none')
 
-    getListClassStudyById(clickedBtnID).then( function(val) {
-        show_data_idclass_ob(val)
-        $('#main-administrator').addClass('d-none');
-
-        // $('#subject-name').text(val.subjectName)
-        // console.log(val);
-    })
-    .catch(function(eror) {
-        alert('None subject found with id ' + teacherId);
-    })
-    getListStudentByClassStudyId(clickedBtnID)
-        .then(function(studentList) {
-            show_list_student(studentList)
+        getListClassStudyById(clickedBtnID).then( function(val) {
+            show_data_idclass_ob(val)
+            $('#main-administrator').addClass('d-none');
         })
-})
+        .catch(function(eror) {
+            alert('None subject found with id ' + teacherId);
+        })
+        getListStudentByClassStudyId(clickedBtnID)
+            .then(function(studentList) {
+                show_list_student(studentList)
+            })
+    })
+}
 
-$(document).on('click', '#AddSTDClassModal' , function() {
-    var classStudyId = $(this).data('id');
-    $("#classStudyId-val").val( classStudyId );
-})
+var onClickDeleteSubjectModal = () => {
+    $(document).on('click', '#idDeleteSubjectModal' , function() {
+        var subjectId = $(this).data('id');
+        $("#confirm_delete_subject").val( subjectId );
+    })
+}
 
-const view_class_study = (ob) => {
+var view_class_study = (ob) => {
     return `
         <div class="header-class">
             <h3>${ob.className}</h3>
@@ -316,7 +385,7 @@ const view_class_study = (ob) => {
     `
 }
 
-const item_tr_data_class = (ob) => {
+var item_tr_data_class = (ob) => {
 	return `
         <tr>
             <td></td>
@@ -330,14 +399,14 @@ const item_tr_data_class = (ob) => {
                     data-toggle="modal">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
-                <a href="#subjectModal" data-ob=${ob.subjectId}  class="material-icons delete_student" style="color: red;" data-toggle="modal">
+                <a href="#deleteClass" data-id=${ob.subjectId} id="subjectDelete"  class="material-icons delete_student" style="color: red;" data-toggle="modal">
                     <i class="fa-sharp fa-solid fa-trash"></i>
                 </a>
             </td>
         </tr>`
 }
 
-const item_data_student = (ob) => {
+var item_data_student = (ob) => {
    return  `
     <tr>
         <td>${ob.studentId}</td>
@@ -356,8 +425,25 @@ const item_data_student = (ob) => {
     `
 }
 
-const popup_cancel = (modalId) => {
+$(document).on('click', '#AddSTDClassModal' , function() {
+    var classStudyId = $(this).data('id');
+    $("#classStudyId-val").val( classStudyId );
+})
+
+
+var deleteSubject = () => {
+   $(function() {
+    $('#confirm_delete_subject').on('click', function(e) {
+        e.preventDefault()
+        deleteSubjectById($(this).val());
+    })
+   })
+}
+
+var popup_cancel = (modalId) => {
     var element = $(`${modalId}`)
+    $('.modal-backdrop').remove();
+    $('body').removeClass('modal-open')
     element.removeClass('show');
     element.css("display", "none")
 }
@@ -368,7 +454,7 @@ $(function() {
     });
 });
 
-const toggleClassAdm_classMng= () => {
+var toggleClassAdm_classMng= () => {
     // alert('toggle class')
     $('#main-administrator').toggleClass('d-none')
     $('#class-manage').toggleClass('d-none')
@@ -401,7 +487,21 @@ function getUserName(str) {
     return str;
 }
 
-const getTeacherById = (id) => {
+var deleteSubjectById = (subjectId) => {
+		$.ajax({
+			method: "DELETE",
+			url: "/v1/subject/" + subjectId,
+			success: function (response) {
+                popup_cancel('#deleteSubjectModal')
+                getListSubject()
+			},
+			error: function () {
+				alert("Delete subject error");
+			},
+		});
+};
+
+var getTeacherById = (id) => {
     return new Promise(function(resolve, reject) {
         $.ajax({
             method: 'GET',
@@ -416,7 +516,7 @@ const getTeacherById = (id) => {
     })
 }
 
-const getSubjectById = (id) => {
+var getSubjectById = (id) => {
     return new Promise(function(resolve, reject) {
         $.ajax({
             method: 'GET',
@@ -431,7 +531,7 @@ const getSubjectById = (id) => {
     })
 }
 
-const getStudentById = (id) => {
+var getStudentById = (id) => {
     return new Promise(function(resolve, reject) {
         $.ajax({
             method: 'GET',
@@ -446,7 +546,7 @@ const getStudentById = (id) => {
     })
 }
 
-const getListStudentByClassStudyId = (id) => {
+var getListStudentByClassStudyId = (id) => {
     return new Promise(function(resolve,reject) {
         $.ajax({
             method: 'GET',
@@ -462,7 +562,7 @@ const getListStudentByClassStudyId = (id) => {
     })
 }
 
-const getListClassStudyById = (id) => {
+var getListClassStudyById = (id) => {
     return new Promise(function(resolve, reject) {
         $.ajax({
             method: 'GET',
@@ -478,17 +578,78 @@ const getListClassStudyById = (id) => {
     })
 }
 
-const getListClassStudy = () => {
+var showDataTeacher = () => {
+    getTeacherApi().then(function(response) {
+        $('#show_data').empty()
+        response.forEach(element => {
+            $('#show_data').append(itemTeacher(element));
+        })
+    })
+}
+
+var getTeacherApi = () => {
     return new Promise(function(resolve, reject) {
         $.ajax({
             method: 'GET',
-            url: '/v1/classstudy',
+            url: '/v1/teacher/',
             success: function(response) {
                 resolve(response)
             },
             error: function() {
-                console.log('show get list class study info error');
+                alert('get class study by id failllll');
             }
         })
     })
+}
+
+var itemTeacher = (ob) => {
+    return `
+                 <tr >
+                    <td >${ob.fullname}</td>
+                    <td> ${ob.sex} </td>
+                    <td>${ob.address} </td>
+                    <td>${ob.email} </td>
+                    <td>${ob.phone} </td>
+                    <td>
+                        <a href="#teacherModal" class="btn btn-primary btn-sm btn-crud" data-id=${ob.teacherId} data-toggle="modal" id="btn_update_teacher">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <a
+                            class="material-icons delete_student" id="btn_delete" data-id=${ob.teacherId} data-toggle="modal"
+                            data-target="#deleteTeacherModal" style="color: red;">
+                            <i class="fa-sharp fa-solid fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            `
+}
+
+var passDataTeacherModalEdit = () => {
+    $(document).on("click", "#btn_update_teacher", function() {
+        getTeacherById($(this).data('id')).then(function(val) {
+            $.each(inputList(), (index, value) => {
+                let mapObject = new Map(Object.entries(val))
+                $(value).val(mapObject.get(value.name))
+            })
+        })
+    })
+}
+
+var inputList = () => {
+    var listDom = document.querySelector('#teacher_form').querySelectorAll('input');
+    console.log(listDom);
+    return listDom
+}
+
+
+
+function getFormData($form){
+    var unindexed_array = $form.serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n['name']] = n['value'];
+    });
+
+    return indexed_array;
 }

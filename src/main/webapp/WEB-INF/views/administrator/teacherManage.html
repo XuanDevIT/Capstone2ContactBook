@@ -404,7 +404,6 @@
 									<label class="col-form-label">Photo</label>
 									<input type="text" name="photo" class="form-control" placeholder="degree">
 								</div>
-								<button id="teacherSubmit" type="submit" class="d-none"></button>
 							</div>
 						</div>
 					</div>
@@ -445,13 +444,9 @@
 								</div>
 								<label>Subject</label>
 								<div class="form-inline">
-									<input type="text" name="subjectId" id="subjectId-in-class" class="form-control"
-										placeholder="Enter subject Id">
-									<button class="btn btn-outline-success my-2 my-sm-0" id="search-subject"
-										type="button">
-										<i class="fa-sharp fa-solid fa-magnifying-glass"></i>
-									</button>
-									<h4 class="p-4" id="subject-name"></h4>
+										<select name="subject" id="subject" class="custom-select">
+
+										</select>
 								</div>
 							</div>
 						</div>
@@ -464,7 +459,27 @@
 			</div>
 		</div>
 	</div>
-
+	<!-- Modal confirm delete subject -->
+	<div id="deleteSubjectModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form>
+					<div class="modal-header">
+						<h4 class="modal-title">Delete Subject</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">
+						<p>Are you sure you want to delete this Subject ?</p>
+						<p class="text-warning"><small>This action cannot be undone.</small></p>
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						<button type="button" class="btn btn-danger" id="confirm_delete_subject">Delete</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 	<!-- Footer Section Begin -->
 	<footer class="footer spad">
 		<div class="container">
@@ -487,12 +502,10 @@
 						<h6>Useful Links</h6>
 						<ul>
 							<li><a href="#">About Us</a></li>
-
 						</ul>
 						<ul>
 							<li><a href="#">Who We Are</a></li>
 							<li><a href="#">Our Services</a></li>
-
 						</ul>
 					</div>
 				</div>
@@ -526,9 +539,8 @@
 	<script th:src="@{/js/mixitup.min.js}"></script>
 	<script th:src="@{/js/owl.carousel.min.js}"></script>
 	<script th:src="@{/js/main.js}"></script>
-	<script th:src="@{/js/handler.js}"></script>
+	<!-- <script th:src="@{/js/handler.js}"></script> -->
 	<script th:src="@{/CallEvent/main.js}"></script>
-	<script th:src="@{/js/common/api.js}"></script>
 
 	<!-- <script src="/js/common/main.js" type="module"></script> -->
 
@@ -550,14 +562,13 @@
 
 	<!-- <script th:src="@{/js/teacher.js}"></script> -->
 	<!-- <script src="/js/teacher.js"></script> -->
-	<script th:src="@{/js/administrator/administrator.js}"></script>
+	<!-- <script th:src="@{/js/administrator/administrator.js}"></script> -->
 	<script src="../../../js/administrator/administrator.js"></script>
-	<script th:src="@{/js/commonApi/app.js}"></script>
 
 	<!-- <script src="../../../js/commonApi/app.js"></script> -->
 
 	<!-- <script src="/js/main.js"></script> -->
-	<script src="/js/common/main.js" type="module"></script>
+	<!-- <script src="/js/common/main.js" type="module"></script> -->
 </body>
 
 </html>

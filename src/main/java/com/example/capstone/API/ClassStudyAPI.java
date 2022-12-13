@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -73,6 +74,15 @@ public class ClassStudyAPI {
 	@GetMapping("/v1/classstudy/teacherid/{id}")
 	public ResponseEntity<List<ClassStudyDTO>> findByTeacherId(@PathVariable(value = "id") Integer id) {
 		return new ResponseEntity<List<ClassStudyDTO>>(classStudyService.getClassStudyByTeacherId(id.longValue()), HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/v1/classStudy/{id}")
+	public Integer deleteById(@PathVariable(value = "id") Integer id) {
+		try {
+			return classStudyService.delete(id.longValue());
+		} catch(Exception e) {
+			return 0;
+		}
 	}
 
 }
