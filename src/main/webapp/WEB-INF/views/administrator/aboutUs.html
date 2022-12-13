@@ -7,7 +7,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home - Admin</title>
+    <title>About Us</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -30,7 +30,7 @@
     </div>
 
     <!-- Header Section Begin -->
-    <header class="header">
+	<header class="header">
 		<div class="header__top">
 			<div class="container">
 				<div class="row">
@@ -65,10 +65,10 @@
 				<div class="col-lg-6">
 					<nav class="header__menu">
 						<ul>
-							<li class="active"><a href="#">Home</a></li>
-							<li><a href="/path?path_url=student/studentProfile">Profile</a></li>
-							<li><a href="/path?path_url=student/getNotify">Notify</a></li>
-							<li><a href="/path?path_url=student/contact">Contact</a></li>
+							<li><a href="/path?path_url=admin/Homepage">Home</a></li>
+							<li><a href="/path?path_url=admin/adminProfile">Profile</a></li>
+							<li><a href="/path?path_url=admin/getNotify">Notify</a></li>
+							<li><a href="/path?path_url=admin/aboutUs">Contact</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -82,34 +82,73 @@
     <!-- Header Section End -->
 
     <!-- Hero Section Begin -->
-    <section class="hero" style="height: 45%;">
+    <section class="hero">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3">
-					<div class="hero__categories">
-						<div class="hero__categories__all" style="background-color: #28a745;">
-							<i class="fa fa-bars"></i> <span>Menu</span>
-						</div>
-						<ul>
-							<li><a href="/path?path_url=student/academicTranscript">Grades</a></li>
-							<li><a href="/path?path_url=student/studentStatus">Attendance</a></li>
-							<li><a href="/path?path_url=student/schedule">Schedule</a></li>
-							<li><a href="/path?path_url=student/sendNotify">Send Notify</a></li>
-							<li><a href="/path?path_url=student/aboutUs">Feedback Admin</a></li>
-						</ul>
-					</div>
-				</div>
+                    <div class="hero__categories">
+                        <div class="hero__categories__all" style="background-color: #28a745;">
+                            <i class="fa fa-bars"></i>
+                            <span>Menu</span>
+                        </div>
+                        <ul>
+                            <li><a href="/path?path_url=admin/teacherManage">School Manage</a></li>
+							<li><a href="/path?path_url=admin/schedule">Schedule</a></li>
+							<li><a href="/path?path_url=admin/sendNotify">Send Notify</a></li>
+							<li><a href="/path?path_url=admin/aboutUs">Feedback User</a></li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="col-lg-9">
                     <div class="hero__item set-bg" style="height:266px" data-setbg="/img/hero/banner1.png">
+                    </div>
+                    <div class="bg-light p-3 rounded">
+                        <div class="h2 text-success pb-2 border-bottom">EDUCATION CONTACT EBOOK 4.0</div>
+                        <!-- teacher Profile -->
+                            <div>ECE4.0 is created, short of Education Contact Ebook, is an application with the automatic 
+                                attendance by face recognition that is the most highlighted, which works using a mobile device 
+                                with camera integrated, teachers need to take a photo of all participants faces, the system will 
+                                automatically recognize and process the attendance results. This application also provides a 
+                                convenient way of communication and information capture for parent, by updating teachers' 
+                                posts, monitoring academic transcript, checking attendance or absence, and an online 
+                                messenger system with teachers
+                            </div>
+                    </div>
+                    <div class="bg-light p-3 rounded mt-2">
+                        <div class="h2 text-success">Meet some bug? Need Fix? Or just give us some review</div>
+                        <div class="h4 pb-2 border-bottom">Send your thoughs below!</div>
+                        <div class="form-group">
+                            <textarea class="form-control" id="feedbackForm" rows="3" placeholder="Comment here"></textarea>
+                          </div>
+                          <div class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Send Feedback</div>
+                          <!-- MODAL -->
+                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel">Your Feedback Has Been Send</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  Thank you!
+                                </div>
+                                <div class="modal-footer">
+                                 
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+    <!-- Hero Section End -->
     
     <!-- Footer Section Begin -->
-    <footer class="footer spad" style="height: 35%;">
+    <footer class="footer spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6">
@@ -129,7 +168,6 @@
                         <h6>Useful Links</h6>
                         <ul>
                             <li><a href="#">About Us</a></li>
-                           
                         </ul>
                         <ul>
                             <li><a href="#">Who We Are</a></li>
@@ -144,7 +182,8 @@
                         <p>Get E-mail updates about our latest system and notify offers.</p>
                         <form action="#">
                             <input type="text" placeholder="Enter your mail">
-                            <button type="submit" style="background-color: #28a745;" class="site-btn">Subscribe</button>
+                            <button type="submit"  style="background-color: #28a745;" class="site-btn">Subscribe
+                            <a href="path?path_url=teacher/showInfoStudent"></a></button>
                         </form>
                         <div class="footer__widget__social">
                             
