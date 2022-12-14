@@ -28,6 +28,7 @@ public class SubjectAPI {
 	@ResponseBody
 	public SubjectEntity save(@RequestBody SubjectRequest subjectRequest) {
 		SubjectEntity subjectEntity = new SubjectEntity();
+		subjectEntity.setSubjectId(subjectRequest.getSubjectId());
 		subjectEntity.setSubjectName(subjectRequest.getSubjectName());
 		return subjectService.save(subjectEntity);
 	}

@@ -33,6 +33,8 @@ $(function() {
     passDataTeacherModalEdit()
 
     setValueForSubjectSelect()
+
+    passDataSubjectModal()
 });
 
 var saveTeacher = () => {
@@ -46,7 +48,7 @@ var saveTeacher = () => {
             data: formData,
             success: function(response) {
                 popup_cancel('#teacherModal');
-                alert('Thêm giáo viên thành công');
+                alert('Save teacher success');
                 showDataTeacher()
             },
             error: function() {
@@ -60,7 +62,7 @@ var saveSubject = () => {
     $('#save_subject').on('click', function(e) {
         e.preventDefault();
         let formData = getFormData($("#subject_form"));
-        data = JSON.stringify(formData)
+        data = JSON.stringify   (formData)
         $.ajax({
             type: "POST",
             url: "/v1/subject",
@@ -69,7 +71,7 @@ var saveSubject = () => {
             success: function(response) {
                 popup_cancel('#subjectModal');
                 getListSubject();
-                alert('Thêm môn học thành công');
+                alert('Save subject success');
             },
             error: function() {
                 alert('Error');
@@ -92,7 +94,7 @@ var saveClassStudy = () => {
             success: function(response) {
                 popup_cancel('#classModal');
                 getListClassStudy();
-                alert('Thêm lớp thành công');
+                alert('Save class study success');
             },
             error: function() {
                 alert('Error');
@@ -329,7 +331,7 @@ var item_tr_data_subject = (ob) => {
         <tr>
             <td >${ob.subjectName}</td>
             <td>
-                <a href="#subjectModal" data-name=${ob.subjectId} data-id=${ob.subjectName} class="edit-subject"
+                <a href="#subjectModal" id="btn_update_subject" data-name=${ob.subjectId} data-id=${ob.subjectId} class="edit-subject"
                     data-toggle="modal">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
@@ -423,6 +425,15 @@ var item_data_student = (ob) => {
         </td>
     </tr>
     `
+}
+
+var passDataSubjectModal = () => {
+    $(document).on("click", "#btn_update_subject", function() {
+        getSubjectById($(this).data('id')).then(function(val) {
+            $('#subjectId').val(val.subjectId);
+            $('#subjectName').val(val.subjectName);
+        })
+    })
 }
 
 $(document).on('click', '#AddSTDClassModal' , function() {
