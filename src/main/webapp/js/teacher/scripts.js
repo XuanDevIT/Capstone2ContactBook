@@ -4,6 +4,7 @@ const fileInput = document.querySelector('#file-input');
 var command = [];
 var studentIdLong = [];
 const ob = [];
+const arrAttendance = [];
 $(document).ready(function () {
 
 	var settings = {
@@ -71,7 +72,7 @@ async function init() {
 	}).showToast();
 
 	const trainingData = await loadTrainingData()
-	faceMatcher = new faceapi.FaceMatcher(trainingData, 0.9)
+	faceMatcher = new faceapi.FaceMatcher(trainingData, 0.45)
 
 	console.log(faceMatcher)
 	document.querySelector("#loading").remove();
@@ -146,9 +147,14 @@ $(document).on("click", "#btnConfirm", function () {
 	console.log(arrayClassId);
 
 	for(var i = 0; i < ob.length; i++){
-		if(!arrayClassId.includes(ob[i].studentId)){
-			ob.splice(i, 1);
+		if(ob[i].studentId !== 'u'){
+			if(arrayClassId.includes(ob[i].studentId)){
+				//ob.splice(i, 1);
+
+				arrAttendance.push(ob[i]);
+			}
 		}
+		
 	}
 
 	console.log(ob);
@@ -165,7 +171,7 @@ $(document).on("click", "#btnConfirm", function () {
 		$.ajax({
 			method: "POST",
 			url: "/v1/attendance/add",
-			data: JSON.stringify(ob),
+			data: JSON.stringify(arrAttendance),
 			contentType: "application/json",
 			success: function (response) {
 				alert("điểm danh thành công");
