@@ -24,17 +24,24 @@ $(function() {
 
     deleteSubject()
 
+    deleteTeacher()
+
     clickItemClass()
 
     onClickBackButton()
 
     onClickDeleteSubjectModal()
 
+    onClickDeleteTeacherModal()
+
     passDataTeacherModalEdit()
 
     setValueForSubjectSelect()
 
     passDataSubjectModal()
+
+    setValueForTeacherSelect()
+
 });
 
 var saveTeacher = () => {
@@ -86,6 +93,7 @@ var saveClassStudy = () => {
         let formData = getFormData($("#class_study_form"));
         console.log(formData);
         data = JSON.stringify(formData);
+        console.log(data);
         $.ajax({
             type: "POST",
             url: "/v1/add/classstudy",
@@ -247,6 +255,18 @@ var setValueForSubjectSelect = () => {
     })
 }
 
+var setValueForTeacherSelect = () => {
+    getTeacherApi().then(function(response) {
+       response.forEach(element => {
+        $('#teacherName').append(
+            `
+                <option value='${element.teacherId}'>${element.fullname}</option>
+            `
+        )
+       })
+    })
+}
+
 const getSubject = () => {
 	return new Promise(function (resolve, reject) {
 		$.ajax({
@@ -369,6 +389,13 @@ var onClickDeleteSubjectModal = () => {
     })
 }
 
+var onClickDeleteTeacherModal = () => {
+    $(document).on('click', '#idDeleteTeacherModal' , function() {
+        var teacherId = $(this).data('id');
+        $("#confirm_delete_teacher").val( teacherId );
+    })
+}
+
 var view_class_study = (ob) => {
     return `
         <div class="header-class">
@@ -451,6 +478,15 @@ var deleteSubject = () => {
    })
 }
 
+var deleteTeacher = () => {
+    $(function() {
+        $('#confirm_delete_teacher').on('click', function(e) {
+            e.preventDefault();
+            deleteTeacherById($(this).val())
+        })
+    })
+}
+
 var popup_cancel = (modalId) => {
     var element = $(`${modalId}`)
     $('.modal-backdrop').remove();
@@ -511,6 +547,21 @@ var deleteSubjectById = (subjectId) => {
 			},
 		});
 };
+
+var deleteTeacherById = (teacherId) => {
+    $.ajax({
+        method: "DELETE",
+        url: "/v1/teacher/" + teacherId,
+        success: function (response) {
+            console.log('delete teacher success');
+            popup_cancel('#deleteTeacherModal')
+            showDataTeacher()
+        },
+        error: function () {
+            alert("Delete teacher error");
+        },
+    });
+}
 
 var getTeacherById = (id) => {
     return new Promise(function(resolve, reject) {
@@ -625,8 +676,7 @@ var itemTeacher = (ob) => {
                         <a href="#teacherModal" class="btn btn-primary btn-sm btn-crud" data-id=${ob.teacherId} data-toggle="modal" id="btn_update_teacher">
                             <i class="fa-solid fa-pen-to-square"></i>
                         </a>
-                        <a
-                            class="material-icons delete_student" id="btn_delete" data-id=${ob.teacherId} data-toggle="modal"
+                        <a href="#deleteTeacherModal" class="material-icons delete_student" id="idDeleteTeacherModal" data-id=${ob.teacherId} data-toggle="modal"
                             data-target="#deleteTeacherModal" style="color: red;">
                             <i class="fa-sharp fa-solid fa-trash"></i>
                         </a>
