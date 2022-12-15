@@ -14,4 +14,6 @@ public interface StudentClassStudyService {
 	List<StudentClassStudy> getAll();
 	
 	List<StudentClassStudyDTO> getStudentListByClassStudyId(Long id);
+	
+	public Integer removeStudentFromClass(Long classStudyId, Long studentId);
 }

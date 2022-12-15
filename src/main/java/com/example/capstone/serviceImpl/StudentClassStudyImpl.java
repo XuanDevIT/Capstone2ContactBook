@@ -41,4 +41,12 @@ public class StudentClassStudyImpl implements StudentClassStudyService {
 	public List<StudentClassStudyDTO> getStudentListByClassStudyId(Long classStudyId) {
 		return repository.getStudentByClassStudyId(classStudyId);
 	}
+
+	@Override
+	public Integer removeStudentFromClass(Long classStudyId, Long studentId) {
+		return repository.removeStudentFromClass(classStudyId, studentId);
+			
+	}
+	
+	
 }

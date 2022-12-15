@@ -42,6 +42,8 @@ $(function() {
 
     setValueForTeacherSelect()
 
+    deleteStudentFromClass()
+
 });
 
 var saveTeacher = () => {
@@ -435,7 +437,7 @@ var item_tr_data_class = (ob) => {
                     data-toggle="modal">
                     <i class="fa-solid fa-pen-to-square"></i>
                 </a>
-                <a href="#deleteClass" data-id=${ob.subjectId} id="subjectDelete"  class="material-icons delete_student" style="color: red;" data-toggle="modal">
+                <a href="#deleteClass" data-id=${ob.subjectId} id="subjectDelete"  class="material-icons" style="color: red;" data-toggle="modal">
                     <i class="fa-sharp fa-solid fa-trash"></i>
                 </a>
             </td>
@@ -448,7 +450,7 @@ var item_data_student = (ob) => {
         <td>${ob.studentId}</td>
         <td>${ob.studentName}</td>
         <td>
-            <a href="#deleteEmployeeModal" id="remove-student-from-class" data-id=${ob.studentId}  class="material-icons delete_student"
+            <a href="#deleteStudentFromClass" id="remove-student-from-class" data-id=${ob.studentId}  class="material-icons"
              style="color: red;" data-toggle="modal">
                 <i class="fa-sharp fa-solid fa-trash"></i>
             </a>
@@ -471,20 +473,23 @@ $(document).on('click', '#AddSTDClassModal' , function() {
     $("#classStudyId-val").val( classStudyId );
 })
 
-
 var deleteSubject = () => {
    $(function() {
-    $('#confirm_delete_subject').on('click', function(e) {
-        e.preventDefault()
-        deleteSubjectById($(this).val());
-    })
+        $('#confirm_delete_subject').on('click', function(e) {
+            e.preventDefault()
+            deleteSubjectById($(this).val());
+        })
    })
 }
+
+$(document).on('click', '#remove-student-from-class' , function() {
+    $('#confirm_remove_student').val($(this).data('id'))
+})
 
 var deleteStudentFromClass = () => {
     $('#confirm_remove_student').on('click', function(e) {
         e.preventDefault()
-        // 20221215
+        removeStudentFromClass(localStorage.getItem('classStudyId'), $(this).val())
     })
 }
 
@@ -542,6 +547,29 @@ function getUserName(str) {
 
     str = str.replace(/!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g," ");
     return str;
+}
+
+var removeStudentFromClass = (classStudyId, studentId) => {
+    var object = {
+        classStudyId: classStudyId,
+        studentId: studentId
+    }
+
+    var data = JSON.stringify(object)
+
+    $.ajax({
+        method: "Delete",
+        url: "/v1/studentclassstudy",
+        data: data,
+        contentType: 'application/json',
+        success: function(response) {
+            renderListStudentByClassStudyId(localStorage.getItem('classStudyId'))
+            popup_cancel('#deleteStudentFromClass')
+        },
+        error: function () {
+            alert("Delete subject error");
+        }
+    })
 }
 
 var deleteSubjectById = (subjectId) => {

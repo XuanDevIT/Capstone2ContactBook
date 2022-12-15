@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,6 +49,12 @@ public class StudentClassStudyAPI {
 	public ResponseEntity<List<StudentClassStudyDTO>> getAll(@PathVariable(value = "classStudyId") String classStudyId) {
 		List<StudentClassStudyDTO> l = scsService.getStudentListByClassStudyId(Long.parseLong(classStudyId));
 		return new ResponseEntity<List<StudentClassStudyDTO>>(l, HttpStatus.OK);
+	}
+	
+	@Transactional
+	@DeleteMapping(value="/v1/studentclassstudy", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void removeStudentFromClass(@RequestBody StudentClassStudyRequest request) {
+		scsService.removeStudentFromClass(request.getClassStudyId(), request.getStudentId());
 	}
 	
 }

@@ -4,6 +4,7 @@ package com.example.capstone.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -19,4 +20,7 @@ public interface StudentClassStudyRepository extends JpaRepository<StudentClassS
 			+ "where scs.class_Study_Id = ?1")
 	public List<StudentClassStudyDTO> getStudentByClassStudyId(Long classStudyId);
 	
+	@Modifying
+	@Query(nativeQuery = true, value = "Delete from student_class_study where class_study_id = ?1 and student_id = ?2")
+	public int removeStudentFromClass(Long classStudyId, Long studentId);
 }
