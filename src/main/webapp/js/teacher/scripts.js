@@ -72,7 +72,7 @@ async function init() {
 	}).showToast();
 
 	const trainingData = await loadTrainingData()
-	faceMatcher = new faceapi.FaceMatcher(trainingData, 0.45)
+	faceMatcher = new faceapi.FaceMatcher(trainingData, 0.65)
 
 	console.log(faceMatcher)
 	document.querySelector("#loading").remove();
@@ -157,14 +157,23 @@ $(document).on("click", "#btnConfirm", function () {
 		
 	}
 
-	console.log(ob);
+	console.log(arrAttendance);
+	var teamp = '';
+	
+	for(var j = 0; j < arrAttendance.length; j++){
+		if(j === arrAttendance.length-1){
+			teamp += arrAttendance[j].studentId;
+		}else {
+			teamp += arrAttendance[j].studentId + ", ";
+		}
+	}
 
 	// const index = array.indexOf(5);
 	// if (index > -1) { // only splice array when item is found
 	// 	array.splice(index, 1); // 2nd parameter means remove one item only
 	// }
 
-	
+	const arr = [];
 
 	// array = [2, 9]
 	return new Promise((resolve, reject) => {
@@ -174,17 +183,30 @@ $(document).on("click", "#btnConfirm", function () {
 			data: JSON.stringify(arrAttendance),
 			contentType: "application/json",
 			success: function (response) {
-				alert("điểm danh thành công");
+				alert("Attendance Student have ID: " + teamp.toString());
 				console.log(response);
 				container.innerHTML = '';
 				fileInput.value = '';
+				//arrAttendance = arr;
+				teamp = '';
+				while (arrAttendance.length > 0) {
+					arrAttendance.pop();
+				}
+				while (ob.length > 0) {
+					ob.pop();
+				}
+
+				while (studentIdLong.length > 0) {
+					studentIdLong.pop();
+				}
+				debugger
+				alert("điểm danh thành công");
 			},
 			error: function (response) {
 				console.log(response);
 			},
 		});
 	})
-	debugger
 
 });
 debugger
