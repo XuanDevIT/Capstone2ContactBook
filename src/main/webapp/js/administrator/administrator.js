@@ -160,6 +160,7 @@ var saveStudentToClass = () => {
             contentType: "application/json; charset=UTF-8",
             success: function(response) {
                 popup_cancel('#AddStudentToClassModal');
+                renderListStudentByClassStudyId(localStorage.getItem('classStudyId'))
                 alert('add student success');
             },
             error: function() {
@@ -333,6 +334,7 @@ var onClickBackButton = () => {
         $('.content-class').addClass('d-none')
         $('#main-administrator').removeClass('d-none');
         $('#class-manage-mng').hide();
+        localStorage.removeItem('classStudyId')
     })
 }
 
@@ -364,21 +366,29 @@ var item_tr_data_subject = (ob) => {
 
 var clickItemClass = () => {
     $(document).on("click", ".item-class", function() {
-        var clickedBtnID = $(this).attr('id');
+        localStorage.setItem('classStudyId', $(this).attr('id'))
         $('#class-manage-mng').show()
         $('.content-class').removeClass('d-none')
 
-        getListClassStudyById(clickedBtnID).then( function(val) {
+        getListClassStudyById(localStorage.getItem('classStudyId')).then( function(val) {
             show_data_idclass_ob(val)
             $('#main-administrator').addClass('d-none');
         })
         .catch(function(eror) {
             alert('None subject found with id ' + teacherId);
         })
-        getListStudentByClassStudyId(clickedBtnID)
-            .then(function(studentList) {
-                show_list_student(studentList)
-            })
+        // getListStudentByClassStudyId(localStorage.getItem('classStudyId'))
+        //     .then(function(studentList) {
+        //         show_list_student(studentList)
+        //     })
+            renderListStudentByClassStudyId(localStorage.getItem('classStudyId'))
+    })
+}
+
+var renderListStudentByClassStudyId = (id) => {
+    getListStudentByClassStudyId(id)
+    .then(function(studentList) {
+        show_list_student(studentList)
     })
 }
 
@@ -403,9 +413,6 @@ var view_class_study = (ob) => {
         </div>
         <button data-id="${ob.classStudyId}" type="button" class="btn btn-success" id="AddSTDClassModal" data-toggle="modal" data-target="#AddStudentToClassModal">
             Add Student
-        </button>
-        <button id='btn-redirect-attendance' data-id="${ob.classStudyId}">
-            Attendance
         </button>
         <div class="footer-class">
             <div>${ob.fullname}</div>
@@ -441,11 +448,7 @@ var item_data_student = (ob) => {
         <td>${ob.studentId}</td>
         <td>${ob.studentName}</td>
         <td>
-            <a href="#addEmployeeModal" data-student_id=${ob.studentId} class="edit"
-                data-toggle="modal">
-                <i class="fa-solid fa-pen-to-square"></i>
-            </a>
-            <a href="#deleteEmployeeModal" data-student_id=${ob.studentId}  class="material-icons delete_student"
+            <a href="#deleteEmployeeModal" id="remove-student-from-class" data-id=${ob.studentId}  class="material-icons delete_student"
              style="color: red;" data-toggle="modal">
                 <i class="fa-sharp fa-solid fa-trash"></i>
             </a>
@@ -476,6 +479,13 @@ var deleteSubject = () => {
         deleteSubjectById($(this).val());
     })
    })
+}
+
+var deleteStudentFromClass = () => {
+    $('#confirm_remove_student').on('click', function(e) {
+        e.preventDefault()
+        // 20221215
+    })
 }
 
 var deleteTeacher = () => {
