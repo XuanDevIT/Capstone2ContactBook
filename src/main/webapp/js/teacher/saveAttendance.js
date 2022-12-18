@@ -1,5 +1,5 @@
 $(function () {
-	
+
 	//khoi tao get class study by teacher id = 1
 	getClassStudyById(1).then(function (response) {
 		console.log(response);
@@ -58,9 +58,7 @@ const selectClassStudy = () => {
 const selectTimeStudy = () => {
 	$(document).on("click", ".item-time-study", function () {
 		localStorage.setItem("timeStudyId", $(this).attr("id"));
-		getListStudentByClassStudy(
-			localStorage.getItem("classStudyId")
-		);
+		getListStudentByClassStudy($(this).attr("id"));
 
 		$(".listClassStudy").hide();
 		$(".listTimeStudy").hide();
@@ -110,8 +108,10 @@ const buttonBack = () => {
 
 //render list student
 const getListStudentByClassStudy = (id) => {
-	getStudentByClassStudyId(1).then(function (response) {
+	console.log(id);
+	getStudentByClassStudyId(id).then(function (response) {
 		response.forEach((element) => {
+			console.log(element);
 			$("#list-student").append(
 				itemStudentAttendance(element)
 			);
@@ -168,13 +168,13 @@ const getTimeStudyByClassStudyId = (classStudyId) => {
 	});
 };
 
-// get listutudent by class study 
+// get listutudent by class study
 
 const getStudentByClassStudyId = (classStudyId) => {
 	return new Promise(function (resolve, reject) {
 		$.ajax({
 			method: "GET",
-			url: "/v1/getStudentByClass/" + classStudyId,
+			url: "/v1/list/attendance/" + classStudyId,
 			success: function (response) {
 				resolve(response);
 			},
@@ -188,21 +188,32 @@ const getStudentByClassStudyId = (classStudyId) => {
 
 const sliceDate = (dateString) => dateString.slice(0, 10);
 
-// item 1 student 
+// item 1 student
 const itemStudentAttendance = (ob) =>
 	`<tr class="item-student" id="${ob.studentId}">
         <th scope="row" id="studentId">${ob.studentId}</th>
-        <td class="student-name">${ob.studentName}</td>
+        <td class="student-name">${ob.fullname}</td>
         <td class="status p-1">
-        <select name="status" id="status" name="" id="student-status" class="custom-select border-0 bg-transparent w-100">
-            <option value="1" selected="selected">Attendant</option>
-            <option value="0">Permission</option>
-        </select>
+        ${statusHtml(ob.status)}
         </td>
         <td class="text-center">
-            <input class="form-control" id="reason" type="text" name="reason"></input>
+            <input class="form-control" id="reason" type="text" name="reason" value="${ob.reason}"></input>
         </td>
     </tr>`;
+
+function statusHtml(status)  {
+	if(status) {
+		return `<select name="status" id="status" id="student-status" class="custom-select border-0 bg-transparent w-100">
+            <option value="1" selected="selected">Attendant</option>
+            <option value="0">Permission</option>
+        </select>`
+	} else {
+		return `<select name="status" id="status" id="student-status" class="custom-select border-0 bg-transparent w-100">
+            <option value="1">Attendant</option>
+            <option value="0" selected="selected">Permission</option>
+        </select>`
+	}
+}
 // get thong tin diem danh tu giao dien.
 const getInfoAttendance = () => {
 	var resultToSave = [];
@@ -215,6 +226,7 @@ const getInfoAttendance = () => {
 			timeStudyId: localStorage.getItem("timeStudyId"),
 		};
 		resultToSave.push(element);
+		console.log(`resultToSave : ${resultToSave}`);
 	});
 	return resultToSave;
 };

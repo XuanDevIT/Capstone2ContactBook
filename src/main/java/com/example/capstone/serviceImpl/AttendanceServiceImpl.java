@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.capstone.dto.AttendanceSTDDTO;
 import com.example.capstone.dto.ClassStudyDTO;
+import com.example.capstone.dto.StudentAttendanceDTO;
 import com.example.capstone.dto.StudentClassStudyDTO;
 import com.example.capstone.entity.AttendanceEntity;
 import com.example.capstone.entity.TimeStudyEntity;
@@ -74,4 +75,11 @@ public class AttendanceServiceImpl implements AttendanceService {
 		
 		return map;
 	}
+
+	@Override
+	public List<StudentAttendanceDTO> findListStudentAttendance(Long timeStudyId) {
+		return attendanceRepository.findListStudentAttendance(timeStudyId);
+	}
+	
+	
 }

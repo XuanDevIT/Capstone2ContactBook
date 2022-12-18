@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.example.capstone.dto.AttendanceSTDDTO;
+import com.example.capstone.dto.StudentAttendanceDTO;
 import com.example.capstone.entity.AttendanceEntity;
 
 public interface AttendanceService {
@@ -15,4 +16,6 @@ public interface AttendanceService {
 	public List<AttendanceSTDDTO> findListAttendanceByIdAndClassId(Long studentId, Long classStudyId);
 
 	public Map<String, Object> findAttendanceByClassId(Long classStudyId);
+	
+	public List<StudentAttendanceDTO> findListStudentAttendance(Long timeStudyId);
 }

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.example.capstone.dto.AttendanceSTDDTO;
+import com.example.capstone.dto.StudentAttendanceDTO;
 import com.example.capstone.entity.AttendanceEntity;
 import com.example.capstone.entity.TimeStudyEntity;
 
@@ -23,4 +24,10 @@ public interface AttendanceRepository extends JpaRepository<AttendanceEntity, Lo
 			+ "join student st on st.student_id = at.student_id "
 			+ "where at.student_id = ?1 and ts.class_study_id = ?2")
 	List<AttendanceSTDDTO> findListAttendanceByIdAndClassId(Long studentId, Long classStudyId);
+	
+	@Query(nativeQuery = true, value = "Select st.student_id as studentId, st.fullname as fullname, at.status as status, at.reason as reason"
+			+ " from attendance at"
+			+ " join student st on st.student_id = at.student_id"
+			+ " where at.time_study_id = ?1")
+	public List<StudentAttendanceDTO> findListStudentAttendance(Long timeStudyId);
 }

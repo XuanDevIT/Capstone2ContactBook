@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.capstone.dto.StudentAttendanceDTO;
 import com.example.capstone.entity.AttendanceEntity;
 import com.example.capstone.entity.AttendanceKey;
 import com.example.capstone.entity.StudentEntity;
@@ -80,4 +81,8 @@ public class AttendanceAPI {
 		return new ResponseEntity<Map<String, Object>>(attendanceService.findAttendanceByClassId(classStudyId), HttpStatus.OK);
 	}
 
+	@GetMapping(value = "/v1/list/attendance/{id}")
+	public ResponseEntity<?> getListAttendance(@PathVariable(value = "id") Long timeStudyId) {
+		return new ResponseEntity<List<StudentAttendanceDTO>>(attendanceService.findListStudentAttendance(timeStudyId), HttpStatus.OK);
+	}
 }
