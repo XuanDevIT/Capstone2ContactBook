@@ -1,3 +1,7 @@
+* {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
 :root {
 	--color-bg: #7fad39;
 }
@@ -60,5 +64,20 @@
 }
 
 .nav-teacher-subject  > * {
-	margin-right: 3px;
+	margin-right: 5px;
+}
+
+.nav-teacher-subject > * {
+	width: 145px;
+	height: 43px;
+}
+
+.nav-button-add > * {
+	width: 145px;
+	height: 43px;
+	font-size: 20px;
+}
+
+.nav-teacher-subject  > *{
+	margin-bottom: 5px;
 }
