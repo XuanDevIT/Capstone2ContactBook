@@ -413,7 +413,7 @@ var view_class_study = (ob) => {
         <div class="header-class">
             <h3>${ob.className}</h3>
         </div>
-        <button data-id="${ob.classStudyId}" type="button" class="btn btn-success" id="AddSTDClassModal" data-toggle="modal" data-target="#AddStudentToClassModal">
+        <button data-id="${ob.classStudyId}" type="button" class="btn btn-success m-1" id="AddSTDClassModal" data-toggle="modal" data-target="#AddStudentToClassModal">
             Add Student
         </button>
         <div class="footer-class">

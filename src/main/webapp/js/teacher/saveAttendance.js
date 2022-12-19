@@ -105,10 +105,9 @@ const buttonBack = () => {
 	});
 };
 
-
 //render list student
 const getListStudentByClassStudy = (id) => {
-	console.log(id);
+	$('#list-student').empty();
 	getStudentByClassStudyId(id).then(function (response) {
 		response.forEach((element) => {
 			console.log(element);
@@ -191,26 +190,26 @@ const sliceDate = (dateString) => dateString.slice(0, 10);
 // item 1 student
 const itemStudentAttendance = (ob) =>
 	`<tr class="item-student" id="${ob.studentId}">
-        <th scope="row" id="studentId">${ob.studentId}</th>
-        <td class="student-name">${ob.fullname}</td>
-        <td class="status p-1">
+        <th style="width: 10%" scope="row" id="studentId">${ob.studentId}</th>
+        <td style="width: 37%" class="student-name">${ob.fullname}</td>
+        <td style="width: 25%" class="status p-1">
         ${statusHtml(ob.status)}
         </td>
-        <td class="text-center">
-            <input class="form-control" id="reason" type="text" name="reason" value="${ob.reason}"></input>
+        <td style="width: 28%" class="text-center">
+            <input  class="form-control" id="reason" type="text" name="reason" value="${ob.reason}"></input>
         </td>
     </tr>`;
 
 function statusHtml(status)  {
 	if(status) {
 		return `<select name="status" id="status" id="student-status" class="custom-select border-0 bg-transparent w-100">
-            <option value="1" selected="selected">Attendant</option>
-            <option value="0">Permission</option>
+            <option value="1" selected="selected">Present</option>
+            <option value="0">Absent</option>
         </select>`
 	} else {
 		return `<select name="status" id="status" id="student-status" class="custom-select border-0 bg-transparent w-100">
-            <option value="1">Attendant</option>
-            <option value="0" selected="selected">Permission</option>
+            <option value="1">Present</option>
+            <option value="0" selected="selected">Absent</option>
         </select>`
 	}
 }

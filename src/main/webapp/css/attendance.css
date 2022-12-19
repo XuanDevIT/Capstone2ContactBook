@@ -1,3 +1,7 @@
+:root {
+	--color-bg: #7fad39;
+}
+
 .table-wrapper {
 	position: relative;
 }
@@ -19,4 +23,8 @@
 	height: 20px;
 	width: 35%;
 	border: 1px solid red;
+}
+
+.list-class-container {
+	background-color: #7fad39;
 }

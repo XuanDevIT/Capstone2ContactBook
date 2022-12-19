@@ -1,3 +1,7 @@
+:root {
+	--color-bg: #7fad39;
+}
+
 .table-crud td {
 	padding: 2px 2px 1px 2px !important;
 	vertical-align: middle !important;
@@ -45,4 +49,16 @@
 	left: 50%;
 	top: 50%;
 	transform: translate(-60%, -50%);
+}
+
+.header-class {
+	background-color: #7fad39;
+}
+
+.bg-bgr {
+	background-color:  var(--color-bg);
+}
+
+.nav-teacher-subject  > * {
+	margin-right: 3px;
 }

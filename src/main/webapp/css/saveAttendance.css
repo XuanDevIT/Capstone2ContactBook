@@ -1,6 +1,13 @@
 .titleAttendance {
     padding: 4px 10px 4px 5px;
-    background-color: darkcyan;
+    background-color: #28a745;
+    color: #fff;
+    font-weight: 600;
+}
+
+.list-class-container {
+    padding: 3px auto;
+    margin: 7px 0px;
 }
 
 .item-time-study {
