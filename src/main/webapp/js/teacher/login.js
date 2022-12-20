@@ -32,7 +32,7 @@ $(document).ready(function () {
                         if($("#user").val() === "admin" && $("#pass").val() === "admin"){
                             window.location.href = "/path?path_url=admin/Homepage";
                         }else {
-                            alert("Username or Password is wrong!!!")
+                            alert("Username or Password is invalid!!!")
                         }
                     }
                 });

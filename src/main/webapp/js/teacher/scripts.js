@@ -49,7 +49,7 @@ async function loadTrainingData() {
 		}
 		faceDescriptors.push(new faceapi.LabeledFaceDescriptors(label, descriptors))
 		Toastify({
-			text: `Training xong data của ${label}!`
+			text: `Training xong data student ${label}!`
 		}).showToast();
 	}
 	debugger
